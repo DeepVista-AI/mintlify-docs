@@ -1,0 +1,269 @@
+---
+title: "MCP Server"
+description: "Connect your AI tools (Cursor, Claude Desktop, and more) directly to your DeepVista context cards."
+---
+
+The DeepVista MCP server lets any compatible AI client read, search, create, edit, and delete your context cards — without leaving your coding environment or chat interface.
+
+All actions are automatically scoped to your **currently active DeepVista project**. No extra configuration needed.
+
+<Info>
+  MCP (Model Context Protocol) is an open standard for connecting AI clients to external data sources. [Read the spec →](https://modelcontextprotocol.io/specification/2025-03-26)
+</Info>
+
+## Endpoint
+
+The MCP server uses **Streamable HTTP transport** with OAuth 2.1 authentication.
+
+```text
+https://api.deepvista.ai/mcp
+```
+
+---
+
+## Setup
+
+<Tabs>
+  <Tab title="Cursor">
+    Add the following to your Cursor MCP config file at `~/.cursor/mcp.json`. Create the file if it doesn't exist.
+
+    ```json ~/.cursor/mcp.json
+    {
+      "mcpServers": {
+        "deepvista": {
+          "url": "https://api.deepvista.ai/mcp"
+        }
+      }
+    }
+    ```
+
+    <Steps>
+      <Step title="Save the config and restart Cursor">
+      </Step>
+      <Step title="Open the command palette">
+        Press `Cmd/Ctrl+Shift+P` and run **MCP: Connect to server**.
+      </Step>
+      <Step title="Sign in to DeepVista">
+        A browser window will open — complete the OAuth flow to authorize the connection.
+      </Step>
+      <Step title="Confirm the connection">
+        Return to Cursor. The server status should show **Connected**.
+      </Step>
+    </Steps>
+
+    <Check>
+      **Verify it's working:** In Cursor's AI chat, type `List my DeepVista context cards.` You should see a summary of cards from your active project.
+    </Check>
+  </Tab>
+  <Tab title="Claude Desktop">
+    Open or create your Claude Desktop config file and add the DeepVista server entry.
+
+    ```json ~/Library/Application Support/Claude/claude_desktop_config.json
+    {
+      "mcpServers": {
+        "deepvista": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "mcp-remote",
+            "https://api.deepvista.ai/mcp"
+          ]
+        }
+      }
+    }
+    ```
+
+    <Note>
+      On Windows the config file is at `%APPDATA%\Claude\claude_desktop_config.json`.
+    </Note>
+
+    <Steps>
+      <Step title="Check your Node.js version">
+        Claude Desktop uses `npx` to launch the bridge — Node.js 18\+ is required. Run `node --version` to confirm.
+      </Step>
+      <Step title="Save the config and fully quit Claude Desktop">
+        Use `Cmd+Q` on macOS or right-click the taskbar icon and select **Quit**.
+      </Step>
+      <Step title="Reopen Claude Desktop">
+        A browser window will prompt you to sign in to DeepVista.
+      </Step>
+      <Step title="Complete the OAuth flow">
+        You'll be redirected back to Claude automatically once authorized.
+      </Step>
+    </Steps>
+
+    <Check>
+      **Verify it's working:** Start a new Claude conversation and ask `Show me my recent DeepVista context cards.` A list from your active project should appear.
+    </Check>
+  </Tab>
+  <Tab title="Claude Code">
+    Run the following command to add the DeepVista MCP server:
+
+    ```bash
+    claude mcp add --transport http deepvista-server https://api.deepvista.ai/mcp
+    ```
+
+    Then open a Claude Code session and run `/mcp` to go through the authentication flow.
+
+    <Check>
+      **Verify it's working:** Ask Claude Code to `search my DeepVista cards for [any topic]`. A matching result confirms the connection is live.
+    </Check>
+  </Tab>
+  <Tab title="VS Code">
+    Press `Ctrl/Cmd+Shift+P`, search for **MCP: Add Server**, select **Command (stdio)**, and enter:
+
+    ```text
+    npx mcp-remote https://api.deepvista.ai/mcp
+    ```
+
+    Name the server **deepvista** and hit enter. Then activate it via **MCP: List Servers** → select **deepvista** → **Start Server**.
+
+    Alternatively, add it directly to your settings:
+
+    ```json
+    {
+      "mcpServers": {
+        "deepvista": {
+          "command": "npx",
+          "args": ["-y", "mcp-remote", "https://api.deepvista.ai/mcp"]
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Windsurf">
+    Press `Ctrl/Cmd+,` to open Windsurf settings. Scroll to **Cascade → MCP servers**, then select **Add Server → Add custom server** and paste:
+
+    ```json
+    {
+      "mcpServers": {
+        "deepvista": {
+          "command": "npx",
+          "args": ["-y", "mcp-remote", "https://api.deepvista.ai/mcp"]
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Other clients">
+    Hundreds of tools now support MCP. Use these settings for any client not listed above.
+
+    **Native remote MCP (Streamable HTTP):**
+
+    ```text
+    URL:   https://api.deepvista.ai/mcp
+    Auth:  OAuth 2.1 (dynamic client registration)
+    ```
+
+    **Via `mcp-remote` bridge (stdio clients):**
+
+    ```text
+    command:  npx
+    args:     -y mcp-remote https://api.deepvista.ai/mcp
+    ```
+
+    After adding the server, your client will open a browser window for the OAuth sign-in flow.
+
+    <Check>
+      **Verify it's working:** Ask your AI to `search my DeepVista cards for [any topic you have a card on]`. A matching result confirms the connection is live.
+    </Check>
+  </Tab>
+</Tabs>
+
+---
+
+## What you can do
+
+Once connected, talk to your AI naturally. Here are some example prompts to get started.
+
+| Action | Example prompt |
+| --- | --- |
+| **Find** | `Find my context cards about machine learning pipelines` |
+| **Search** | `Which cards mention series A fundraising?` |
+| **Create** | `Create a new context card for Acme Corp — Q3 partnership notes` |
+| **Update** | `Update my card on Sarah Chen with: joined the advisory board in May` |
+| **List** | `Show me all context cards I've updated this week` |
+| **Delete** | `Delete the context card titled Old vendor contract` |
+
+<Note>
+  The AI will always confirm before deleting a card. To switch projects, change your active project in DeepVista — the MCP connection reflects it immediately.
+</Note>
+
+---
+
+## Using an API key instead of OAuth
+
+You can authenticate with a DeepVista API key instead of going through the interactive OAuth flow. This is useful for scripted workflows, read-only access, or integrating with an existing OAuth application.
+
+Generate a key from **Settings → Security & Access**, then configure your client to send:
+
+```text
+Authorization: Bearer <your-api-key>
+```
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="I'm getting an authentication error" icon="lock">
+    Open [deepvista.ai](https://deepvista.ai) in your browser and confirm you're signed in to the correct account. Then return to your AI client and try connecting again.
+
+    If the issue persists, clear the stored auth cache and retry:
+
+    ```bash
+    rm -rf ~/.mcp-auth
+    ```
+  </Accordion>
+
+  <Accordion title="My client can't find or reach the server" icon="wifi-off">
+    Double-check that the endpoint URL in your config is exactly `https://api.deepvista.ai/mcp` — no trailing slash.
+
+    If you're using the `mcp-remote` bridge, confirm Node.js 18\+ is installed:
+
+    ```bash
+    node --version
+    ```
+  </Accordion>
+
+  <Accordion title="The AI connects but can't see any of my cards" icon="eye-slash">
+    The MCP server returns cards from your **currently active project**. Open DeepVista and confirm the correct project is selected in the project switcher. An empty list is expected if the active project has no cards yet.
+  </Accordion>
+
+  <Accordion title="I'm on Windows using WSL and seeing errors" icon="windows">
+    Use this WSL-compatible configuration instead:
+
+    ```json
+    {
+      "mcpServers": {
+        "deepvista": {
+          "command": "wsl",
+          "args": ["npx", "-y", "mcp-remote", "https://api.deepvista.ai/mcp"]
+        }
+      }
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="I see an internal server error when connecting" icon="triangle-exclamation">
+    Clear saved auth info and try again:
+
+    ```bash
+    rm -rf ~/.mcp-auth
+    ```
+
+    You may also need to update to a newer version of Node.js if your current version is below 18.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<CardGroup cols={2}>
+  <Card title="CLI Quickstart" icon="terminal" href="/cli">
+    Capture notes and run workflows from your terminal using the DeepVista CLI.
+  </Card>
+
+  <Card title="Get Early Access" icon="rocket" href="https://app.deepvista.ai">
+    Sign up to start connecting your AI tools to DeepVista.
+  </Card>
+</CardGroup>

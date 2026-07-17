@@ -1,0 +1,50 @@
+---
+title: "Connecting Forms to Discord via Webhooks"
+description: "Learn how to capture form signups from your website manager (like Framer) and route them to Discord using DeepVista workflows."
+---
+
+## Overview
+
+Connecting your front-end web form to a Discord notification requires a simple two-way webhook process:
+1. **Inbound:** Fetching form submission data from your website manager (Framer, Webflow, etc.) into DeepVista.
+2. **Outbound:** Routing that parsed data from DeepVista into your Discord channel.
+
+---
+
+## Step-by-Step Setup Guide
+
+<Steps>
+  <Step title="Link DeepVista to Your Website Manager">
+    Generate an inbound webhook URL inside your DeepVista workflow dashboard. Copy this URL, navigate to your website manager (such as Framer), and paste it into your signup form's webhook settings. This allows DeepVista to catch form entry details automatically.
+    
+    ![Setting up website form webhook](/images/web1.gif)
+  </Step>
+
+  <Step title="Train the Workflow with a UI Screenshot">
+    Take a clean screenshot of your website's signup form interface. Back on the DeepVista canvas, upload this screenshot alongside the following text prompt:
+    
+    > *"My input form looks like this, please update the workflow."*
+    
+    DeepVista will analyze the visual layout and map the form submission fields to your workflow logic.
+    
+    ![Training DeepVista with UI screenshot](/images/web6.gif)
+  </Step>
+
+  <Step title="Generate a Discord Webhook">
+    To set up live success alerts, open your Discord application:
+    1. Go to your **Server Settings** > **Integrations** > **Webhooks**.
+    2. Click **New Webhook**, name it, and select your target notification channel.
+    3. Click **Copy Webhook URL** and save.
+    
+    ![Creating a Discord Webhook](/images/web11.gif)
+  </Step>
+
+  <Step title="Enable Live Channel Notifications">
+    Return to your DeepVista workflow canvas and paste your copied Discord URL into the outbound notification configuration node. This grants DeepVista permission to seamlessly feed success messages into your specified Discord channel upon every new signup.
+    
+    ![Finalizing DeepVista to Discord link](/images/web4.png)
+  </Step>
+</Steps>
+
+---
+
