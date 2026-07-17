@@ -1,0 +1,28 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "DeepVista",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#55D799",
+    "dark": "#0D9373"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get Started",
+        "pages": ["index"]
+      },
+      {
+        "group": "Tutorials",
+        "pages": ["tutorials/x-post-workflow"]
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "website": "https://deepvista.ai"
+    }
+  }
+}

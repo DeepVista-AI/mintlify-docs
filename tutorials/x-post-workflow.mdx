@@ -1,0 +1,148 @@
+---
+title: "Set Up an X Posting Workflow with Discord Notifications"
+description: "Generate an X posting workflow from a single prompt, extend it in plain language, and get notified in Discord when posts go out."
+---
+
+## Overview
+
+DeepVista can turn one well-structured prompt into a complete X posting workflow: it researches source content, drafts post variants in your brand voice, holds them for your review, and publishes to your chosen channel. This tutorial walks through generating the workflow, adding a step, and connecting Discord notifications.
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+1. A DeepVista account with an active project
+2. A source of content to draw from (a URL, newsletter, or content type)
+3. A Discord server where you have permission to manage a channel
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Generate the workflow with one prompt">
+    Paste the following prompt into DeepVista chat:
+
+    ```text
+    Create an X posting workflow for my company.
+    ```
+
+    <Tip>
+      Add a line defining the themes you want the workflow to prioritize, such as AI/ML, fundraising, GTM, or technical deep-dives. This sharpens what the research step surfaces.
+    </Tip>
+
+    DeepVista generates the full workflow from this prompt. Every draft pauses for your review before anything is published.
+
+    DeepVista automatically searches your company context to create a personalized workflow.
+
+    <Frame>
+      <img src="/images/x-post-workflow/generate-workflow-prompt.png" alt="DeepVista generating a workflow from a single prompt" />
+    </Frame>
+
+    The workflow appears in the chat output. Click it to open the full workflow in the right panel.
+
+    <Frame>
+      <img src="/images/x-post-workflow/workflow-chat-output.png" alt="Workflow card in the chat output" />
+    </Frame>
+
+    <Frame>
+      <img src="/images/x-post-workflow/workflow-right-panel.png" alt="Full workflow displayed in the right panel" />
+    </Frame>
+  </Step>
+
+  <Step title="Add a step in plain language">
+    You can extend the workflow at any time. Open chat and describe the new step using this pattern:
+
+    ```text
+    Add a step after [existing step] that [does what].
+    ```
+
+    For example:
+
+    ```text
+    Add a step after "Publish to X" that sends a notification
+    to my Discord channel confirming the post went out.
+    ```
+
+    DeepVista handles the technical wiring. You only describe the step.
+
+    <Frame>
+      <img src="/images/x-post-workflow/add-step-plain-language.png" alt="Adding a workflow step in plain language" />
+    </Frame>
+  </Step>
+
+  <Step title="Set up Discord notifications">
+    First, create a Discord webhook:
+
+    1. Open your Discord server and go to the channel where you want notifications.
+
+    <Frame>
+      <img src="/images/x-post-workflow/discord-channel.png" alt="Selecting a Discord channel" />
+    </Frame>
+
+    2. Click the gear icon to edit the channel, then go to **Integrations > Webhooks**.
+
+    <Frame>
+      <img src="/images/x-post-workflow/discord-integrations-webhooks.png" alt="Discord channel Integrations and Webhooks settings" />
+    </Frame>
+
+    3. Click **New Webhook**, name it (for example, "Workflow Bot"), and choose an avatar.
+    4. Click **Copy Webhook URL**.
+
+    <Frame>
+      <img src="/images/x-post-workflow/discord-copy-webhook-url.png" alt="Copying the Discord webhook URL" />
+    </Frame>
+
+    Then add it to your workflow. Tell DeepVista:
+
+    ```text
+    Use this Discord webhook: [paste your webhook URL]
+    ```
+
+    DeepVista attaches it to your workflow so a message posts automatically after the step completes.
+
+    Webhook URLs follow this format:
+
+    ```text
+    https://discord.com/api/webhooks/123456789/abc123xyz
+    ```
+
+    <Warning>
+      Keep the webhook URL private. Anyone who has it can post to your channel.
+    </Warning>
+
+    <Frame>
+      <img src="/images/x-post-workflow/webhook-added-confirmation.png" alt="Webhook attached to the workflow" />
+    </Frame>
+  </Step>
+
+  <Step title="Run the workflow">
+    Click the **Run** button to trigger the workflow.
+
+    <Frame>
+      <img src="/images/x-post-workflow/run-button.png" alt="Run button on the workflow panel" />
+    </Frame>
+
+    DeepVista populates a predefined prompt that starts the run.
+
+    <Frame>
+      <img src="/images/x-post-workflow/run-predefined-prompt.png" alt="Predefined prompt that triggers the workflow" />
+    </Frame>
+
+    <Frame>
+      <img src="/images/x-post-workflow/run-in-progress.png" alt="Workflow run in progress" />
+    </Frame>
+
+    <Frame>
+      <img src="/images/x-post-workflow/run-output.png" alt="Workflow run output with draft for review" />
+    </Frame>
+
+    Once the run completes, the draft is posted to your Discord channel.
+
+    <Frame>
+      <img src="/images/x-post-workflow/discord-post-result.png" alt="Draft posted in the Discord channel" />
+    </Frame>
+  </Step>
+</Steps>
+
+## Next steps
+
+Explore more tutorials in the DeepVista documentation.
