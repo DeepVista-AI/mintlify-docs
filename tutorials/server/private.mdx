@@ -1,0 +1,71 @@
+---
+title: "Dedicated Private Server"
+sidebarTitle: "Dedicated Private Server"
+description: "Run your workflows 24/7 without keeping your local machine active by setting up a dedicated, fully managed DeepVista Private Server."
+---
+
+For production-grade environments, complex automations, or enterprise workloads, relying on a personal computer is often impractical. DeepVista provides fully managed, dedicated private servers that run constantly in the cloud.
+
+<Frame>
+  ![Direct Workflow Editing](/images/serv-1.png)
+</Frame>
+
+<Card title="No Idle Worries" icon="server">
+  Keep your workflows running 24/7 without needing to leave your laptop or local desktop powered on.
+</Card>
+
+## Step 1: Requesting a Private Server
+
+To provision a new managed instance:
+
+1. Send an email to [support@deepvista.ai](mailto:support@deepvista.ai).
+2. Our engineering and account team will follow up to discuss your workload requirements, resource allocation, and custom pricing/negotiation talks.
+3. Once finalized, we will provision your dedicated instance, and it will appear directly under the **Private server** section in your dashboard.
+
+## Step 2: Authorizing with Claude Code
+
+Once your dedicated private server is active, you must log in, authenticate your terminal environment, and authorize your server to run agentic terminal workflows remotely.
+
+### Authenticate Your Terminal
+
+1. Open your terminal.
+2. Run the following login command:
+   ```bash
+   claude login\
+3. Select the login method: Claude account with subscription.
+4. Your browser will automatically open to sign in (or you can copy the terminal-provided URL).
+5. Once signed in, an authentication code will be provided in your browser window.
+6. Copy and paste this code back into the terminal prompts.
+
+## 3. Leverage Claude Connectors
+
+Once authorized, your private server gains the superpower of running background workflows using any of the available Claude Connectors configured on your account.
+
+<CardGroup cols={2}>
+  <Card title="Files & Documents" icon="files">
+    **Integrations:** Google Drive, Microsoft 365, Notion
+    
+    Read, write, and index files automatically.
+  </Card>
+  <Card title="Communication" icon="messages">
+    **Integrations:** Gmail, Slack, MS Teams
+    
+    Draft replies, summarize emails, and send automated reports.
+  </Card>
+  <Card title="Developer Tools" icon="code">
+    **Integrations:** GitHub
+    
+    Manage repositories, pull requests, and deploy code changes.
+  </Card>
+  <Card title="Design & Media" icon="palette">
+    **Integrations:** Figma, Canva
+    
+    Generate diagrams, grab design specs, and create layouts.
+  </Card>
+  <Card title="Scheduling" icon="calendar" horizontal>
+    **Integrations:** Google Calendar
+    
+    Coordinate meetings and manage schedules autonomously.
+  </Card>
+</CardGroup>
+

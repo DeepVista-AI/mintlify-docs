@@ -3,26 +3,156 @@
   "theme": "mint",
   "name": "DeepVista",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#55D799",
-    "dark": "#0D9373"
+    "primary": "#319d88",
+    "light": "#44d5b8",
+    "dark": "#174a3f"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/images/DeepVistaProfilePic(2).png",
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Get Started",
-        "pages": ["index"]
+        "tab": "Guides",
+        "pages": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "index",
+              "cli",
+              "mcp-server"
+            ]
+          },
+          {
+            "group": "Customization",
+            "hidden": true,
+            "pages": [
+              "essentials/settings",
+              "essentials/navigation"
+            ]
+          },
+          {
+            "group": "Writing content",
+            "hidden": true,
+            "pages": [
+              "essentials/markdown",
+              "essentials/code",
+              "essentials/images",
+              "essentials/components",
+              "essentials/reusable-snippets"
+            ]
+          },
+          {
+            "group": "Agent ready",
+            "hidden": true,
+            "pages": [
+              "agent-ready/prompt",
+              "agent-ready/visibility",
+              "agent-ready/contextual",
+              "ai-tools/cursor",
+              "ai-tools/claude-code",
+              "ai-tools/windsurf"
+            ]
+          },
+          {
+            "group": "Release Docs",
+            "pages": [
+              "version/0-6-1",
+              "version/0-6-2",
+              "version/0-6-3",
+              "version/0-6-4",
+              "version/0-6-5"
+            ]
+          },
+          {
+            "group": "Tutorials",
+            "pages": [
+              "tutorials/managing-workflows",
+              "tutorials/task-delegation-linear",
+              "tutorials/input-forms",
+              {
+                "group": "Setup Private and Local Servers",
+                "expanded": false,
+                "pages": [
+                  "tutorials/server/private",
+                  "tutorials/server/local"
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
-        "group": "Tutorials",
-        "pages": ["tutorials/x-post-workflow"]
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "API documentation",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Endpoint examples",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
+            ]
+          }
+        ],
+        "hidden": true
       }
-    ]
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Discord Community",
+          "href": "https://go.deepvista.ai/discord",
+          "icon": "book-open-cover"
+        },
+        {
+          "anchor": "Blog",
+          "href": "https://deepvista.ai/blog",
+          "icon": "newspaper"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/images/NewDeepvistafiulllogonameblack(4).png",
+    "dark": "/images/NewDeepvistafiulllogonamewhite(5).png",
+    "href": "https://dl.dropboxusercontent.com/scl/fi/ohqlehf8s3v0ebb231v2o/DeepVista-Profile-Pic-2.png?rlkey=jazpnh0jbu8lzposcyo20ljge&st=frcxxa5r&dl=0"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:hi@mintlify.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://dashboard.mintlify.com"
+    }
+  },
+  "contextual": {
+    "options": [
+     "copy",
+     "view",
+     "chatgpt",
+     "claude",
+     "perplexity",
+     "mcp",
+     "cursor",
+     "vscode"
+   ]
   },
   "footer": {
     "socials": {
-      "website": "https://deepvista.ai"
+      "x": "https://x.com/mintlify",
+      "github": "https://github.com/mintlify",
+      "linkedin": "https://linkedin.com/company/mintlify"
     }
-  }
+  },
+  "description": "Stop repeating yourself. DeepVista turns your feedback into consistent execution across your team and agents."
 }

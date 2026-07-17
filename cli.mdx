@@ -1,0 +1,243 @@
+---
+title: "Quickstart"
+description: "Install the DeepVista CLI and start capturing knowledge and running AI workflows from your terminal in minutes."
+---
+
+## Install the CLI
+
+Run the install script in your terminal. Requires **Python 3.12\+**.
+
+```bash
+curl -sSL https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/install.sh | bash
+```
+
+<Note>
+  If Python 3.12 isn't available on your machine, install it first before running the command above.
+</Note>
+
+<Tip>
+  **Using an AI agent?** Paste this prompt directly into Claude Code, Cursor, or any MCP-compatible agent and it will handle the install for you:
+
+  ```text
+  Install DeepVista CLI. Visit cli.deepvista.ai for docs.
+  Install command: curl -sSL https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/install.sh | bash
+  Requires Python 3.12+. If Python 3.12 isn't available, install it first.
+  After install, run "deepvista auth login" and share the URL with me so I can authenticate.
+  ```
+</Tip>
+
+---
+
+## Authenticate
+
+Once installed, log in to connect the CLI to your DeepVista account.
+
+<Steps>
+  <Step title="Start the login flow">
+    ```bash
+    deepvista auth login
+    ```
+
+    This opens a browser window for authentication. Complete the sign-in and copy the code shown.
+  </Step>
+  <Step title="Paste your code (if prompted)">
+    ```bash
+    deepvista auth login --code <code>
+    ```
+  </Step>
+  <Step title="Verify you're connected">
+    ```bash
+    deepvista auth status
+    ```
+
+    You should see your account details confirming a successful connection.
+  </Step>
+</Steps>
+
+---
+
+## Capture your first note
+
+With the CLI installed and authenticated, save an insight to your knowledge base in one line.
+
+```bash
+deepvista notes + "Your insight here"
+```
+
+**Example:**
+
+```bash
+deepvista notes +quick "Tobi Lütke: the company is a tool to amplify what you love"
+```
+
+```text
+✓ Note saved to knowledge base
+  id: note_7d3f9a
+  indexed: semantic + full-text
+```
+
+Your note is immediately indexed for both semantic and full-text search — ready for your agent to find and synthesize later.
+
+---
+
+## Skills
+
+The CLI ships with **8 built-in skills** that install globally to `~/.claude/skills/` and are available in every agent session automatically.
+
+| Skill | What it does |
+| --- | --- |
+| `deepvista-shared` | Auth, profiles, global flags, and security rules used across all skills |
+| `deepvista-memory` | Search, read, create, and update cards in your knowledge base |
+| `deepvista-notes` | Quick note capture — one-liners or full structured notes, instantly indexed |
+| `deepvista-recipe` | Run structured AI workflows and stream results live in your terminal |
+| `deepvista-chat` | Conversational AI agent with full access to your knowledge base context |
+| `deepvista-persona-knowledge-worker` | Daily knowledge workflow patterns for people who think for a living |
+| `deepvista-recipe-research-to-recipe` | Full pipeline: search your KB → synthesize → run a Recipe workflow |
+| `deepvista-recipe-export-knowledge-as-skills` | Turn your own knowledge base into installable, shareable agent skills |
+
+---
+
+## Try a use case
+
+Copy any prompt below, paste it into your AI agent (Claude Code, Cursor, etc.), and let DeepVista handle the rest.
+
+<AccordionGroup>
+  <Accordion title="Capture insights from a podcast" icon="microphone">
+    Build a searchable knowledge base from founder interviews.
+
+    ```text
+    Load skills: deepvista-shared deepvista-notes
+    
+    I just listened to the Lenny's Podcast episode with Brian Chesky about founder mode.
+    
+    Here are my notes: ...
+    
+    Save this to my knowledge base as a note titled "Brian Chesky — Founder Mode".
+    ```
+  </Accordion>
+
+  <Accordion title="Research and synthesize with a Recipe" icon="flask">
+    Once you've captured 10–20 notes, ask your agent to find patterns across them.
+
+    ```text
+    Load skills: deepvista-shared deepvista-memory deepvista-recipe deepvista-recipe-research-to-recipe
+    
+    Search for cards about growth and early-stage execution, then find my Research Synthesis
+    recipe and run it focused on: what separates high-growth founders, common 0→1 mistakes.
+    
+    Show me what you find before running.
+    ```
+  </Accordion>
+
+  <Accordion title="Evaluate a startup idea" icon="lightbulb">
+    Test new ideas against founder frameworks you've already captured.
+
+    ```text
+    Load skills: deepvista-shared deepvista-memory deepvista-recipe
+    
+    I have a new startup idea to evaluate. Idea: [your idea].
+    
+    1. Search my knowledge base for any idea validation frameworks
+    2. Find my idea evaluation Recipe
+    3. Run it with the above context — show me the Recipe first
+    ```
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Recipe patterns
+
+Build these workflows in the DeepVista web app, then invoke them through your agent with a single prompt.
+
+<CardGroup cols={2}>
+  <Card title="Research synthesis" icon="magnifying-glass">
+    ```text
+    Search my memory for [topic] and run my Research Synthesis Recipe
+    ```
+  </Card>
+
+  <Card title="Idea evaluation" icon="lightbulb">
+    ```text
+    Evaluate this idea against my founder frameworks: [idea]
+    ```
+  </Card>
+
+  <Card title="Weekly review" icon="calendar">
+    ```text
+    Run my weekly review — surface pinned cards and capture this week's key learnings
+    ```
+  </Card>
+
+  <Card title="Interview debrief" icon="users">
+    ```text
+    I just finished a user interview. Run my Interview Debrief Recipe with these notes: [notes]
+    ```
+  </Card>
+
+  <Card title="Decision memo" icon="scale-balanced">
+    ```text
+    Help me think through this decision using my knowledge base: [decision]
+    ```
+  </Card>
+
+  <Card title="Competitive analysis" icon="chart-bar">
+    ```text
+    Run a competitive analysis on [company/space] using everything I've captured
+    ```
+  </Card>
+</CardGroup>
+
+---
+
+## CLI reference
+
+<Tabs>
+  <Tab title="Auth">
+    | Command | Description |
+    | --- | --- |
+    | `deepvista auth login` | Open browser for authentication |
+    | `deepvista auth login --code <code>` | Paste code from browser |
+    | `deepvista auth status` | Check authentication state |
+    | `deepvista auth logout` | Clear credentials |
+  </Tab>
+  <Tab title="Notes">
+    | Command | Description |
+    | --- | --- |
+    | `deepvista notes +quick "<text>"` | Capture a quick one-line note |
+    | `deepvista notes +` | Open structured note entry |
+    | `deepvista notes list` | List recent notes |
+    | `deepvista notes search "<query>"` | Search notes by keyword or semantic query |
+  </Tab>
+  <Tab title="Memory">
+    | Command | Description |
+    | --- | --- |
+    | `deepvista memory search "<query>"` | Search context cards semantically |
+    | `deepvista memory get <id>` | Retrieve a specific card by ID |
+    | `deepvista memory create` | Create a new context card |
+    | `deepvista memory update <id>` | Update an existing card |
+  </Tab>
+  <Tab title="Recipes">
+    | Command | Description |
+    | --- | --- |
+    | `deepvista recipe list` | List available Recipes in your project |
+    | `deepvista recipe run <name>` | Run a Recipe by name |
+    | `deepvista recipe status <id>` | Check status of a running Recipe |
+  </Tab>
+</Tabs>
+
+---
+
+## Uninstall
+
+To remove the DeepVista CLI from your system:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/uninstall.sh | bash
+```
+
+---
+
+<Card title="Connect your AI client via MCP" icon="plug" href="/mcp-server">
+  Want to use DeepVista directly inside Cursor or Claude Desktop? Set up the MCP server to give your AI tools live access to your context cards.
+</Card>
