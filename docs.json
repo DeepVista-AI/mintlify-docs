@@ -68,6 +68,7 @@
               "tutorials/managing-workflows",
               "tutorials/task-delegation-linear",
               "tutorials/input-forms",
+              "tutorials/x-post-workflow",
               {
                 "group": "Setup Private and Local Servers",
                 "expanded": false,
