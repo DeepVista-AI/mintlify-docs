@@ -69,6 +69,7 @@
               "tutorials/task-delegation-linear",
               "tutorials/input-forms",
               "tutorials/x-post-workflow",
+              "tutorials/writing-mintlify-tutorial",
               {
                 "group": "Setup Private and Local Servers",
                 "expanded": false,
