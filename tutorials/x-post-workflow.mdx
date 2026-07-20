@@ -34,20 +34,19 @@ Before you start, make sure you have:
     DeepVista automatically searches your company context to create a personalized workflow.
 
     <Frame>
-      <img src="/images/x-post-workflow/generate-workflow-prompt.png" alt="DeepVista generating a workflow from a single prompt" />
+      ![DeepVista generating a workflow from a single prompt](/images/x-post-workflow/generate-workflow-prompt.png)
     </Frame>
 
     The workflow appears in the chat output. Click it to open the full workflow in the right panel.
 
     <Frame>
-      <img src="/images/x-post-workflow/workflow-chat-output.png" alt="Workflow card in the chat output" />
+      ![Workflow card in the chat output](/images/x-post-workflow/workflow-chat-output.png)
     </Frame>
 
     <Frame>
-      <img src="/images/x-post-workflow/workflow-right-panel.png" alt="Full workflow displayed in the right panel" />
+      ![Full workflow displayed in the right panel](/images/x-post-workflow/workflow-right-panel.png)
     </Frame>
   </Step>
-
   <Step title="Add a step in plain language">
     You can extend the workflow at any time. Open chat and describe the new step using this pattern:
 
@@ -65,30 +64,29 @@ Before you start, make sure you have:
     DeepVista handles the technical wiring. You only describe the step.
 
     <Frame>
-      <img src="/images/x-post-workflow/add-step-plain-language.png" alt="Adding a workflow step in plain language" />
+      ![Adding a workflow step in plain language](/images/x-post-workflow/add-step-plain-language.png)
     </Frame>
   </Step>
-
   <Step title="Set up Discord notifications">
     First, create a Discord webhook:
 
     1. Open your Discord server and go to the channel where you want notifications.
 
     <Frame>
-      <img src="/images/x-post-workflow/discord-channel.png" alt="Selecting a Discord channel" />
+      ![Selecting a Discord channel](/images/x-post-workflow/discord-channel.png)
     </Frame>
 
-    2. Click the gear icon to edit the channel, then go to **Integrations > Webhooks**.
+    2. Click the gear icon to edit the channel, then go to **Integrations \> Webhooks**.
 
     <Frame>
-      <img src="/images/x-post-workflow/discord-integrations-webhooks.png" alt="Discord channel Integrations and Webhooks settings" />
+      ![Discord channel Integrations and Webhooks settings](/images/x-post-workflow/discord-integrations-webhooks.png)
     </Frame>
 
     3. Click **New Webhook**, name it (for example, "Workflow Bot"), and choose an avatar.
     4. Click **Copy Webhook URL**.
 
     <Frame>
-      <img src="/images/x-post-workflow/discord-copy-webhook-url.png" alt="Copying the Discord webhook URL" />
+      ![Copying the Discord webhook URL](/images/x-post-workflow/discord-copy-webhook-url.png)
     </Frame>
 
     Then add it to your workflow. Tell DeepVista:
@@ -105,40 +103,35 @@ Before you start, make sure you have:
     https://discord.com/api/webhooks/123456789/abc123xyz
     ```
 
-    <Warning>
-      Keep the webhook URL private. Anyone who has it can post to your channel.
-    </Warning>
-
     <Frame>
-      <img src="/images/x-post-workflow/webhook-added-confirmation.png" alt="Webhook attached to the workflow" />
+      ![Webhook attached to the workflow](/images/x-post-workflow/webhook-added-confirmation.png)
     </Frame>
   </Step>
-
   <Step title="Run the workflow">
     Click the **Run** button to trigger the workflow.
 
     <Frame>
-      <img src="/images/x-post-workflow/run-button.png" alt="Run button on the workflow panel" />
+      ![Run button on the workflow panel](/images/x-post-workflow/run-button.png)
     </Frame>
 
     DeepVista populates a predefined prompt that starts the run.
 
     <Frame>
-      <img src="/images/x-post-workflow/run-predefined-prompt.png" alt="Predefined prompt that triggers the workflow" />
+      ![Predefined prompt that triggers the workflow](/images/x-post-workflow/run-predefined-prompt.png)
     </Frame>
 
     <Frame>
-      <img src="/images/x-post-workflow/run-in-progress.png" alt="Workflow run in progress" />
+      ![Workflow run in progress](/images/x-post-workflow/run-in-progress.png)
     </Frame>
 
     <Frame>
-      <img src="/images/x-post-workflow/run-output.png" alt="Workflow run output with draft for review" />
+      ![Workflow run output with draft for review](/images/x-post-workflow/run-output.png)
     </Frame>
 
     Once the run completes, the draft is posted to your Discord channel.
 
     <Frame>
-      <img src="/images/x-post-workflow/discord-post-result.png" alt="Draft posted in the Discord channel" />
+      ![Draft posted in the Discord channel](/images/x-post-workflow/discord-post-result.png)
     </Frame>
   </Step>
 </Steps>
