@@ -6,7 +6,9 @@ description: "Connect your registered machine to Claude, then @mention it from D
 
 ## Overview
 
-Once you've registered your own machine as a DeepVista runner, the next step is authorizing it with Claude and putting it to work. This tutorial covers connecting the Claude connector, bringing your machine online, and delegating tasks to it directly from chat — either by `@mentioning` it or by letting DeepVista automatically choose the right machine.
+By the end of this tutorial, you'll be authorized and able to run any workflow from DeepVista.
+
+You'll authorize your registered machine with Claude, connect it to DeepVista, and then delegate a task to it directly from chat — either by `@mentioning` the machine or letting DeepVista pick it automatically. Along the way you'll see a real delegated task run end-to-end and return results in chat, and close by trying the same pattern yourself with any connector you already have configured, such as Google Drive.
 
 ## Prerequisites
 
@@ -34,12 +36,10 @@ Before you start, make sure you have:
     </Frame>
 
     4. Your browser will automatically open to sign in (or you can copy the terminal-provided URL). It asks you to authorize Claude Code to connect to your Claude account.
-
-    <Frame>
-      ![Browser prompt authorizing Claude Code to connect to your Claude account](/images/claude-connector-delegation/claude-authorize-screen.png)
-    </Frame>
-
     5. Once signed in, an authentication code will be provided in your browser window.
+
+    <video controls className="w-full rounded-xl" src="/images/claude-connector-delegation/authenticate-flow.mp4"></video>
+
     6. Copy and paste this code back into the terminal prompts. The terminal confirms you're logged in.
 
     <Frame>
@@ -157,6 +157,22 @@ Before you start, make sure you have:
     </CardGroup>
   </Step>
 </Steps>
+
+## Try it with another connector
+
+This same pattern works for any connector configured on your machine, not just Linear. For example, once Google Drive is connected, `@mention` your machine and ask something like:
+
+```text
+I have already authed the Google Drive connector, can you list all my recent Google files?
+```
+
+Your machine picks up the task, opens the connector, and returns the results right in chat — no need to open Google Drive yourself. Here's what that looks like in practice:
+
+<Frame>
+  ![Chat response listing recent Google Drive files through a connector on a registered machine](/images/claude-connector-delegation/google-drive-live-demo.png)
+</Frame>
+
+Try it yourself: pick any connector you already have configured — Slack, Notion, GitHub, whatever your machine has access to — and send a similar prompt from DeepVista chat. You'll get results back the same way, without leaving the conversation.
 
 ## Next steps
 
