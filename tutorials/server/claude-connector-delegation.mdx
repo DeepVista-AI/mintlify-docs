@@ -1,0 +1,163 @@
+---
+title: "Authorize Claude and Delegate Tasks to Your Machine"
+sidebarTitle: "Delegate Tasks via Claude"
+description: "Connect your registered machine to Claude, then @mention it from DeepVista to delegate tasks — or let DeepVista automatically pick the right machine for the job."
+---
+
+## Overview
+
+Once you've registered your own machine as a DeepVista runner, the next step is authorizing it with Claude and putting it to work. This tutorial covers connecting the Claude connector, bringing your machine online, and delegating tasks to it directly from chat — either by `@mentioning` it or by letting DeepVista automatically choose the right machine.
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+1. A DeepVista account with an active project
+2. A machine registered as a DeepVista runner
+3. A Claude account to authorize the connector with
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Authorize your machine with Claude">
+    On your registered machine, authenticate your terminal with Claude:
+
+    1. Open your terminal.
+    2. Run the following login command:
+       ```bash
+       claude login
+       ```
+    3. Select the login method: **Claude account with subscription**.
+
+    <Frame>
+      ![Terminal prompt to select a Claude login method](/images/claude-connector-delegation/claude-login-menu.png)
+    </Frame>
+
+    4. Your browser will automatically open to sign in (or you can copy the terminal-provided URL). It asks you to authorize Claude Code to connect to your Claude account.
+
+    <Frame>
+      ![Browser prompt authorizing Claude Code to connect to your Claude account](/images/claude-connector-delegation/claude-authorize-screen.png)
+    </Frame>
+
+    5. Once signed in, an authentication code will be provided in your browser window.
+    6. Copy and paste this code back into the terminal prompts. The terminal confirms you're logged in.
+
+    <Frame>
+      ![Terminal confirming a successful Claude login](/images/claude-connector-delegation/claude-login-success.png)
+    </Frame>
+  </Step>
+  <Step title="Connect your machine to DeepVista">
+    Install the DeepVista CLI and run the registration command shown in your dashboard.
+
+    <Frame>
+      ![Register a new machine panel with install and register commands](/images/claude-connector-delegation/register-machine-panel.png)
+    </Frame>
+
+    <Warning>
+      **Important Requirement:** Remote workflows will only execute as long as your registered machine is active, awake, and online. If your machine goes to sleep, shuts down, or loses its internet connection, the DeepVista runner will go offline and pending tasks will queue until it reconnects.
+    </Warning>
+
+    Once you run the registration command, the runner starts polling and confirms which account, project, and agent it registered under.
+
+    <Frame>
+      ![Terminal output after registering a machine, showing it listening for tasks](/images/claude-connector-delegation/machine-online-terminal.png)
+    </Frame>
+
+    Your machine now shows up as online in the Machines panel.
+
+    <Frame>
+      ![Machines panel showing a registered machine online](/images/claude-connector-delegation/machines-panel-online.png)
+    </Frame>
+  </Step>
+  <Step title="Delegate a task with @mention">
+    With your machine online, `@mention` it from DeepVista chat to assign it a task directly.
+
+    <Frame>
+      ![Machines dropdown when @mentioning a registered machine in chat](/images/claude-connector-delegation/mention-machine-dropdown.png)
+    </Frame>
+
+    <Tip>
+      You don't have to specify a machine every time. If you leave it out, DeepVista automatically figures out which machine has access and delegates the task to it.
+    </Tip>
+
+    You can also `@mention` a machine to ask what permissions or connectors it currently has configured, which is useful for confirming access before assigning sensitive work.
+
+    <Frame>
+      ![Chat delegating a task to list the Claude connectors configured on a machine](/images/claude-connector-delegation/mention-check-permissions.png)
+    </Frame>
+  </Step>
+  <Step title="Let DeepVista run the task and return results">
+    The server side dispatches the delegated task, and your local machine's CLI agent claims and runs it.
+
+    <Frame>
+      ![Terminal log showing a delegated task claimed and its prompt](/images/claude-connector-delegation/task-execution.png)
+    </Frame>
+
+    Once it finishes, the web interface displays the results returned by the agent running on your machine — for example, a full connector inventory:
+
+    <Frame>
+      ![Chat response with the connector inventory results](/images/claude-connector-delegation/connector-inventory-result.png)
+    </Frame>
+
+    You can delegate the same way to pull live data from tools only your machine can reach. For example, asking about recent Linear tickets:
+
+    <Frame>
+      ![Chat prompt asking to list recent Linear tickets](/images/claude-connector-delegation/linear-query-example.png)
+    </Frame>
+
+    The machine delegates the fetch to Linear and returns a full digest:
+
+    <Frame>
+      ![Chat response with a digest of recent Linear tickets](/images/claude-connector-delegation/linear-tickets-digest.png)
+    </Frame>
+
+    For a full walkthrough of automating Linear ticket creation this way, see [Automating Linear Tickets via DeepVista Task Delegation](https://docs.deepvista.ai/tutorials/task-delegation-linear).
+  </Step>
+  <Step title="Manage connectors on your machine">
+    You don't need to always specify a machine — DeepVista automatically figures out which one has access if you don't. To see or manage what's connected, open **Claude → Customize**.
+
+    <Frame>
+      ![Claude sidebar with Customize highlighted](/images/claude-connector-delegation/claude-customize-nav.png)
+    </Frame>
+
+    From there, **Connectors** shows every integration available to that machine and whether it's connected.
+
+    <Frame>
+      ![Connectors settings page listing available integrations and their connection status](/images/claude-connector-delegation/connectors-settings-page.png)
+    </Frame>
+
+    Once authorized, your machine gains the superpower of running background workflows using any of the available Claude Connectors configured on your account.
+
+    <CardGroup cols={2}>
+      <Card title="Files & Documents" icon="files">
+        **Integrations:** Google Drive, Microsoft 365, Notion
+
+        Read, write, and index files automatically.
+      </Card>
+      <Card title="Communication" icon="messages">
+        **Integrations:** Gmail, Slack, MS Teams
+
+        Draft replies, summarize emails, and send automated reports.
+      </Card>
+      <Card title="Developer Tools" icon="code">
+        **Integrations:** GitHub, Linear
+
+        Manage repositories, pull requests, and delegate ticket creation.
+      </Card>
+      <Card title="Design & Media" icon="palette">
+        **Integrations:** Figma, Canva
+
+        Generate diagrams, grab design specs, and create layouts.
+      </Card>
+      <Card title="Scheduling" icon="calendar" horizontal>
+        **Integrations:** Google Calendar
+
+        Coordinate meetings and manage schedules autonomously.
+      </Card>
+    </CardGroup>
+  </Step>
+</Steps>
+
+## Next steps
+
+Explore more tutorials in the DeepVista documentation, including registering additional private servers and automating Linear ticket creation.

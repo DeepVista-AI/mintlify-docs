@@ -74,7 +74,8 @@
                 "expanded": false,
                 "pages": [
                   "tutorials/server/private",
-                  "tutorials/server/local"
+                  "tutorials/server/local",
+                  "tutorials/server/claude-connector-delegation"
                 ]
               }
             ]
