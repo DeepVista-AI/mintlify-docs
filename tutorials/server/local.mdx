@@ -17,16 +17,16 @@ description: "Prefer utilizing your own hardware? Easily register your local des
 ## Step-by-Step Registration Setup
 
 ### Step 1: Install the DeepVista CLI
+
 Open your terminal and execute the following installation script to set up the CLI utility on your machine:
 
 ```bash
-curl -sSL [https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/install.sh](https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/install.sh) | bash
+curl -sSL https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/install.sh | bash
 ```
 
 ### Step 2: Register Your Device
+
 Copy the registration command from Step 2 of your dashboard and paste it into your terminal. This command links your physical machine to your DeepVista project and initializes your local runner server:
-
-
 
 ```bash
 deepvista tasks run --project <YOUR_PROJECT_ID>
@@ -37,7 +37,8 @@ deepvista tasks run --project <YOUR_PROJECT_ID>
 1. Open your terminal.
 2. Run the following login command:
    ```bash
-   claude login\
+   claude login
+   ```
 3. Select the login method: Claude account with subscription.
 4. Your browser will automatically open to sign in (or you can copy the terminal-provided URL).
 5. Once signed in, an authentication code will be provided in your browser window.
@@ -50,27 +51,31 @@ Once authorized, your private server gains the superpower of running background 
 <CardGroup cols={2}>
   <Card title="Files & Documents" icon="files">
     **Integrations:** Google Drive, Microsoft 365, Notion
-    
+
     Read, write, and index files automatically.
   </Card>
+
   <Card title="Communication" icon="messages">
     **Integrations:** Gmail, Slack, MS Teams
-    
+
     Draft replies, summarize emails, and send automated reports.
   </Card>
+
   <Card title="Developer Tools" icon="code">
     **Integrations:** GitHub
-    
+
     Manage repositories, pull requests, and deploy code changes.
   </Card>
+
   <Card title="Design & Media" icon="palette">
     **Integrations:** Figma, Canva
-    
+
     Generate diagrams, grab design specs, and create layouts.
   </Card>
+
   <Card title="Scheduling" icon="calendar" horizontal>
     **Integrations:** Google Calendar
-    
+
     Coordinate meetings and manage schedules autonomously.
   </Card>
 </CardGroup>

@@ -1,0 +1,108 @@
+---
+title: "Version 0.6.6"
+---
+
+July 20, 2026
+
+Welcome to this week's DeepVista release update! This week, we shipped a series of upgrades designed to give you smarter workspace organization, fairer team credit sharing, and dynamic AI model routing that just works.
+
+---
+
+## What We Shipped This Week
+
+### 🗂️ Smarter Workspace Context & Filters
+
+- **Filter by Attributes:** Quickly narrow down notes, workflows, or context cards in VistaBase using targeted metadata attributes.
+
+<Frame>
+  <img
+    alt="Lightning-Fast AI Editing"
+    lightAlt="Filter by Atrributes"
+    darkAlt="Filter by Atrributes"
+    src="/images/7-20-1.gif"
+    className="dark:hidden"
+  />
+  <img
+    alt="Lightning-Fast AI Editing"
+    lightAlt="Filter by Atrributes"
+    darkAlt="Filter by Atrributes"
+    src="/images/7-20-1-1.gif"
+    className="hidden dark:block"
+  />
+</Frame>
+
+- **Unified Workspace Folders:** Notes and workflow folders now live in a single unified hierarchy, making it effortless to organize mixed context cards together.
+
+<Frame>
+  <img
+    alt="Lightning-Fast AI Editing"
+    lightAlt="Lightning-Fast AI Editing"
+    darkAlt="Unified Workspace folders"
+    src="/images/7-20-2.gif"
+    className="dark:hidden"
+  />
+  <img
+    alt="Lightning-Fast AI Editing"
+    lightAlt="Lightning-Fast AI Editing"
+    darkAlt="Unified Workspace folders"
+    src="/images/7-20-2.gif"
+    className="hidden dark:block"
+  />
+</Frame>
+
+- **Artifacts & Type Correction:** We’ve reserved **Notes** exclusively for human-written context and created a dedicated **Artifacts** card type for AI-generated memories and code snippets. If an AI card is ever misclassified, you can manually correct its type in the card options.
+
+<Frame>
+  <img
+    alt="Lightning-Fast AI Editing"
+    lightAlt="Lightning-Fast AI Editing"
+    darkAlt="Artifacts and Type Correction"
+    src="/images/7-20-3.gif"
+    className="dark:hidden"
+  />
+  <img
+    alt="Lightning-Fast AI Editing"
+    lightAlt="Lightning-Fast AI Editing"
+    darkAlt="Artifacts and Type Correction"
+    src="images/7-20-3.gif"
+    className="hidden dark:block"
+  />
+</Frame>
+
+---
+
+### 💳 Fairer Credit Allocation
+
+- **Project-Level Credit Usage:** Workflow executions now deduct credits directly from the **project owner’s balance**, rather than penalizing individual team members who trigger the run.
+
+<Frame>
+  <img
+    alt="Filter by Atrributes"
+    lightAlt="Filter by Atrributes"
+    darkAlt="Filter by Atrributes"
+    src="/images/Screenshot-2026-07-21-100910.png"
+  />
+</Frame>
+
+---
+
+### 🤖 Intelligent Model Routing & Generation Metrics
+
+- **Automatic Model Selection:** DeepVista now dynamically routes your prompts to the optimal model. Simple chat queries automatically hit lightweight, ultra-fast models like **GLM** or **Kimi**, while heavy reasoning and task-oriented jobs route straight to powerhouses like **Claude**.
+
+<Frame>
+  <img
+    alt="Lightning-Fast AI Editing"
+    lightAlt="Filter by Atrributes"
+    darkAlt="Int Model Routing and Gen Metrics"
+    src="/images/7-20-5.gif"
+    className="dark:hidden"
+  />
+  <img
+    alt="Lightning-Fast AI Editing"
+    lightAlt="Filter by Atrributes"
+    darkAlt="Int Model Routing and Gen Metrics"
+    src="images/7-20-5.gif"
+    className="hidden dark:block"
+  />
+</Frame>
