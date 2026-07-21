@@ -1,0 +1,193 @@
+---
+title: "How to Write a Mintlify Tutorial"
+description: "A step-by-step guide to creating well-structured, readable tutorials in this Mintlify-powered documentation site."
+---
+
+## Overview
+
+This guide walks you through the process of authoring a new tutorial page for this documentation site. By the end, you will know how to structure your content, use Mintlify components, register your page in navigation, and preview it locally.
+
+---
+
+## Prerequisites
+
+- Node.js 18+ installed
+- The Mintlify CLI installed (`npm install -g mintlify`)
+- Write access to this repository
+
+---
+
+## Step-by-Step Guide
+
+<Steps>
+  <Step title="Clone the repository and install dependencies">
+    ```bash
+    git clone https://github.com/your-org/mintlify-docs.git
+    cd mintlify-docs
+    npm install
+    ```
+
+    Once installed, start the local dev server so you can preview changes in real time:
+
+    ```bash
+    mintlify dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) in your browser.
+  </Step>
+
+  <Step title="Create a new branch">
+    Always work on a feature branch to keep `main` clean and make code review easier.
+
+    ```bash
+    git checkout -b feat/tutorial-your-topic-name
+    ```
+
+    Use a descriptive name that matches the tutorial subject, e.g. `feat/tutorial-discord-webhook`.
+  </Step>
+
+  <Step title="Create your tutorial file">
+    Add a new `.mdx` file inside the `tutorials/` directory:
+
+    ```bash
+    touch tutorials/your-topic-name.mdx
+    ```
+
+    Open the file and start with a frontmatter block:
+
+    ```mdx
+    ---
+    title: "Your Tutorial Title"
+    description: "One sentence explaining what the reader will learn."
+    ---
+    ```
+
+    Keep the title short and action-oriented (e.g. *"Sending Slack Alerts from a Workflow"*).
+  </Step>
+
+  <Step title="Structure your content">
+    A good tutorial has three sections:
+
+    | Section | Purpose |
+    |---------|---------|
+    | **Overview** | Explain the goal and the high-level approach in 2–4 sentences. |
+    | **Prerequisites** | List tools, accounts, or knowledge required before starting. |
+    | **Step-by-Step Guide** | The numbered steps wrapped in `<Steps>` … `</Steps>`. |
+
+    Use the `<Steps>` component for sequential instructions — it renders numbered steps automatically and keeps the reader oriented:
+
+    ```mdx
+    <Steps>
+      <Step title="Do the first thing">
+        Explain what to do and why. Include code blocks or screenshots where helpful.
+      </Step>
+
+      <Step title="Do the second thing">
+        ...
+      </Step>
+    </Steps>
+    ```
+  </Step>
+
+  <Step title="Add images and GIFs">
+    Place screenshots or screen recordings in the `images/` directory, then reference them with a descriptive alt text:
+
+    ```mdx
+    ![Alt text describing what is shown](/images/your-screenshot.png)
+    ```
+
+    For animated walkthroughs, `.gif` files work well. Keep file sizes reasonable (under 5 MB) so pages load quickly.
+  </Step>
+
+  <Step title="Use callouts for tips and warnings">
+    Mintlify supports several callout types to draw attention to important information:
+
+    ```mdx
+    <Note>
+      Use this for helpful tips or additional context.
+    </Note>
+
+    <Warning>
+      Use this when the reader must take care to avoid a mistake.
+    </Warning>
+
+    <Info>
+      Use this for neutral informational asides.
+    </Info>
+    ```
+  </Step>
+
+  <Step title="Register the page in docs.json">
+    Open `docs.json` and add your page path to the **Tutorials** group inside `navigation.tabs[0].pages`:
+
+    ```json
+    {
+      "group": "Tutorials",
+      "pages": [
+        "tutorials/managing-workflows",
+        "tutorials/task-delegation-linear",
+        "tutorials/input-forms",
+        "tutorials/x-post-workflow",
+        "tutorials/your-topic-name"
+      ]
+    }
+    ```
+
+    The path must match the file path relative to the project root, without the `.mdx` extension.
+  </Step>
+
+  <Step title="Preview and validate">
+    With `mintlify dev` running, navigate to your new page at:
+
+    ```
+    http://localhost:3000/tutorials/your-topic-name
+    ```
+
+    Check that:
+    - The title and description appear correctly in the browser tab and sidebar.
+    - All steps render with proper numbering.
+    - Images and GIFs load.
+    - Code blocks have correct syntax highlighting.
+    - No broken links exist (Mintlify will log warnings in the terminal).
+  </Step>
+
+  <Step title="Commit and open a pull request">
+    Stage your changes, write a clear commit message, and push:
+
+    ```bash
+    git add tutorials/your-topic-name.mdx docs.json
+    git commit -m "feat: add tutorial for your topic name"
+    git push origin feat/tutorial-your-topic-name
+    ```
+
+    Then open a pull request on GitHub:
+
+    1. Go to the repository on GitHub and click **Compare & pull request**.
+    2. Write a short PR description explaining what the tutorial covers.
+    3. Request a reviewer.
+    4. Address any review feedback and merge when approved.
+  </Step>
+</Steps>
+
+---
+
+## Writing Tips
+
+<Note>
+  **One idea per step.** If a step feels too long, split it. Readers follow tutorials linearly, so each step should have a single clear action.
+</Note>
+
+<Note>
+  **Lead with the action.** Start each step body with what the reader should *do*, then explain *why* if needed.
+</Note>
+
+<Warning>
+  **Avoid placeholders without explanation.** If you use `your-topic-name` or similar stand-ins, make sure to tell the reader what to substitute.
+</Warning>
+
+---
+
+## Related Resources
+
+- [Mintlify MDX components reference](https://mintlify.com/docs/components)
+- [Mintlify navigation configuration](https://mintlify.com/docs/navigation)
