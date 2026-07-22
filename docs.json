@@ -68,7 +68,6 @@
             "pages": [
               "tutorials/mac-setup",
               "tutorials/input-forms",
-              "tutorials/managing-workflows",
               {
                 "group": "Setup Private and Local Servers",
                 "expanded": false,
@@ -84,7 +83,8 @@
             "group": "Case Studies",
             "pages": [
               "tutorials/task-delegation-linear",
-              "tutorials/x-post-workflow"
+              "tutorials/x-post-workflow",
+              "tutorials/managing-workflows"
             ]
           }
         ]
