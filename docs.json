@@ -64,21 +64,26 @@
             ]
           },
           {
-            "group": "Tutorials",
+            "group": "Setup Tutorials",
             "pages": [
-              "tutorials/managing-workflows",
-              "tutorials/task-delegation-linear",
               "tutorials/input-forms",
-              "tutorials/x-post-workflow",
+              "tutorials/managing-workflows",
               {
                 "group": "Setup Private and Local Servers",
                 "expanded": false,
                 "pages": [
-                  "tutorials/server/private",
                   "tutorials/server/local",
+                  "tutorials/server/private",
                   "tutorials/server/claude-connector-delegation"
                 ]
               }
+            ]
+          },
+          {
+            "group": "Case Studies",
+            "pages": [
+              "tutorials/task-delegation-linear",
+              "tutorials/x-post-workflow"
             ]
           }
         ]
