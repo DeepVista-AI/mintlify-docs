@@ -3,17 +3,13 @@ title: "Automating Linear Tickets via DeepVista Task Delegation"
 description: "Learn how to use DeepVista Task Delegation to let a locally-registered CLI agent create Linear tickets headlessly, keeping credentials on your own machine."
 ---
 
-# Tutorial: Automating Linear Ticket Creation via DeepVista Task Delegation
-
-## 1. Overview
+## Overview
 
 DeepVista provides a powerful **Task Delegation** feature. When a cloud agent encounters an operation that requires a local environment, a specific CLI, or particular credentials (such as an API key), it can package the work as a `task` card and dispatch it to a CLI agent registered on the user's local machine.
 
 This tutorial demonstrates how to configure and use DeepVista Task Delegation to create Linear tickets headlessly and automatically.
 
----
-
-## 2. Prerequisites
+## Prerequisites
 
 Complete these setup tutorials first:
 
@@ -34,51 +30,49 @@ export LINEAR_TOKEN="your_linear_api_token"
 
 *Note: The agent retrieves this variable securely within your local environment and never uploads the credential in plaintext or leaks it to logs.*
 
----
+## Step-by-step guide
 
-## 3. Step-by-Step Guide
+<Steps>
+  <Step title="Create a task-type context card">
+    In DeepVista, a Task is essentially a Context Card with `type: "task"` and `status: "pending"`. Its `description` contains a YAML metadata prefix along with the specific prompt you want to execute.
 
-### Step 1: Create a Task-type Context Card
+    **Example card configuration:**
+    - **Type**: `task`
+    - **Status**: `pending`
+    - **Title**: `Create a test Linear ticket`
+    - **Description**:
+    ```yaml
+    ---
+    agent_id: "your-machine-id"  # Fill in the local Machine ID you registered
+    agent_role: "engineering"
+    ---
+    Please create a test Linear ticket.
 
-In DeepVista, a Task is essentially a Context Card with `type: "task"` and `status: "pending"`. Its `description` contains a YAML metadata prefix along with the specific prompt you want to execute.
+    To do this:
+    1. Search the local machine (environment variables, config files, or helper tools) for any Linear API credentials (such as LINEAR_API_KEY, LINEAR_TOKEN, etc.).
+    2. If credentials are found, use the Linear GraphQL API (via curl or python) to create a new ticket in an active workspace.
+       - Title: "DeepVista Test Ticket"
+       - Description: "This is a test ticket filed automatically by DeepVista agent task delegation."
+    3. Report the status of the ticket, the ticket key/ID, or a URL to the ticket if successfully created.
+    ```
+  </Step>
+  <Step title="Cloud dispatch and local claim">
+    1. The cloud agent stores this task card in the database.
+    2. The local CLI agent (polling via `deepvista tasks run`) retrieves the pending task and invokes Claude locally to execute the prompt:
+       - Claude checks the local environment variable `LINEAR_TOKEN`.
+       - It sends an `issueCreate` request to Linear via the GraphQL API.
+  </Step>
+  <Step title="Capture the results">
+    Once execution completes, the local agent writes the run log (`## Run`) and the final result card (`type: "note"`) back to DeepVista, and automatically updates the Task's `status` to `completed`.
 
-**Example card configuration:**
-- **Type**: `task`
-- **Status**: `pending`
-- **Title**: `Create a test Linear ticket`
-- **Description**:
-```yaml
----
-agent_id: "your-machine-id"  # Fill in the local Machine ID you registered
-agent_role: "engineering"
----
-Please create a test Linear ticket.
+    **Example final result**:
+    - **Key**: `DV-1373`
+    - **Title**: DeepVista Test Ticket
+    - **URL**: `https://linear.app/deepvista/issue/DV-1373/deepvista-test-ticket`
+  </Step>
+</Steps>
 
-To do this:
-1. Search the local machine (environment variables, config files, or helper tools) for any Linear API credentials (such as LINEAR_API_KEY, LINEAR_TOKEN, etc.).
-2. If credentials are found, use the Linear GraphQL API (via curl or python) to create a new ticket in an active workspace.
-   - Title: "DeepVista Test Ticket"
-   - Description: "This is a test ticket filed automatically by DeepVista agent task delegation."
-3. Report the status of the ticket, the ticket key/ID, or a URL to the ticket if successfully created.
-```
-
-### Step 2: Cloud Dispatch and Local Claim
-1. The cloud agent stores this task card in the database.
-2. The local CLI agent (polling via `deepvista tasks run`) retrieves the pending task and invokes Claude locally to execute the prompt:
-   - Claude checks the local environment variable `LINEAR_TOKEN`.
-   - It sends an `issueCreate` request to Linear via the GraphQL API.
-
-### Step 3: Capturing the Results
-Once execution completes, the local agent writes the run log (`## Run`) and the final result card (`type: "note"`) back to DeepVista, and automatically updates the Task's `status` to `completed`.
-
-**Example final result**:
-- **Key**: `DV-1373`
-- **Title**: DeepVista Test Ticket
-- **URL**: `https://linear.app/deepvista/issue/DV-1373/deepvista-test-ticket`
-
----
-
-## 4. Summary & Next Steps
+## Next steps
 
 By delegating Tasks to a local CLI agent, you can:
 - **Stay secure**: There's no need to upload various API tokens or SSH keys to the cloud — all sensitive operations and credentials remain in your local/private environment.
