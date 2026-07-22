@@ -14,37 +14,37 @@ description: "Prefer utilizing your own hardware? Easily register your local des
   **Important Requirement:** Remote workflows will only execute as long as your registered machine is active, awake, and online. If your machine goes to sleep, shuts down, or loses its internet connection, the DeepVista runner will go offline and pending tasks will queue until it reconnects.
 </Warning>
 
-## Step-by-Step Registration Setup
+## Step-by-step guide
 
-### Step 1: Install the DeepVista CLI
+<Steps>
+  <Step title="Install the DeepVista CLI">
+    Open your terminal and execute the following installation script to set up the CLI utility on your machine:
 
-Open your terminal and execute the following installation script to set up the CLI utility on your machine:
+    ```bash
+    curl -sSL https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/install.sh | bash
+    ```
+  </Step>
+  <Step title="Register your device">
+    Copy the registration command from Step 2 of your dashboard and paste it into your terminal. This command links your physical machine to your DeepVista project and initializes your local runner server:
 
-```bash
-curl -sSL https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/install.sh | bash
-```
+    ```bash
+    deepvista tasks run --project <YOUR_PROJECT_ID>
+    ```
+  </Step>
+  <Step title="Authenticate your terminal">
+    1. Open your terminal.
+    2. Run the following login command:
+       ```bash
+       claude login
+       ```
+    3. Select the login method: Claude account with subscription.
+    4. Your browser will automatically open to sign in (or you can copy the terminal-provided URL).
+    5. Once signed in, an authentication code will be provided in your browser window.
+    6. Copy and paste this code back into the terminal prompts.
+  </Step>
+</Steps>
 
-### Step 2: Register Your Device
-
-Copy the registration command from Step 2 of your dashboard and paste it into your terminal. This command links your physical machine to your DeepVista project and initializes your local runner server:
-
-```bash
-deepvista tasks run --project <YOUR_PROJECT_ID>
-```
-
-### Authenticate Your Terminal
-
-1. Open your terminal.
-2. Run the following login command:
-   ```bash
-   claude login
-   ```
-3. Select the login method: Claude account with subscription.
-4. Your browser will automatically open to sign in (or you can copy the terminal-provided URL).
-5. Once signed in, an authentication code will be provided in your browser window.
-6. Copy and paste this code back into the terminal prompts.
-
-## 3. Leverage Claude Connectors
+## Leverage Claude Connectors
 
 Once authorized, your private server gains the superpower of running background workflows using any of the available Claude Connectors configured on your account.
 
