@@ -6,6 +6,10 @@ description: "Run your workflows 24/7 without keeping your local machine active 
 
 For production-grade environments, complex automations, or enterprise workloads, relying on a personal computer is often impractical. DeepVista provides fully managed, dedicated private servers that run constantly in the cloud.
 
+<Note>
+  This is an alternative to [Register Your Own Machine](/tutorials/server/local), not a follow-on step — pick whichever fits your workload, you don't need to do both.
+</Note>
+
 <Frame>
   ![Direct Workflow Editing](/images/serv-1.png)
 </Frame>
@@ -25,52 +29,12 @@ For production-grade environments, complex automations, or enterprise workloads,
     3. Once finalized, we will provision your dedicated instance, and it will appear directly under the **Private server** section in your dashboard.
   </Step>
   <Step title="Authorize with Claude Code">
-    Once your dedicated private server is active, you must log in, authenticate your terminal environment, and authorize your server to run agentic terminal workflows remotely.
-
-    1. Open your terminal.
-    2. Run the following login command:
-       ```bash
-       claude login
-       ```
-    3. Select the login method: Claude account with subscription.
-    4. Your browser will automatically open to sign in (or you can copy the terminal-provided URL).
-    5. Once signed in, an authentication code will be provided in your browser window.
-    6. Copy and paste this code back into the terminal prompts.
+    Once your dedicated private server is active, authenticate it with Claude the same way you would any registered machine — see the linked tutorial below for the full walkthrough.
   </Step>
 </Steps>
 
-## Leverage Claude Connectors
+## Next steps
 
-Once authorized, your private server gains the superpower of running background workflows using any of the available Claude Connectors configured on your account.
-
-<CardGroup cols={2}>
-  <Card title="Files & Documents" icon="files">
-    **Integrations:** Google Drive, Microsoft 365, Notion
-
-    Read, write, and index files automatically.
-  </Card>
-
-  <Card title="Communication" icon="messages">
-    **Integrations:** Gmail, Slack, MS Teams
-
-    Draft replies, summarize emails, and send automated reports.
-  </Card>
-
-  <Card title="Developer Tools" icon="code">
-    **Integrations:** GitHub
-
-    Manage repositories, pull requests, and deploy code changes.
-  </Card>
-
-  <Card title="Design & Media" icon="palette">
-    **Integrations:** Figma, Canva
-
-    Generate diagrams, grab design specs, and create layouts.
-  </Card>
-
-  <Card title="Scheduling" icon="calendar" horizontal>
-    **Integrations:** Google Calendar
-
-    Coordinate meetings and manage schedules autonomously.
-  </Card>
-</CardGroup>
+<Card title="Authorize Claude and Delegate Tasks to Your Machine" icon="link" href="/tutorials/server/claude-connector-delegation">
+  Authenticate your terminal with Claude and start delegating tasks to this server.
+</Card>
