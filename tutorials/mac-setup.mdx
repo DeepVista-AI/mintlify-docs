@@ -1,0 +1,136 @@
+---
+title: "Install Coding Dependencies on Mac"
+sidebarTitle: "Mac Setup"
+description: "Install the command-line tools, Homebrew, Python, Node.js, and the Claude Code CLI you'll need before running DeepVista's other setup tutorials."
+---
+
+## Overview
+
+DeepVista's CLI and local-agent tooling assume a handful of standard developer tools are already on your machine: `git`, Python 3.12+, Node.js 18+, and the Claude Code CLI. This tutorial installs all of them on macOS, in the order each one depends on the last, so the rest of the setup tutorials (like [Register Your Own Machine](/tutorials/server/local)) just work.
+
+<Note>
+  Already have some of these installed? Each step includes a version check — skip any step where the check already succeeds.
+</Note>
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Install Xcode Command Line Tools">
+    Provides `git`, `clang`, and the other build tools macOS needs.
+
+    ```bash
+    xcode-select --install
+    ```
+
+    A software update dialog opens — click **Install**, accept the license, and wait for the download to finish.
+
+    <Frame>
+      ![Installing Xcode Command Line Tools](/images/mac-setup/01-xcode-select.png)
+    </Frame>
+
+    Verify it worked:
+
+    ```bash
+    xcode-select -p
+    ```
+  </Step>
+
+  <Step title="Install Homebrew">
+    Homebrew is the package manager used to install everything else in this tutorial.
+
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+    <Frame>
+      ![Installing Homebrew](/images/mac-setup/02-homebrew-install.png)
+    </Frame>
+
+    <Warning>
+      Follow the "Next steps" printed at the end of the installer — you need to add Homebrew to your shell's `PATH` before the `brew` command will work in new terminal windows.
+    </Warning>
+
+    Verify it worked:
+
+    ```bash
+    brew --version
+    ```
+  </Step>
+
+  <Step title="Install Python 3.12+">
+    Required by the DeepVista CLI installer.
+
+    ```bash
+    brew install python@3.12
+    ```
+
+    <Frame>
+      ![Installing Python 3.12](/images/mac-setup/03-python-install.png)
+    </Frame>
+
+    Verify it worked:
+
+    ```bash
+    python3.12 --version
+    ```
+  </Step>
+
+  <Step title="Install Node.js 18+">
+    Required for the Claude Code CLI and the DeepVista MCP bridge.
+
+    ```bash
+    brew install node
+    ```
+
+    <Frame>
+      ![Installing Node.js](/images/mac-setup/04-node-install.png)
+    </Frame>
+
+    Verify it worked:
+
+    ```bash
+    node --version
+    ```
+  </Step>
+
+  <Step title="Install the Claude Code CLI">
+    You'll use this later to run `claude login` when registering your machine with DeepVista.
+
+    ```bash
+    npm install -g @anthropic-ai/claude-code
+    ```
+
+    <Frame>
+      ![Installing the Claude Code CLI](/images/mac-setup/05-claude-code-install.png)
+    </Frame>
+
+    Verify it worked:
+
+    ```bash
+    claude --version
+    ```
+  </Step>
+
+  <Step title="Verify everything installed correctly">
+    Run all four checks together:
+
+    ```bash
+    git --version
+    python3 --version
+    node --version
+    claude --version
+    ```
+
+    Each command should print a version number, not a "command not found" error.
+
+    <Frame>
+      ![Verifying all dependencies are installed](/images/mac-setup/06-verify-all.png)
+    </Frame>
+  </Step>
+</Steps>
+
+## Next steps
+
+<Card title="Register Your Own Machine" icon="server" href="/tutorials/server/local">
+  Install the DeepVista CLI and register this machine as a local runner.
+</Card>
