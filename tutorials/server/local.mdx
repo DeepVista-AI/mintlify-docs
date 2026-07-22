@@ -8,6 +8,10 @@ description: "Prefer utilizing your own hardware? Easily register your local des
   ![Direct Workflow Editing](/images/serv-2.png)
 </Frame>
 
+<Note>
+  Don't want to keep your own hardware online? [Dedicated Private Server](/tutorials/server/private) is the alternative — pick whichever fits your workload, you don't need to do both.
+</Note>
+
 ## Before You Begin
 
 <Warning>
@@ -31,51 +35,10 @@ description: "Prefer utilizing your own hardware? Easily register your local des
     deepvista tasks run --project <YOUR_PROJECT_ID>
     ```
   </Step>
-  <Step title="Authenticate your terminal">
-    1. Open your terminal.
-    2. Run the following login command:
-       ```bash
-       claude login
-       ```
-    3. Select the login method: Claude account with subscription.
-    4. Your browser will automatically open to sign in (or you can copy the terminal-provided URL).
-    5. Once signed in, an authentication code will be provided in your browser window.
-    6. Copy and paste this code back into the terminal prompts.
-  </Step>
 </Steps>
 
-## Leverage Claude Connectors
+## Next steps
 
-Once authorized, your private server gains the superpower of running background workflows using any of the available Claude Connectors configured on your account.
-
-<CardGroup cols={2}>
-  <Card title="Files & Documents" icon="files">
-    **Integrations:** Google Drive, Microsoft 365, Notion
-
-    Read, write, and index files automatically.
-  </Card>
-
-  <Card title="Communication" icon="messages">
-    **Integrations:** Gmail, Slack, MS Teams
-
-    Draft replies, summarize emails, and send automated reports.
-  </Card>
-
-  <Card title="Developer Tools" icon="code">
-    **Integrations:** GitHub
-
-    Manage repositories, pull requests, and deploy code changes.
-  </Card>
-
-  <Card title="Design & Media" icon="palette">
-    **Integrations:** Figma, Canva
-
-    Generate diagrams, grab design specs, and create layouts.
-  </Card>
-
-  <Card title="Scheduling" icon="calendar" horizontal>
-    **Integrations:** Google Calendar
-
-    Coordinate meetings and manage schedules autonomously.
-  </Card>
-</CardGroup>
+<Card title="Authorize Claude and Delegate Tasks to Your Machine" icon="link" href="/tutorials/server/claude-connector-delegation">
+  Authenticate your terminal with Claude and start delegating tasks to this machine.
+</Card>

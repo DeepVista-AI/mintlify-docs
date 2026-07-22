@@ -66,8 +66,8 @@
           {
             "group": "Setup Tutorials",
             "pages": [
-              "tutorials/mac-setup",
               "tutorials/input-forms",
+              "tutorials/mac-setup",
               {
                 "group": "Setup Private and Local Servers",
                 "expanded": false,
