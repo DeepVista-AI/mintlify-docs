@@ -15,18 +15,24 @@ This tutorial demonstrates how to configure and use DeepVista Task Delegation to
 
 ## 2. Prerequisites
 
-1. **Register and run a local CLI Agent**:
-   On your local machine (e.g., a Linux server, Mac, etc.), run the following commands to register the device and start the polling service:
-   ```bash
-   deepvista agents register
-   deepvista tasks run
-   ```
-2. **Configure Linear API credentials**:
-   In the terminal where you run `deepvista tasks run`, or in your environment variable configuration file, export your Linear access token:
-   ```bash
-   export LINEAR_TOKEN="your_linear_api_token"
-   ```
-   *Note: The agent retrieves this variable securely within your local environment and never uploads the credential in plaintext or leaks it to logs.*
+Complete these setup tutorials first:
+
+<CardGroup cols={2}>
+  <Card title="Register Your Own Machine" icon="server" href="/tutorials/server/local">
+    Install the DeepVista CLI and register your machine as a local runner.
+  </Card>
+  <Card title="Authorize Claude and Delegate Tasks to Your Machine" icon="link" href="/tutorials/server/claude-connector-delegation">
+    Connect your registered machine to Claude so it can receive delegated tasks.
+  </Card>
+</CardGroup>
+
+With your machine registered and `deepvista tasks run` polling, configure Linear API credentials:
+
+```bash
+export LINEAR_TOKEN="your_linear_api_token"
+```
+
+*Note: The agent retrieves this variable securely within your local environment and never uploads the credential in plaintext or leaks it to logs.*
 
 ---
 
