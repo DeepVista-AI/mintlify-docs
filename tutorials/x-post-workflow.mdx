@@ -1,11 +1,11 @@
 ---
-title: "Set Up an X Posting Workflow with Discord Notifications"
-description: "Generate an X posting workflow from a single prompt, extend it in plain language, and get notified in Discord when posts go out."
+title: "Set Up an X Posting Workflow and Post It with Buffer CLI"
+description: "Generate an X posting workflow from a single prompt, extend it in plain language, and publish approved drafts to X using the Buffer CLI."
 ---
 
 ## Overview
 
-DeepVista can turn one well-structured prompt into a complete X posting workflow: it researches source content, drafts post variants in your brand voice, holds them for your review, and publishes to your chosen channel. This tutorial walks through generating the workflow, adding a step, and connecting Discord notifications.
+DeepVista can turn one well-structured prompt into a complete X posting workflow: it researches source content, drafts post variants in your brand voice, holds them for your review, and publishes to your chosen channel. This tutorial walks through generating the workflow, adding a step, and publishing to X with the [Buffer CLI](https://cli.deepvista.ai).
 
 ## Prerequisites
 
@@ -13,11 +13,7 @@ Before you start, make sure you have:
 
 1. A DeepVista account with an active project
 2. A source of content to draw from (a URL, newsletter, or content type)
-3. A Discord server where you have permission to manage a channel
-
-<Card title="Connecting Forms to Discord via Webhooks" icon="discord" href="/tutorials/managing-workflows">
-  Covers creating a Discord webhook in more detail. Step 3 below repeats the key parts inline for convenience.
-</Card>
+3. The Buffer CLI installed and authenticated, with your X (Twitter) channel connected in Buffer
 
 ## Step-by-step guide
 
@@ -61,8 +57,8 @@ Before you start, make sure you have:
     For example:
 
     ```text
-    Add a step after "Publish to X" that sends a notification
-    to my Discord channel confirming the post went out.
+    Add a step after "Draft review" that publishes the approved
+    draft to X using the Buffer CLI.
     ```
 
     DeepVista handles the technical wiring. You only describe the step.
@@ -71,44 +67,46 @@ Before you start, make sure you have:
       ![Adding a workflow step in plain language](/images/x-post-workflow/add-step-plain-language.png)
     </Frame>
   </Step>
-  <Step title="Set up Discord notifications">
-    First, create a Discord webhook:
+  <Step title="Post to X with the Buffer CLI">
+    First, find the channel ID for your connected X account:
 
-    1. Open your Discord server and go to the channel where you want notifications.
-
-    <Frame>
-      ![Selecting a Discord channel](/images/x-post-workflow/discord-channel.png)
-    </Frame>
-
-    2. Click the gear icon to edit the channel, then go to **Integrations \> Webhooks**.
-
-    <Frame>
-      ![Discord channel Integrations and Webhooks settings](/images/x-post-workflow/discord-integrations-webhooks.png)
-    </Frame>
-
-    3. Click **New Webhook**, name it (for example, "Workflow Bot"), and choose an avatar.
-    4. Click **Copy Webhook URL**.
-
-    <Frame>
-      ![Copying the Discord webhook URL](/images/x-post-workflow/discord-copy-webhook-url.png)
-    </Frame>
-
-    Then add it to your workflow. Tell DeepVista:
-
-    ```text
-    Use this Discord webhook: [paste your webhook URL]
-    ```
-
-    DeepVista attaches it to your workflow so a message posts automatically after the step completes.
-
-    Webhook URLs follow this format:
-
-    ```text
-    https://discord.com/api/webhooks/123456789/abc123xyz
+    ```bash
+    buffer channels list --fields 'items.{id,service,name}' --output json
     ```
 
     <Frame>
-      ![Webhook attached to the workflow](/images/x-post-workflow/webhook-added-confirmation.png)
+      ![Listing Buffer channels to find the X channel ID](/images/x-post-workflow/buffer-channels-list.png)
+    </Frame>
+
+    Then tell DeepVista which channel to publish to. Tell DeepVista:
+
+    ```text
+    Publish approved drafts to X using the Buffer CLI, channel ID:
+    [paste your channel ID]
+    ```
+
+    DeepVista wires the publish step to build a Buffer payload and validate it before sending:
+
+    ```bash
+    buffer posts create --json "$payload" --dry-run
+    ```
+
+    <Frame>
+      ![Dry-running the Buffer post payload before publishing](/images/x-post-workflow/buffer-posts-create-dry-run.png)
+    </Frame>
+
+    <Tip>
+      `--dry-run` validates the payload with no API call — DeepVista runs this check on every draft before the real publish, so a malformed post never reaches X.
+    </Tip>
+
+    Once the dry run passes, the workflow sends the real request:
+
+    ```bash
+    buffer posts create --json "$payload" --output json
+    ```
+
+    <Frame>
+      ![Buffer CLI publishing the approved draft to X](/images/x-post-workflow/buffer-posts-create.png)
     </Frame>
   </Step>
   <Step title="Run the workflow">
@@ -132,11 +130,7 @@ Before you start, make sure you have:
       ![Workflow run output with draft for review](/images/x-post-workflow/run-output.png)
     </Frame>
 
-    Once the run completes, the draft is posted to your Discord channel.
-
-    <Frame>
-      ![Draft posted in the Discord channel](/images/x-post-workflow/discord-post-result.png)
-    </Frame>
+    Once you approve the draft, the workflow publishes it to X via the Buffer CLI.
   </Step>
 </Steps>
 
