@@ -82,6 +82,7 @@
           {
             "group": "Case Studies",
             "pages": [
+              "tutorials/gmail-daily-summary-workflow",
               "tutorials/task-delegation-linear",
               "tutorials/x-post-workflow",
               "tutorials/managing-workflows"

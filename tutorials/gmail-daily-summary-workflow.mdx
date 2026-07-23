@@ -1,0 +1,95 @@
+---
+title: "Connect Gmail and Get a Daily Summary Emailed to You"
+description: "Link your Gmail account to DeepVista and ask the agent to send a daily summary of your progress, syncs, and next steps."
+---
+
+## Overview
+
+DeepVista can sync your Gmail into memory and, on request, compose and send a daily summary email pulling from your notes, syncs, and recent activity. This tutorial walks through connecting Gmail from Settings and asking DeepVista to send a daily summary.
+
+<Warning>
+  Connecting Gmail grants DeepVista read access to your inbox for syncing to memory, and asking for a daily summary causes DeepVista to send a real email on your behalf. Only connect an account you're comfortable syncing, and review the first summary before relying on this for recurring sends.
+</Warning>
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+1. A DeepVista account with an active project
+2. Access to the Gmail account you want to connect
+3. Some existing notes or memory entries you'd like summarized (e.g. daily planning notes, sync recaps)
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Open Settings">
+    Click your project icon in the top-left of the app, then select **Settings**.
+
+    <Frame>
+      <img src="/images/gmail-daily-summary/settings-connectors-nav-sidebar.png" alt="Opening Settings from the project menu" />
+    </Frame>
+  </Step>
+
+  <Step title="Open Connectors">
+    In the Settings sidebar, select **Connectors**.
+
+    <Frame>
+      <img src="/images/gmail-daily-summary/settings-connectors-nav.png" alt="Connectors tab selected in Settings" />
+    </Frame>
+  </Step>
+
+  <Step title="Click + Gmail">
+    Under **Data Connectors**, find the **Gmail** card and click **+ Gmail**.
+
+    <Frame>
+      <img src="/images/gmail-daily-summary/gmail-connector-plus-button.png" alt="Gmail connector card with the + Gmail button" />
+    </Frame>
+
+    <Note>
+      The same page shows an **email forwarding address** (`bot+...@deepvista.ai`). Forwarding a message there is a separate, manual way to get it into memory — it doesn't require the Gmail OAuth connection below.
+    </Note>
+
+    Complete the Google OAuth consent flow in the popup window.
+  </Step>
+
+  <Step title="Gmail connected">
+    Once authorized, you'll land on this confirmation screen. From here, DeepVista automatically syncs your Gmail to memory in the background.
+
+    <Frame>
+      <img src="/images/gmail-daily-summary/gmail-connected-confirmation.png" alt="Gmail connected confirmation screen" />
+    </Frame>
+  </Step>
+
+  <Step title="Ask DeepVista for a daily summary">
+    In chat, ask for a summary and name the recipient:
+
+    ```text
+    send a daily summary to [recipient name]
+    ```
+
+    <Frame>
+      <img src="/images/gmail-daily-summary/chat-daily-summary-prompt.png" alt="Prompting DeepVista to send a daily summary to Shayla" />
+    </Frame>
+
+    DeepVista searches your memory and notes for relevant context — recent syncs, daily planning entries, and anything tied to the recipient — before drafting the email.
+
+    <Tip>
+      The more specific your notes are (dated planning entries, sync recaps, named follow-ups), the more useful the generated summary will be. DeepVista pulls directly from what's already in memory rather than inventing content.
+    </Tip>
+  </Step>
+
+  <Step title="Check the delivered email">
+    The recipient receives a formatted summary email — in this example, "DeepVista Daily Progress & Sync Summary" for the day, recapping feedback, decisions, and an agenda for the next sync.
+
+    <Frame>
+      <img src="/images/gmail-daily-summary/gmail-daily-summary-email.png" alt="Received daily summary email in Gmail" />
+    </Frame>
+  </Step>
+</Steps>
+
+***
+
+<Tip>
+  **What happens next?**
+  Once Gmail is connected, DeepVista keeps syncing new email to memory automatically. Asking for a daily summary at any time pulls the latest context and sends a fresh recap — useful as a recurring end-of-day habit for a team or a solo founder keeping stakeholders in the loop.
+</Tip>
