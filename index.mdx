@@ -5,7 +5,7 @@ description: "DeepVista turns your instructions into shared memory your team and
 
 # Welcome to DeepVista
 
-**Stop repeating yourself.** DeepVista is the shared brain for founders and their agents — it captures how you work, turns your feedback into structured playbooks, and ensures your team and AI agents execute consistently without you having to say the same thing twice.
+**Stop repeating yourself.** DeepVista is the shared brain for founders and their agents — write your instructions once, and your team and AI agents follow them automatically, every time.
 
 <CardGroup cols={2}>
   <Card title="Get Early Access" icon="rocket" href="https://app.deepvista.ai">
@@ -20,8 +20,6 @@ description: "DeepVista turns your instructions into shared memory your team and
 ## What is DeepVista?
 
 DeepVista turns your instructions into **shared memory** that your team and AI agents follow automatically. Drop a simple note — DeepVista instantly generates a personalized playbook from it, then runs the entire workflow for you.
-
-It is designed for founders who spend hours repeating context to their team, their inbox, and their AI tools. With DeepVista, you say it once. Everyone — and every agent — gets it right the first time.
 
 <Info>
   DeepVista is built on **VistaBase™**, a proprietary engine that converts your feedback into one persistent, shared source of truth across your entire execution stack.
@@ -39,7 +37,7 @@ It is designed for founders who spend hours repeating context to their team, the
   </Accordion>
 
   <Accordion title="Context cards" icon="id-card">
-    **Context cards** are structured knowledge records inside your DeepVista project. They hold details about people, topics, and processes — and can be read, created, updated, or deleted directly from any connected AI client via the MCP server.
+    **Context cards** are structured knowledge records inside your DeepVista project. They hold details about people, topics, and processes, and stay in sync across every tool you connect.
   </Accordion>
 </AccordionGroup>
 
@@ -57,15 +55,35 @@ It is designed for founders who spend hours repeating context to their team, the
   </Step>
 </Steps>
 
-## Integrations
+## Where to start
 
-DeepVista connects to the tools in your stack. Connect your AI clients directly to your context cards using the **DeepVista MCP server** — compatible with Cursor, Claude Desktop, and any MCP-enabled client.
-
-<CardGroup cols={3}>
-  <Card title="MCP server" icon="plug" href="/mcp-server">
-    Connect Cursor, Claude Desktop, and other AI tools directly to your context cards.
+<CardGroup cols={2}>
+  <Card title="Shallow Workflow" icon="feather" href="/tutorials/gmail-daily-summary-workflow">
+    No local setup required — connect Gmail or a webhook and go. The fastest way to see DeepVista in action.
   </Card>
 
+  <Card title="Deep Workflow" icon="layer-group" href="/tutorials/task-delegation-linear">
+    For workflows that reach into tools like Linear or Google Calendar through your Claude account.
+  </Card>
+</CardGroup>
+
+## What am I actually connecting?
+
+Some workflows ask you to set up **Claude Code**. Here's what that means, in plain terms:
+
+- **Claude Code** runs on your own computer, and signs in with your own Claude account — not a DeepVista one. Your password never passes through our servers.
+- On **claude.ai**, you turn on a setting that lets Claude read a tool you've connected, like Google Drive. That's the only place this kind of access gets granted.
+- From there, DeepVista works through the Claude Code on your computer to fetch what it needs and bring the results back to you.
+
+<Note>
+  This uses your own Claude subscription's usage allowance, not a DeepVista quota — worth knowing if you're on a limited plan.
+</Note>
+
+## Integrations
+
+DeepVista connects to the tools in your stack.
+
+<CardGroup cols={2}>
   <Card title="CLI" icon="terminal" href="https://cli.deepvista.ai">
     Run DeepVista workflows and manage VistaBooks from your terminal.
   </Card>
@@ -74,6 +92,8 @@ DeepVista connects to the tools in your stack. Connect your AI clients directly 
     Chat with context, take notes, and watch your VistaBooks come to life.
   </Card>
 </CardGroup>
+
+Looking for MCP server or CLI setup details? Those live under **For Developers** in the sidebar.
 
 ## Designed for founders
 
