@@ -46,29 +46,13 @@ Before you start, make sure you have:
       ![Terminal confirming a successful Claude login](/images/claude-connector-delegation/claude-login-success.png)
     </Frame>
   </Step>
-  <Step title="Connect your machine to DeepVista">
-    Install the DeepVista CLI and run the registration command shown in your dashboard.
+</Steps>
 
-    <Frame>
-      ![Connect a new machine panel with install and connect commands](/images/claude-connector-delegation/register-machine-panel.png)
-    </Frame>
+<Note>
+  Next, connect your machine to DeepVista: **[Connect Your Own Machine](/tutorials/server/local)**. Come back here once it shows up online to delegate your first task.
+</Note>
 
-    <Warning>
-      **Important Requirement:** Remote workflows will only execute as long as your connected machine is active, awake, and online. If your machine goes to sleep, shuts down, or loses its internet connection, the DeepVista runner will go offline and pending tasks will queue until it reconnects.
-    </Warning>
-
-    Once you run the connect command, the runner starts polling and confirms which account, project, and agent it connected under.
-
-    <Frame>
-      ![Terminal output after connecting a machine, showing it listening for tasks](/images/claude-connector-delegation/machine-online-terminal.png)
-    </Frame>
-
-    Your machine now shows up as online in the Machines panel.
-
-    <Frame>
-      ![Machines panel showing a connected machine online](/images/claude-connector-delegation/machines-panel-online.png)
-    </Frame>
-  </Step>
+<Steps>
   <Step title="Delegate a task with @mention">
     With your machine online, `@mention` it from DeepVista chat to assign it a task directly.
 
