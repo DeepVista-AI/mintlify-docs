@@ -30,6 +30,15 @@
           {
             "group": "Deep Workflow",
             "pages": [
+              {
+                "group": "Set Up",
+                "expanded": true,
+                "pages": [
+                  "tutorials/mac-setup",
+                  "tutorials/server/claude-connector-delegation",
+                  "tutorials/server/local"
+                ]
+              },
               "tutorials/task-delegation-linear",
               "tutorials/x-post-workflow"
             ]
@@ -66,17 +75,6 @@
             ]
           },
           {
-            "group": "For Developers",
-            "pages": [
-              "cli",
-              "mcp-server",
-              "tutorials/mac-setup",
-              "tutorials/server/local",
-              "tutorials/server/private",
-              "tutorials/server/claude-connector-delegation"
-            ]
-          },
-          {
             "group": "Release Docs",
             "pages": [
               "version/0-6-1",
@@ -85,6 +83,14 @@
               "version/0-6-4",
               "version/0-6-5",
               "version/0-6-6"
+            ]
+          },
+          {
+            "group": "For Developers",
+            "pages": [
+              "cli",
+              "mcp-server",
+              "tutorials/server/private"
             ]
           }
         ]

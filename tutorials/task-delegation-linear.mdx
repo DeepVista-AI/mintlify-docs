@@ -1,30 +1,35 @@
 ---
 title: "Automating Linear Tickets via DeepVista Task Delegation"
-description: "Learn how to use DeepVista Task Delegation to let a locally-registered CLI agent create Linear tickets headlessly, keeping credentials on your own machine."
+description: "Learn how to use DeepVista Task Delegation to let a locally-connected CLI agent create Linear tickets headlessly, keeping credentials on your own machine."
 ---
 
 ## Overview
 
 By the end, DeepVista will file Linear tickets automatically from a cloud-triggered prompt, while your Linear API token never leaves your own machine.
 
-DeepVista provides a powerful **Task Delegation** feature. When a cloud agent encounters an operation that requires a local environment, a specific CLI, or particular credentials (such as an API key), it can package the work as a `task` card and dispatch it to a CLI agent registered on the user's local machine.
+DeepVista provides a powerful **Task Delegation** feature. When a cloud agent encounters an operation that requires a local environment, a specific CLI, or particular credentials (such as an API key), it can package the work as a `task` card and dispatch it to a CLI agent connected on the user's local machine.
 
 This tutorial demonstrates how to configure and use DeepVista Task Delegation to create Linear tickets headlessly and automatically.
 
 ## Prerequisites
 
-Complete these setup tutorials first:
+<Note>
+  Deep Workflows need a connected machine before you can run them. Complete these three setup steps first, in order:
+</Note>
 
 <CardGroup cols={2}>
-  <Card title="Register Your Own Machine" icon="server" href="/tutorials/server/local">
-    Install the DeepVista CLI and register your machine as a local runner.
+  <Card title="Mac Setup" icon="terminal" href="/tutorials/mac-setup">
+    Install the developer tools and Claude Code CLI this setup depends on.
   </Card>
-  <Card title="Authorize Claude and Delegate Tasks to Your Machine" icon="link" href="/tutorials/server/claude-connector-delegation">
-    Connect your registered machine to Claude so it can receive delegated tasks.
+  <Card title="Set Up Your Claude Code Connector" icon="link" href="/tutorials/server/claude-connector-delegation">
+    Authenticate Claude Code with your Claude account.
+  </Card>
+  <Card title="Connect Your Own Machine" icon="server" href="/tutorials/server/local">
+    Install the DeepVista CLI and connect your machine as a local runner.
   </Card>
 </CardGroup>
 
-With your machine registered and `deepvista tasks run` polling, configure Linear API credentials:
+With your machine connected and `deepvista tasks run` polling, configure Linear API credentials:
 
 ```bash
 export LINEAR_TOKEN="your_linear_api_token"
@@ -45,7 +50,7 @@ export LINEAR_TOKEN="your_linear_api_token"
     - **Description**:
     ```yaml
     ---
-    agent_id: "your-machine-id"  # Fill in the local Machine ID you registered
+    agent_id: "your-machine-id"  # Fill in the local Machine ID you connected
     agent_role: "engineering"
     ---
     Please create a test Linear ticket.
