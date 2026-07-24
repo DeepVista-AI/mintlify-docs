@@ -1,7 +1,7 @@
 ---
-title: "Register Your Own Machine"
-sidebarTitle: "Register Your Machine"
-description: "Prefer utilizing your own hardware? Easily register your local desktop, laptop, or on-premise server as an active DeepVista runner using our CLI."
+title: "Connect Your Own Machine"
+sidebarTitle: "Connect Your Machine"
+description: "Prefer utilizing your own hardware? Easily connect your local desktop, laptop, or on-premise server as an active DeepVista runner using our CLI."
 ---
 
 <Frame>
@@ -15,7 +15,7 @@ description: "Prefer utilizing your own hardware? Easily register your local des
 ## Before You Begin
 
 <Warning>
-  **Important Requirement:** Remote workflows will only execute as long as your registered machine is active, awake, and online. If your machine goes to sleep, shuts down, or loses its internet connection, the DeepVista runner will go offline and pending tasks will queue until it reconnects.
+  **Important Requirement:** Remote workflows will only execute as long as your connected machine is active, awake, and online. If your machine goes to sleep, shuts down, or loses its internet connection, the DeepVista runner will go offline and pending tasks will queue until it reconnects.
 </Warning>
 
 ## Step-by-step guide
@@ -28,8 +28,8 @@ description: "Prefer utilizing your own hardware? Easily register your local des
     curl -sSL https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/install.sh | bash
     ```
   </Step>
-  <Step title="Register your device">
-    Copy the registration command from Step 2 of your dashboard and paste it into your terminal. This command links your physical machine to your DeepVista project and initializes your local runner server:
+  <Step title="Connect your device">
+    Copy the one-line connect command from Step 2 of your dashboard and paste it into your terminal. This command links your physical machine to your DeepVista project and initializes your local runner server:
 
     ```bash
     deepvista tasks run --project <YOUR_PROJECT_ID>
@@ -39,6 +39,13 @@ description: "Prefer utilizing your own hardware? Easily register your local des
 
 ## Next steps
 
-<Card title="Authorize Claude and Delegate Tasks to Your Machine" icon="link" href="/tutorials/server/claude-connector-delegation">
-  Authenticate your terminal with Claude and start delegating tasks to this machine.
-</Card>
+You're all set. Try a Deep Workflow tutorial:
+
+<CardGroup cols={2}>
+  <Card title="Automating Linear Tickets via DeepVista Task Delegation" icon="ticket" href="/tutorials/task-delegation-linear">
+    Let your connected machine create Linear tickets headlessly, from a cloud-triggered prompt.
+  </Card>
+  <Card title="Set Up an X Posting Workflow" icon="hashtag" href="/tutorials/x-post-workflow">
+    Research, draft, and publish X posts with the Buffer CLI.
+  </Card>
+</CardGroup>
