@@ -16,9 +16,22 @@
           {
             "group": "Getting started",
             "pages": [
-              "index",
-              "cli",
-              "mcp-server"
+              "index"
+            ]
+          },
+          {
+            "group": "Shallow Workflow",
+            "pages": [
+              "tutorials/gmail-daily-summary-workflow",
+              "tutorials/managing-workflows",
+              "tutorials/input-forms"
+            ]
+          },
+          {
+            "group": "Deep Workflow",
+            "pages": [
+              "tutorials/task-delegation-linear",
+              "tutorials/x-post-workflow"
             ]
           },
           {
@@ -53,6 +66,17 @@
             ]
           },
           {
+            "group": "For Developers",
+            "pages": [
+              "cli",
+              "mcp-server",
+              "tutorials/mac-setup",
+              "tutorials/server/local",
+              "tutorials/server/private",
+              "tutorials/server/claude-connector-delegation"
+            ]
+          },
+          {
             "group": "Release Docs",
             "pages": [
               "version/0-6-1",
@@ -61,31 +85,6 @@
               "version/0-6-4",
               "version/0-6-5",
               "version/0-6-6"
-            ]
-          },
-          {
-            "group": "Setup Tutorials",
-            "pages": [
-              "tutorials/input-forms",
-              "tutorials/mac-setup",
-              {
-                "group": "Setup Private and Local Servers",
-                "expanded": false,
-                "pages": [
-                  "tutorials/server/local",
-                  "tutorials/server/private",
-                  "tutorials/server/claude-connector-delegation"
-                ]
-              }
-            ]
-          },
-          {
-            "group": "Case Studies",
-            "pages": [
-              "tutorials/gmail-daily-summary-workflow",
-              "tutorials/task-delegation-linear",
-              "tutorials/x-post-workflow",
-              "tutorials/managing-workflows"
             ]
           }
         ]
@@ -118,11 +117,6 @@
           "anchor": "Discord Community",
           "href": "https://go.deepvista.ai/discord",
           "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://deepvista.ai/blog",
-          "icon": "newspaper"
         }
       ]
     }
