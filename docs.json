@@ -116,7 +116,8 @@
         {
           "anchor": "Discord Community",
           "href": "https://go.deepvista.ai/discord",
-          "icon": "book-open-cover"
+          "icon": "discord",
+          "iconType": "brands"
         }
       ]
     }
