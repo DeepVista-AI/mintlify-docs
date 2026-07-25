@@ -1,11 +1,18 @@
 ---
-title: "Connect Gmail and Get a Daily Summary Emailed to You"
+title: "Connect Gmail and get a daily summary emailed to you"
+sidebarTitle: "Gmail daily summary"
 description: "Link your Gmail account to DeepVista and ask the agent to send a daily summary of your progress, syncs, and next steps."
 ---
 
 ## Overview
 
-DeepVista can sync your Gmail into memory and, on request, compose and send a daily summary email pulling from your notes, syncs, and recent activity. This tutorial walks through connecting Gmail from Settings and asking DeepVista to send a daily summary.
+By the end, DeepVista will sync your Gmail into memory and send a summary email you can request anytime from chat.
+
+DeepVista can sync your Gmail into memory and, on request, compose and send a daily summary email pulling from your notes, syncs, and recent activity. This tutorial walks through connecting Gmail from Settings and asking DeepVista to send a summary.
+
+<Note>
+  The summary in this tutorial is **on demand** — you ask for it in chat whenever you want a recap. It is not an automatic scheduled send unless you later add scheduling to the workflow.
+</Note>
 
 <Warning>
   Connecting Gmail grants DeepVista read access to your inbox for syncing to memory, and asking for a daily summary causes DeepVista to send a real email on your behalf. Only connect an account you're comfortable syncing, and review the first summary before relying on this for recurring sends.
@@ -61,7 +68,7 @@ Before you start, make sure you have:
   </Step>
 
   <Step title="Ask DeepVista for a daily summary">
-    In chat, ask for a summary and name the recipient:
+    In chat, ask for a summary and name the recipient. Use a person DeepVista already knows from your notes or contacts (name is usually enough; include an email if you want to be explicit):
 
     ```text
     send a daily summary to [recipient name]
@@ -71,7 +78,7 @@ Before you start, make sure you have:
       <img src="/images/gmail-daily-summary/chat-daily-summary-prompt.png" alt="Prompting DeepVista to send a daily summary to Shayla" />
     </Frame>
 
-    DeepVista searches your memory and notes for relevant context — recent syncs, daily planning entries, and anything tied to the recipient — before drafting the email.
+    DeepVista searches your memory and notes for relevant context — recent syncs, daily planning entries, and anything tied to the recipient — before drafting and sending the email. Review the first delivery before you rely on this for recurring sends.
 
     <Tip>
       The more specific your notes are (dated planning entries, sync recaps, named follow-ups), the more useful the generated summary will be. DeepVista pulls directly from what's already in memory rather than inventing content.
@@ -93,3 +100,5 @@ Before you start, make sure you have:
   **What happens next?**
   Once Gmail is connected, DeepVista keeps syncing new email to memory automatically. Asking for a daily summary at any time pulls the latest context and sends a fresh recap — useful as a recurring end-of-day habit for a team or a solo founder keeping stakeholders in the loop.
 </Tip>
+
+To disconnect later, open **Settings → Connectors**, open the **Gmail** connector, and revoke access. You can also remove DeepVista from your Google Account permissions if you want to revoke OAuth at the source.

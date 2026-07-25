@@ -39,6 +39,7 @@ https://api.deepvista.ai/mcp
 
     <Steps>
       <Step title="Save the config and restart Cursor">
+        Save `~/.cursor/mcp.json`, then fully quit and reopen Cursor so it reloads MCP servers.
       </Step>
       <Step title="Open the command palette">
         Press `Cmd/Ctrl+Shift+P` and run **MCP: Connect to server**.
@@ -116,7 +117,7 @@ https://api.deepvista.ai/mcp
     npx mcp-remote https://api.deepvista.ai/mcp
     ```
 
-    Name the server **deepvista** and hit enter. Then activate it via **MCP: List Servers** → select **deepvista** → **Start Server**.
+    Name the server **deepvista** and press **Enter**. Then activate it via **MCP: List Servers** → select **deepvista** → **Start Server**.
 
     Alternatively, add it directly to your settings:
 
@@ -130,6 +131,10 @@ https://api.deepvista.ai/mcp
       }
     }
     ```
+
+    <Check>
+      **Verify it's working:** In VS Code chat, ask `List my DeepVista context cards.` You should see cards from your active project.
+    </Check>
   </Tab>
   <Tab title="Windsurf">
     Press `Ctrl/Cmd+,` to open Windsurf settings. Scroll to **Cascade → MCP servers**, then select **Add Server → Add custom server** and paste:
@@ -144,6 +149,12 @@ https://api.deepvista.ai/mcp
       }
     }
     ```
+
+    Save the settings, restart Windsurf if prompted, and complete the OAuth sign-in when your browser opens.
+
+    <Check>
+      **Verify it's working:** In Cascade, ask `Show me my recent DeepVista context cards.` A list from your active project confirms the connection.
+    </Check>
   </Tab>
   <Tab title="Other clients">
     Hundreds of tools now support MCP. Use these settings for any client not listed above.
@@ -200,6 +211,25 @@ Generate a key from **Settings → Security & Access**, then configure your clie
 ```text
 Authorization: Bearer <your-api-key>
 ```
+
+Example Cursor config using a key instead of interactive OAuth:
+
+```json ~/.cursor/mcp.json
+{
+  "mcpServers": {
+    "deepvista": {
+      "url": "https://api.deepvista.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer <your-api-key>"
+      }
+    }
+  }
+}
+```
+
+<Warning>
+  Treat API keys like passwords. Prefer OAuth for interactive editors, rotate keys if they're shared or committed, and never paste keys into chat logs.
+</Warning>
 
 ---
 

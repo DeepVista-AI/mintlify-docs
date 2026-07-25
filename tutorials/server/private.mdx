@@ -1,40 +1,48 @@
 ---
-title: "Dedicated Private Server"
-sidebarTitle: "Dedicated Private Server"
-description: "Run your workflows 24/7 without keeping your local machine active by setting up a dedicated, fully managed DeepVista Private Server."
+title: "Dedicated private server"
+sidebarTitle: "Dedicated private server"
+description: "Run DeepVista workflows 24/7 on a managed private server instead of keeping your local machine online."
 ---
 
-For production-grade environments, complex automations, or enterprise workloads, relying on a personal computer is often impractical. DeepVista provides fully managed, dedicated private servers that run constantly in the cloud.
+## Overview
+
+By the end, you'll know when a dedicated private server is the right choice and how to request one.
+
+For production workloads, complex automations, or always-on agents, keeping a personal laptop awake is often impractical. DeepVista can provision a fully managed private server that runs in the cloud around the clock.
 
 <Note>
-  This is an alternative to [Connect Your Own Machine](/tutorials/server/local), not a follow-on step — pick whichever fits your workload, you don't need to do both.
+  This is an alternative to [Connect your machine](/tutorials/server/local), not a follow-on step — pick whichever fits your workload. You don't need both.
 </Note>
 
 <Frame>
-  ![Direct Workflow Editing](/images/serv-1.png)
+  ![Dedicated private server option in DeepVista](/images/serv-1.png)
 </Frame>
 
-<Card title="No Idle Worries" icon="server">
-  Keep your workflows running 24/7 without needing to leave your laptop or local desktop powered on.
-</Card>
+## When to choose a private server
+
+Choose a private server if you need:
+
+- Workflows that must stay online overnight or while your laptop sleeps
+- A dedicated environment for team or production automations
+- Managed hosting instead of operating your own always-on machine
+
+Stay on a local machine if you're prototyping, testing Deep Workflows, or only need the runner during the workday.
 
 ## Step-by-step guide
 
 <Steps>
   <Step title="Request a private server">
-    To provision a new managed instance:
+    Email [support@deepvista.ai](mailto:support@deepvista.ai) to request a managed instance. Include a short description of your workload and expected uptime.
 
-    1. Send an email to [support@deepvista.ai](mailto:support@deepvista.ai).
-    2. Our engineering and account team will follow up to discuss your workload requirements, resource allocation, and custom pricing/negotiation talks.
-    3. Once finalized, we will provision your dedicated instance, and it will appear directly under the **Private server** section in your dashboard.
+    The DeepVista team will follow up on requirements, capacity, and pricing. After provisioning, the instance appears under **Private server** in your dashboard.
   </Step>
   <Step title="Authorize with Claude Code">
-    Once your dedicated private server is active, authenticate it with Claude the same way you would any connected machine — see the linked tutorial below for the full walkthrough.
+    Once the private server is active, authenticate it with Claude the same way you would any connected machine. Use the tutorial below for the full walkthrough.
   </Step>
 </Steps>
 
 ## Next steps
 
-<Card title="Set Up Your Claude Code Connector" icon="link" href="/tutorials/server/claude-connector-delegation">
-  Authenticate your terminal with Claude and start delegating tasks to this server.
+<Card title="Set up your Claude Code connector" icon="link" href="/tutorials/server/claude-connector-delegation">
+  Authenticate Claude Code and start delegating tasks to this server.
 </Card>

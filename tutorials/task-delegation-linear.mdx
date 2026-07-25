@@ -1,15 +1,16 @@
 ---
-title: "Automating Linear Tickets via DeepVista Task Delegation"
-description: "Learn how to use DeepVista Task Delegation to let a locally-connected CLI agent create Linear tickets headlessly, keeping credentials on your own machine."
+title: "Automate Linear tickets with task delegation"
+sidebarTitle: "Linear task delegation"
+description: "Use DeepVista task delegation so a locally connected CLI agent creates Linear tickets while credentials stay on your machine."
 ---
 
 ## Overview
 
 By the end, DeepVista will file Linear tickets automatically from a cloud-triggered prompt, while your Linear API token never leaves your own machine.
 
-DeepVista provides a powerful **Task Delegation** feature. When a cloud agent encounters an operation that requires a local environment, a specific CLI, or particular credentials (such as an API key), it can package the work as a `task` card and dispatch it to a CLI agent connected on the user's local machine.
+When a cloud agent needs a local environment, a specific CLI, or credentials such as an API key, DeepVista packages the work as a **task** context card and dispatches it to a CLI runner on your connected machine.
 
-This tutorial demonstrates how to configure and use DeepVista Task Delegation to create Linear tickets headlessly and automatically.
+This tutorial shows how to configure that flow so Linear tickets are created headlessly on your machine.
 
 ## Prerequisites
 
@@ -29,13 +30,13 @@ This tutorial demonstrates how to configure and use DeepVista Task Delegation to
   </Card>
 </CardGroup>
 
-With your machine connected and `deepvista tasks run` polling, configure Linear API credentials:
+With your machine connected and `deepvista tasks run` polling, configure Linear API credentials in the same terminal session (or your shell profile):
 
 ```bash
 export LINEAR_TOKEN="your_linear_api_token"
 ```
 
-*Note: The agent retrieves this variable securely within your local environment and never uploads the credential in plaintext or leaks it to logs.*
+Create a personal API key from [Linear → Settings → API](https://linear.app/settings/api). The local agent reads this variable on your machine and does not upload the credential to DeepVista.
 
 ## Step-by-step guide
 
@@ -79,8 +80,14 @@ export LINEAR_TOKEN="your_linear_api_token"
   </Step>
 </Steps>
 
+## Why this pattern helps
+
+- **Stay secure:** API tokens and SSH keys stay on your machine instead of being uploaded to the cloud.
+- **Reach local resources:** The runner can use your local filesystem, databases, or internal services that only exist on your network.
+- **Clean up tests:** After you confirm the flow, delete the test Linear ticket (`DV-…`) so your board stays tidy.
+
 ## Next steps
 
-By delegating Tasks to a local CLI agent, you can:
-- **Stay secure**: There's no need to upload various API tokens or SSH keys to the cloud — all sensitive operations and credentials remain in your local/private environment.
-- **Access local resources**: The local agent can directly reach your local file system, databases, or internal services that are only accessible within your LAN.
+<Card title="X posting workflow" icon="x" href="/tutorials/x-post-workflow">
+  Generate an X posting workflow and publish approved drafts with the Buffer CLI.
+</Card>
