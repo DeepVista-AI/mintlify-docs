@@ -1,32 +1,44 @@
 ---
-title: "Setting Up Input Forms"
-description: "Learn how to capture lead details using public input forms that automatically trigger your workflows."
+title: "Set up input forms"
+sidebarTitle: "Input forms"
+description: "Publish a public form from your workflow inputs so submissions trigger a run and email you the details."
 ---
 
-You can easily capture lead details by creating public forms in DeepVista. When a user submits the form, it automatically triggers your workflow and passes the captured information directly into your pipeline.
+## Overview
+
+By the end, you'll have a public form link that captures lead details, starts your workflow, and emails you each submission.
+
+DeepVista can generate a public input form from the inputs already configured on your workflow — fields like name, email, or company — so you don't build a separate form app.
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+1. A DeepVista account with an active project
+2. A workflow with the input fields you want to collect (for example Name, Email, Company)
 
 <Note>
-  **Note:** Before enabling your form, ensure your workflow inputs (like Name, Email, or Company) are properly configured. You can always edit or update these fields at any time if your data needs change.
+  You can edit these input fields any time if your data needs change. Configure them before you share the public link.
 </Note>
 
-## Configuration Steps
+## Step-by-step guide
 
 <Steps>
-  <Step title="Enable the Input Form">
-    Navigate to your active workflow and click on the **Settings** menu. Locate the **Input Form** section and toggle it **On**. This automatically publishes a public form generated directly from your workflow's input configuration.
-    
+  <Step title="Enable the input form">
+    Open your active workflow, then click **Settings**. In the **Input Form** section, toggle it **On**. DeepVista publishes a public form generated from your workflow's input configuration.
+
     ![Enable Input Form](/images/ex3-1.gif)
   </Step>
 
-  <Step title="Verify Form Labels">
-    Review the public form's appearance to ensure all field labels and descriptions accurately reflect the information you want to collect.
-    
+  <Step title="Verify form labels">
+    Review the public form so every field label and description matches what you want people to enter.
+
     ![Verify Form Labels](/images/ex3-4.gif)
   </Step>
 
-  <Step title="Test and Share the Link">
-    Copy the generated public form link and open it in a new window. Submit a test response to verify that the form successfully kicks off your automated run.
-    
+  <Step title="Test and share the link">
+    Copy the generated public form link and open it in a new window. Submit a test response to confirm the form starts a workflow run.
+
     ![Test Form Submission](/images/ex3-2.gif)
   </Step>
 </Steps>
@@ -35,5 +47,5 @@ You can easily capture lead details by creating public forms in DeepVista. When 
 
 <Tip>
   **What happens next?**
-  Every time someone fills out your public link, DeepVista instantly **triggers a new workflow run** and **emails you the submission details** so you never miss a lead.
+  Every time someone fills out your public link, DeepVista **triggers a new workflow run** and **emails you the submission details** so you don't miss a lead.
 </Tip>

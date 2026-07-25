@@ -1,5 +1,6 @@
 ---
-title: "Set Up an X Posting Workflow and Post It with Buffer CLI"
+title: "Set up an X posting workflow and post it with Buffer CLI"
+sidebarTitle: "X posting workflow"
 description: "Generate an X posting workflow from a single prompt, extend it in plain language, and publish approved drafts to X using the Buffer CLI."
 ---
 
@@ -7,15 +8,20 @@ description: "Generate an X posting workflow from a single prompt, extend it in 
 
 By the end, DeepVista will research, draft, and hold X posts for your review, then publish them for you — from a single prompt, with no manual scheduling.
 
-DeepVista can turn one well-structured prompt into a complete X posting workflow: it researches source content, drafts post variants in your brand voice, holds them for your review, and publishes to your chosen channel. This tutorial walks through generating the workflow, adding a step, and publishing to X with the [Buffer CLI](https://cli.deepvista.ai).
+DeepVista can turn one well-structured prompt into a complete X posting workflow: it researches source content, drafts post variants in your brand voice, holds them for your review, and publishes to your chosen channel. This tutorial walks through generating the workflow, adding a step, and publishing to X with the Buffer CLI.
+
+<Warning>
+  Approved drafts publish to a real X account. Always review the draft in DeepVista before approving, and keep `--dry-run` validation in the publish step so malformed posts never go live.
+</Warning>
 
 ## Prerequisites
 
 Before you start, make sure you have:
 
 1. A DeepVista account with an active project
-2. A source of content to draw from (a URL, newsletter, or content type)
-3. The Buffer CLI installed and authenticated, with your X (Twitter) channel connected in Buffer
+2. A connected machine ready for Deep Workflows — complete [Mac setup](/tutorials/mac-setup), [Claude Code connector](/tutorials/server/claude-connector-delegation), and [Connect your machine](/tutorials/server/local) first
+3. A source of content to draw from (a URL, newsletter, or content type)
+4. The Buffer CLI installed and authenticated, with your X (Twitter) channel connected in Buffer — see the [DeepVista CLI docs](/cli) if you still need terminal tooling installed
 
 ## Step-by-step guide
 
@@ -138,4 +144,12 @@ Before you start, make sure you have:
 
 ## Next steps
 
-Explore more tutorials in the DeepVista documentation.
+<CardGroup cols={2}>
+  <Card title="Connect forms to Discord" icon="discord" href="/tutorials/managing-workflows">
+    Route workflow results to a Discord channel with webhooks.
+  </Card>
+
+  <Card title="CLI quickstart" icon="terminal" href="/cli">
+    Capture notes and run Recipes from your terminal.
+  </Card>
+</CardGroup>

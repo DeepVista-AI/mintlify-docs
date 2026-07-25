@@ -1,5 +1,6 @@
 ---
-title: "Quickstart"
+title: "CLI quickstart"
+sidebarTitle: "CLI quickstart"
 description: "Install the DeepVista CLI and start capturing knowledge and running AI workflows from your terminal in minutes."
 ---
 
@@ -12,8 +13,12 @@ curl -sSL https://raw.githubusercontent.com/DeepVista-AI/deepvista-cli/main/inst
 ```
 
 <Note>
-  If Python 3.12 isn't available on your machine, install it first before running the command above.
+  If Python 3.12 isn't available on your machine, install it first before running the command above. On macOS, start with [Mac setup](/tutorials/mac-setup).
 </Note>
+
+<Warning>
+  The install script runs remotely fetched shell code. Prefer reviewing the script URL in a browser first if your environment requires it.
+</Warning>
 
 <Tip>
   **Using an AI agent?** Paste this prompt directly into Claude Code, Cursor, or any MCP-compatible agent and it will handle the install for you:
@@ -60,11 +65,13 @@ Once installed, log in to connect the CLI to your DeepVista account.
 
 With the CLI installed and authenticated, save an insight to your knowledge base in one line.
 
+Use `deepvista notes +` for structured note entry, or `deepvista notes +quick "..."` for a one-line capture:
+
 ```bash
 deepvista notes + "Your insight here"
 ```
 
-**Example:**
+**Example (quick capture):**
 
 ```bash
 deepvista notes +quick "Tobi Lütke: the company is a tool to amplify what you love"

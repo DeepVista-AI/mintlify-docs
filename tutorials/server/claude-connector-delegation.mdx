@@ -1,6 +1,6 @@
 ---
-title: "Set Up Your Claude Code Connector"
-sidebarTitle: "Set Up Claude Code Connector"
+title: "Set up your Claude Code connector"
+sidebarTitle: "Set up Claude Code connector"
 description: "Connect your machine to Claude, then @mention it from DeepVista to delegate tasks — or let DeepVista automatically pick the right machine for the job."
 ---
 
@@ -15,7 +15,7 @@ You'll authorize your machine with Claude, connect it to DeepVista, and then del
 Before you start, make sure you have:
 
 1. A DeepVista account with an active project
-2. The Claude Code CLI installed (see [Mac Setup](/tutorials/mac-setup))
+2. The Claude Code CLI installed (see [Mac setup](/tutorials/mac-setup))
 3. A Claude account to authorize the connector with
 
 ## Step-by-step guide
@@ -95,7 +95,7 @@ Before you start, make sure you have:
       ![Chat response with a digest of recent Linear tickets](/images/claude-connector-delegation/linear-tickets-digest.png)
     </Frame>
 
-    For a full walkthrough of automating Linear ticket creation this way, see [Automating Linear Tickets via DeepVista Task Delegation](https://docs.deepvista.ai/tutorials/task-delegation-linear).
+    For a full walkthrough of automating Linear ticket creation this way, see [Automate Linear tickets with task delegation](/tutorials/task-delegation-linear).
   </Step>
   <Step title="Manage connectors on your machine">
     You don't need to always specify a machine — DeepVista automatically figures out which one has access if you don't. To see or manage what's connected, open **Claude → Customize**.
@@ -110,7 +110,7 @@ Before you start, make sure you have:
       ![Connectors settings page listing available integrations and their connection status](/images/claude-connector-delegation/connectors-settings-page.png)
     </Frame>
 
-    Once authorized, your machine gains the superpower of running background workflows using any of the available Claude Connectors configured on your account.
+    Once authorized, your machine can run background workflows using any Claude Connectors configured on your account.
 
     <CardGroup cols={2}>
       <Card title="Files & Documents" icon="files">
@@ -147,7 +147,7 @@ Before you start, make sure you have:
 This same pattern works for any connector configured on your machine, not just Linear. For example, once Google Drive is connected, `@mention` your machine and ask something like:
 
 ```text
-I have already authed the Google Drive connector, can you list all my recent Google files?
+I have already authorized the Google Drive connector, can you list all my recent Google files?
 ```
 
 Your machine picks up the task, opens the connector, and returns the results right in chat — no need to open Google Drive yourself. Here's what that looks like in practice:

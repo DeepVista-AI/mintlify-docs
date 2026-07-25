@@ -44,77 +44,25 @@
             ]
           },
           {
-            "group": "Customization",
-            "hidden": true,
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "hidden": true,
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/components",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "Agent ready",
-            "hidden": true,
-            "pages": [
-              "agent-ready/prompt",
-              "agent-ready/visibility",
-              "agent-ready/contextual",
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          },
-          {
-            "group": "Release Docs",
-            "pages": [
-              "version/0-6-1",
-              "version/0-6-2",
-              "version/0-6-3",
-              "version/0-6-4",
-              "version/0-6-5",
-              "version/0-6-6"
-            ]
-          },
-          {
             "group": "For Developers",
             "pages": [
               "cli",
               "mcp-server",
               "tutorials/server/private"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Release notes",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "version/0-6-6",
+              "version/0-6-5",
+              "version/0-6-4",
+              "version/0-6-3",
+              "version/0-6-2",
+              "version/0-6-1"
             ]
           }
-        ],
-        "hidden": true
+        ]
       }
     ],
     "global": {
@@ -131,19 +79,19 @@
   "logo": {
     "light": "/images/NewDeepvistafiulllogonameblack(4).png",
     "dark": "/images/NewDeepvistafiulllogonamewhite(5).png",
-    "href": "https://dl.dropboxusercontent.com/scl/fi/ohqlehf8s3v0ebb231v2o/DeepVista-Profile-Pic-2.png?rlkey=jazpnh0jbu8lzposcyo20ljge&st=frcxxa5r&dl=0"
+    "href": "https://deepvista.ai"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@deepvista.ai"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://app.deepvista.ai"
     }
   },
   "contextual": {
@@ -160,9 +108,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/DeepVistaAI",
+      "github": "https://github.com/DeepVista-AI",
+      "linkedin": "https://linkedin.com/company/deepvista"
     }
   },
   "description": "Stop repeating yourself. DeepVista turns your feedback into consistent execution across your team and agents."

@@ -1,12 +1,12 @@
 ---
-title: "Install Coding Dependencies on Mac"
-sidebarTitle: "Mac Setup"
+title: "Install coding dependencies on Mac"
+sidebarTitle: "Mac setup"
 description: "Install the command-line tools, Homebrew, Python, Node.js, and the Claude Code CLI you'll need before running DeepVista's other setup tutorials."
 ---
 
 ## Overview
 
-DeepVista's CLI and local-agent tooling assume a handful of standard developer tools are already on your machine: `git`, Python 3.12+, Node.js 18+, and the Claude Code CLI. This tutorial installs all of them on macOS, in the order each one depends on the last, so the rest of the Deep Workflow setup (like [Set Up Your Claude Code Connector](/tutorials/server/claude-connector-delegation)) just works.
+DeepVista's CLI and local-agent tooling assume a handful of standard developer tools are already on your machine: `git`, Python 3.12+, Node.js 18+, and the Claude Code CLI. This tutorial installs all of them on **macOS**, in the order each one depends on the last, so the rest of the Deep Workflow setup (like [Set up your Claude Code connector](/tutorials/server/claude-connector-delegation)) just works.
 
 <Note>
   Already have some of these installed? Each step includes a version check — skip any step where the check already succeeds.
@@ -47,7 +47,7 @@ DeepVista's CLI and local-agent tooling assume a handful of standard developer t
     </Frame>
 
     <Warning>
-      Follow the "Next steps" printed at the end of the installer — you need to add Homebrew to your shell's `PATH` before the `brew` command will work in new terminal windows.
+      Follow the "Next steps" printed at the end of the installer — you need to add Homebrew to your shell's `PATH` before the `brew` command will work in new terminal windows. On Apple Silicon Macs this is usually `/opt/homebrew/bin`; on Intel Macs it is usually `/usr/local/bin`.
     </Warning>
 
     Verify it worked:
@@ -73,6 +73,10 @@ DeepVista's CLI and local-agent tooling assume a handful of standard developer t
     ```bash
     python3.12 --version
     ```
+
+    <Note>
+      The final checklist below uses `python3`. If that command still points at an older system Python, use `python3.12` for DeepVista installs, or add Homebrew's Python to your `PATH`.
+    </Note>
   </Step>
 
   <Step title="Install Node.js 18+">
@@ -131,6 +135,6 @@ DeepVista's CLI and local-agent tooling assume a handful of standard developer t
 
 ## Next steps
 
-<Card title="Set Up Your Claude Code Connector" icon="link" href="/tutorials/server/claude-connector-delegation">
+<Card title="Set up your Claude Code connector" icon="link" href="/tutorials/server/claude-connector-delegation">
   Authenticate Claude Code and configure the connectors your workflows will use.
 </Card>
