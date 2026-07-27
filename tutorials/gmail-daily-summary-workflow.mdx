@@ -22,44 +22,27 @@ Before you start, make sure you have:
 ## Step-by-step guide
 
 <Steps>
-  <Step title="Open Settings">
-    Click your project icon in the top-left of the app, then select **Settings**.
+  <Step title="Open Account and Settings">
+    Click user, then select **\+ Gmail**.
 
     <Frame>
-      <img src="/images/gmail-daily-summary/settings-connectors-nav-sidebar.png" alt="Opening Settings from the project menu" />
+      ![Image](/images/image-1.png "Image")
     </Frame>
   </Step>
-
-  <Step title="Open Connectors">
-    In the Settings sidebar, select **Connectors**.
+  <Step title="Grant Access ">
+    Make sure DeepVista has the following access. 
 
     <Frame>
-      <img src="/images/gmail-daily-summary/settings-connectors-nav.png" alt="Connectors tab selected in Settings" />
+      ![Image](/images/image-2.png "Image")
     </Frame>
   </Step>
-
-  <Step title="Click + Gmail">
-    Under **Data Connectors**, find the **Gmail** card and click **+ Gmail**.
+  <Step title="Get redirected to the homepage. ">
+    Upon success, you'll see this page and get redirected to the home page automatically.
 
     <Frame>
-      <img src="/images/gmail-daily-summary/gmail-connector-plus-button.png" alt="Gmail connector card with the + Gmail button" />
-    </Frame>
-
-    <Note>
-      The same page shows an **email forwarding address** (`bot+...@deepvista.ai`). Forwarding a message there is a separate, manual way to get it into memory — it doesn't require the Gmail OAuth connection below.
-    </Note>
-
-    Complete the Google OAuth consent flow in the popup window.
-  </Step>
-
-  <Step title="Gmail connected">
-    Once authorized, you'll land on this confirmation screen. From here, DeepVista automatically syncs your Gmail to memory in the background.
-
-    <Frame>
-      <img src="/images/gmail-daily-summary/gmail-connected-confirmation.png" alt="Gmail connected confirmation screen" />
+      ![Image](/images/image-3.png "Image")
     </Frame>
   </Step>
-
   <Step title="Ask DeepVista for a daily summary">
     In chat, ask for a summary and name the recipient:
 
@@ -68,28 +51,20 @@ Before you start, make sure you have:
     ```
 
     <Frame>
-      <img src="/images/gmail-daily-summary/chat-daily-summary-prompt.png" alt="Prompting DeepVista to send a daily summary to Shayla" />
+      ![Prompting DeepVista to send a daily summary to Shayla](/images/gmail-daily-summary/chat-daily-summary-prompt.png)
     </Frame>
 
     DeepVista searches your memory and notes for relevant context — recent syncs, daily planning entries, and anything tied to the recipient — before drafting the email.
 
     <Tip>
-      The more specific your notes are (dated planning entries, sync recaps, named follow-ups), the more useful the generated summary will be. DeepVista pulls directly from what's already in memory rather than inventing content.
+      The more specific your notes are (dated planning entries, sync recaps, named follow-ups), the more useful the generated summary will be. DeepVista pulls directly from what's already in memory.
     </Tip>
   </Step>
-
   <Step title="Check the delivered email">
     The recipient receives a formatted summary email — in this example, "DeepVista Daily Progress & Sync Summary" for the day, recapping feedback, decisions, and an agenda for the next sync.
 
     <Frame>
-      <img src="/images/gmail-daily-summary/gmail-daily-summary-email.png" alt="Received daily summary email in Gmail" />
+      ![Received daily summary email in Gmail](/images/gmail-daily-summary/gmail-daily-summary-email.png)
     </Frame>
   </Step>
 </Steps>
-
-***
-
-<Tip>
-  **What happens next?**
-  Once Gmail is connected, DeepVista keeps syncing new email to memory automatically. Asking for a daily summary at any time pulls the latest context and sends a fresh recap — useful as a recurring end-of-day habit for a team or a solo founder keeping stakeholders in the loop.
-</Tip>

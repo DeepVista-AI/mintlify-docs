@@ -10,6 +10,18 @@ By the end of this tutorial, you'll be authorized and able to run any workflow f
 
 You'll authorize your machine with Claude, connect it to DeepVista, and then delegate a task to it directly from chat — either by `@mentioning` the machine or letting DeepVista pick it automatically. Along the way you'll see a real delegated task run end-to-end and return results in chat, and close by trying the same pattern yourself with any connector you already have configured, such as Google Drive.
 
+## What am I actually connecting?
+
+Some workflows ask you to set up **Claude Code**. Here's what that means, in plain terms:
+
+- **Claude Code** runs on your own computer, and signs in with your own Claude account — not a DeepVista one. Your password never passes through our servers.
+- On **claude.ai**, you turn on a setting that lets Claude read a tool you've connected, like Google Drive.
+- From there, DeepVista works through the Claude Code on your computer to fetch what it needs and bring the results back to you.
+
+<Note>
+  This uses your own Claude subscription's usage allowance, not a DeepVista quota.
+</Note>
+
 ## Prerequisites
 
 Before you start, make sure you have:
@@ -38,7 +50,7 @@ Before you start, make sure you have:
     4. Your browser will automatically open to sign in (or you can copy the terminal-provided URL). It asks you to authorize Claude Code to connect to your Claude account.
     5. Once signed in, an authentication code will be provided in your browser window.
 
-    <video controls className="w-full rounded-xl" src="/images/claude-connector-delegation/authenticate-flow.mp4"></video>
+    <video controls className="w-full rounded-xl" src="/images/claude-connector-delegation/authenticate-flow.mp4" />
 
     6. Copy and paste this code back into the terminal prompts. The terminal confirms you're logged in.
 
@@ -49,7 +61,7 @@ Before you start, make sure you have:
 </Steps>
 
 <Note>
-  Next, connect your machine to DeepVista: **[Connect Your Own Machine](/tutorials/server/local)**. Come back here once it shows up online to delegate your first task.
+  Next, connect your machine to DeepVista: [**Connect Your Own Machine**](/tutorials/server/local). Come back here once it shows up online to delegate your first task.
 </Note>
 
 <Steps>
@@ -118,21 +130,25 @@ Before you start, make sure you have:
 
         Read, write, and index files automatically.
       </Card>
+
       <Card title="Communication" icon="messages">
         **Integrations:** Gmail, Slack, MS Teams
 
         Draft replies, summarize emails, and send automated reports.
       </Card>
+
       <Card title="Developer Tools" icon="code">
         **Integrations:** GitHub, Linear
 
         Manage repositories, pull requests, and delegate ticket creation.
       </Card>
+
       <Card title="Design & Media" icon="palette">
         **Integrations:** Figma, Canva
 
         Generate diagrams, grab design specs, and create layouts.
       </Card>
+
       <Card title="Scheduling" icon="calendar" horizontal>
         **Integrations:** Google Calendar
 

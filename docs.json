@@ -23,6 +23,8 @@
             "group": "Light Workflow",
             "pages": [
               "tutorials/gmail-daily-summary-workflow",
+              "untitled-page",
+              "tutorials/inbound-lead-capture",
               "tutorials/managing-workflows",
               "tutorials/input-forms"
             ]
@@ -93,7 +95,16 @@
               "tutorials/server/private"
             ]
           }
-        ]
+        ],
+        "global": {
+          "anchors": [
+            {
+              "anchor": "Discord Community",
+              "icon": "discord",
+              "href": "https://go.deepvista.ai/discord"
+            }
+          ]
+        }
       },
       {
         "tab": "API reference",
@@ -116,17 +127,7 @@
         ],
         "hidden": true
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Discord Community",
-          "href": "https://go.deepvista.ai/discord",
-          "icon": "discord",
-          "iconType": "brands"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/images/NewDeepvistafiulllogonameblack(4).png",
