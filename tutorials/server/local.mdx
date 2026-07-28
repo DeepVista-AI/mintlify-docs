@@ -4,15 +4,12 @@ sidebarTitle: "Connect Your Machine"
 description: "Connect your local desktop, laptop, or on-premise server as an active DeepVista runner with a single command."
 ---
 
-<Note>
-  Don't want to keep your own hardware online? [Dedicated Private Server](/tutorials/server/private) is the alternative — pick whichever fits your workload, you don't need to do both.
-</Note>
+## Prerequisites
 
-## Before You Begin
+Before you start, make sure you have:
 
-<Warning>
-  **Important Requirement:** Remote workflows will only execute as long as your connected machine is active, awake, and online. If your machine goes to sleep, shuts down, or loses its internet connection, the DeepVista runner will go offline and pending tasks will queue until it reconnects.
-</Warning>
+1. A DeepVista account with an active project
+2. Claude Code Connectors set up. 
 
 ## Step-by-step guide
 
@@ -21,7 +18,7 @@ description: "Connect your local desktop, laptop, or on-premise server as an act
     Go to **Settings → Machines**, then under **Connect your machine**, click **Open Terminal**.
 
     <Frame>
-      ![Settings > Machines page with the Open Terminal button highlighted](/images/connect-your-machine/settings-machines-open-terminal.png)
+      ![Settings \> Machines page with the Open Terminal button highlighted](/images/connect-your-machine/settings-machines-open-terminal.png)
     </Frame>
   </Step>
   <Step title="Copy, paste, and run">
@@ -66,6 +63,7 @@ Once the test task completes, you're ready to run a Deep Workflow.
   <Card title="Automating Linear Tickets via DeepVista Task Delegation" icon="ticket" href="/tutorials/task-delegation-linear">
     Let your connected machine create Linear tickets headlessly, from a cloud-triggered prompt.
   </Card>
+
   <Card title="Set Up an X Posting Workflow" icon="hashtag" href="/tutorials/x-post-workflow">
     Research, draft, and publish X posts with the Buffer CLI.
   </Card>

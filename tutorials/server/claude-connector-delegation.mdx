@@ -1,21 +1,19 @@
 ---
 title: "Set Up Your Claude Code Connector"
 sidebarTitle: "Set Up Claude Code Connector"
-description: "Connect your machine to Claude, then @mention it from DeepVista to delegate tasks — or let DeepVista automatically pick the right machine for the job."
+description: "Connect your machine to Claude Code Connectors and delegate any task by chatting with DeepVista."
 ---
 
 ## Overview
 
-By the end of this tutorial, you'll be authorized and able to run any workflow from DeepVista.
+By the end of this tutorial, you'll be authorized to run any deep workflow from DeepVista, see a real delegated task run end-to-end, and return results in chat.
 
-You'll authorize your machine with Claude, connect it to DeepVista, and then delegate a task to it directly from chat — either by `@mentioning` the machine or letting DeepVista pick it automatically. Along the way you'll see a real delegated task run end-to-end and return results in chat, and close by trying the same pattern yourself with any connector you already have configured, such as Google Drive.
+## What are you actually connecting?
 
-## What am I actually connecting?
+Deep workflows ask you to set up **Claude Code**. Here's what happens every time you run a deep workflow:
 
-Some workflows ask you to set up **Claude Code**. Here's what that means, in plain terms:
-
-- **Claude Code** runs on your own computer, and signs in with your own Claude account — not a DeepVista one. Your password never passes through our servers.
-- On **claude.ai**, you turn on a setting that lets Claude read a tool you've connected, like Google Drive.
+- **Claude Code** runs on your own computer and signs in with your own Claude account. Your password never passes through our servers.
+- On **Claude.ai**, you turn on a setting that lets Claude read a tool you've connected, like Google Drive.
 - From there, DeepVista works through the Claude Code on your computer to fetch what it needs and bring the results back to you.
 
 <Note>
@@ -58,59 +56,8 @@ Before you start, make sure you have:
       ![Terminal confirming a successful Claude login](/images/claude-connector-delegation/claude-login-success.png)
     </Frame>
   </Step>
-</Steps>
-
-<Note>
-  Next, connect your machine to DeepVista: [**Connect Your Own Machine**](/tutorials/server/local). Come back here once it shows up online to delegate your first task.
-</Note>
-
-<Steps>
-  <Step title="Delegate a task with @mention">
-    With your machine online, `@mention` it from DeepVista chat to assign it a task directly.
-
-    <Frame>
-      ![Machines dropdown when @mentioning a connected machine in chat](/images/claude-connector-delegation/mention-machine-dropdown.png)
-    </Frame>
-
-    <Tip>
-      You don't have to specify a machine every time. If you leave it out, DeepVista automatically figures out which machine has access and delegates the task to it.
-    </Tip>
-
-    You can also `@mention` a machine to ask what permissions or connectors it currently has configured, which is useful for confirming access before assigning sensitive work.
-
-    <Frame>
-      ![Chat delegating a task to list the Claude connectors configured on a machine](/images/claude-connector-delegation/mention-check-permissions.png)
-    </Frame>
-  </Step>
-  <Step title="Let DeepVista run the task and return results">
-    The server side dispatches the delegated task, and your local machine's CLI agent claims and runs it.
-
-    <Frame>
-      ![Terminal log showing a delegated task claimed and its prompt](/images/claude-connector-delegation/task-execution.png)
-    </Frame>
-
-    Once it finishes, the web interface displays the results returned by the agent running on your machine — for example, a full connector inventory:
-
-    <Frame>
-      ![Chat response with the connector inventory results](/images/claude-connector-delegation/connector-inventory-result.png)
-    </Frame>
-
-    You can delegate the same way to pull live data from tools only your machine can reach. For example, asking about recent Linear tickets:
-
-    <Frame>
-      ![Chat prompt asking to list recent Linear tickets](/images/claude-connector-delegation/linear-query-example.png)
-    </Frame>
-
-    The machine delegates the fetch to Linear and returns a full digest:
-
-    <Frame>
-      ![Chat response with a digest of recent Linear tickets](/images/claude-connector-delegation/linear-tickets-digest.png)
-    </Frame>
-
-    For a full walkthrough of automating Linear ticket creation this way, see [Automating Linear Tickets via DeepVista Task Delegation](https://docs.deepvista.ai/tutorials/task-delegation-linear).
-  </Step>
   <Step title="Manage connectors on your machine">
-    You don't need to always specify a machine — DeepVista automatically figures out which one has access if you don't. To see or manage what's connected, open **Claude → Customize**.
+    To manage what's connected, open **Claude → Customize**.
 
     <Frame>
       ![Claude sidebar with Customize highlighted](/images/claude-connector-delegation/claude-customize-nav.png)
@@ -158,15 +105,15 @@ Before you start, make sure you have:
   </Step>
 </Steps>
 
-## Try it with another connector
+## Try a simple task with a Claude Code Connector
 
-This same pattern works for any connector configured on your machine, not just Linear. For example, once Google Drive is connected, `@mention` your machine and ask something like:
+For example, once Google Drive is connected, `@mention` your machine and ask something like:
 
 ```text
 I have already authed the Google Drive connector, can you list all my recent Google files?
 ```
 
-Your machine picks up the task, opens the connector, and returns the results right in chat — no need to open Google Drive yourself. Here's what that looks like in practice:
+Your machine picks up the task, opens the connector, and returns the results right in chat — no need to open Google Drive yourself. 
 
 <Frame>
   ![Chat response listing recent Google Drive files through a connector on a connected machine](/images/claude-connector-delegation/google-drive-live-demo.png)
@@ -179,5 +126,3 @@ Try it yourself: pick any connector you already have configured — Slack, Notio
 <Card title="Connect Your Own Machine" icon="server" href="/tutorials/server/local">
   Turn your desktop, laptop, or on-premise server into an active DeepVista runner.
 </Card>
-
-Or explore more tutorials in the DeepVista documentation, including connecting additional private servers and automating Linear ticket creation.
