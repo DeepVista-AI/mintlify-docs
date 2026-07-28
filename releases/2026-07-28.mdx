@@ -1,0 +1,57 @@
+---
+title: "Release Notes — July 28, 2026"
+---
+
+July 28, 2026
+
+This release wires Model Context Protocol services into project configuration, rebuilds SSH access to managed machines as an in-browser portal, moves workflow run logs out of card bodies and into comment feeds, adds a zero-retention "sensitive" chat mode, and sharpens how `@` mentions behave across the editor.
+
+---
+
+### **🔌 Model Context Protocol (MCP) Integration**
+
+- **Project-level MCP services:** You can now administer MCP services per project to connect external integrations — including Linked API for LinkedIn and T3 Star Docs.
+- **Credentials and tool toggles:** Each service carries its own credential management, and individual tools can be switched on or off without removing the integration.
+
+### **💻 In-Browser Web SSH Portal**
+
+- **Embedded terminal:** SSH access to a managed machine now opens in an embedded web iframe instead of an external client.
+- **No more manual credentials:** Authentication is proxied in the background, so connecting to a managed VM no longer prompts for a username and password.
+
+### **🔒 Sensitive Chat Mode**
+
+- **Zero retention:** A new "sensitive" chat option runs your query and renders the response immediately without writing the prompt or the chat history to the database.
+- **Clear signalling:** A banner marks the session so it's obvious when you're in a non-persisted conversation — useful when you're pasting credentials or tokens.
+
+### **✨ Markdown `@` Mention Overhaul**
+
+- **Spaces and dots supported:** `@` mention parsing now handles names containing spaces and dots, with a visual border around the active selection.
+- **Mentions in workflow steps:** `@` mentions work inside workflow step editors, not just card bodies.
+- **Tighter results:** Suggestion groups are capped at 10 items so the list stays scannable.
+- **Explicit Close button:** In Vistabase, the list collapse toggle has been replaced with a clear Close button.
+
+### **⌨️ Custom Quick-Create Card Types**
+
+- **Pick any type:** The `c` quick-create shortcut now lets you choose any context card type — including Environment Variables — rather than always defaulting to a note.
+
+---
+
+### **Under the hood**
+
+- **Decoupled workflow run logs (DV-1763):** Workflow run execution logs have moved out of card descriptions into dedicated card comment feeds, so edits and exports can no longer clobber them.
+- **Bundled skill manifest attributes:** Skill provisioning now writes manifest metadata and embedded script dependencies directly into workflow attributes, keeping cloud and local in sync.
+- **Mobile chat history drawer (DV-1798):** Fixed the drawer auto-closing when switching chat types on mobile.
+
+Together these advance DeepVista Crew stability by isolating execution logs from context card bodies and establishing a secure zero-retention path for sensitive chat flows.
+
+---
+
+### **Fixed issues**
+
+| Ticket ID | Description | Owner |
+| --- | --- | --- |
+| DV-1763 | Decouple workflow run logs from card body into dedicated comment feeds | RJ |
+| DV-1817 | Add sensitive chat toggle with zero database history retention | RJ |
+| DV-1798 | Fix mobile chat history drawer closing when switching chat types | RJ |
+| DV-1737 | Add Environment Variable card type and custom card selection to quick-create | RJ |
+| DV-1824 | Improve `@` mention search UX, add highlight box, and cap suggestion groups | RJ |
