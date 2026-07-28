@@ -6,7 +6,7 @@ description: "Install the command-line tools, Homebrew, Python, Node.js, and the
 
 ## Overview
 
-To run a deep workflow, DeepVista's CLI and local-agent tooling requires a handful of standard developer tools installed on your machine: `git`, Python 3.12\+, Node.js 18\+, and the Claude Code CLI. 
+To run a deep workflow, DeepVista's CLI and local-agent tooling require a handful of standard developer tools installed on your machine: `git`, Python 3.12+, Node.js 18+, and the Claude Code CLI.
 
 <Note>
   Already have some of these installed? Each step includes a version check — skip any step where the check already succeeds.
@@ -34,6 +34,7 @@ To run a deep workflow, DeepVista's CLI and local-agent tooling requires a handf
     xcode-select -p
     ```
   </Step>
+
   <Step title="Install Homebrew">
     Homebrew is the package manager used to install everything else in this tutorial.
 
@@ -51,6 +52,7 @@ To run a deep workflow, DeepVista's CLI and local-agent tooling requires a handf
     brew --version
     ```
   </Step>
+
   <Step title="Install Python 3.12+">
     Required by the DeepVista CLI installer.
 
@@ -68,6 +70,7 @@ To run a deep workflow, DeepVista's CLI and local-agent tooling requires a handf
     python3.12 --version
     ```
   </Step>
+
   <Step title="Install Node.js 18+">
     Required for the Claude Code CLI and DeepVista's local tooling.
 
@@ -85,6 +88,7 @@ To run a deep workflow, DeepVista's CLI and local-agent tooling requires a handf
     node --version
     ```
   </Step>
+
   <Step title="Install the Claude Code CLI">
     You'll use this later to run `claude login` when connecting your machine to DeepVista.
 
@@ -102,6 +106,7 @@ To run a deep workflow, DeepVista's CLI and local-agent tooling requires a handf
     claude --version
     ```
   </Step>
+
   <Step title="Verify everything installed correctly">
     Run all four checks together:
 
