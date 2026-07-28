@@ -1,0 +1,57 @@
+---
+title: "Version 0.6.7"
+---
+
+July 27, 2026
+
+This week is all about connecting DeepVista to the rest of your stack. We shipped native Model Context Protocol (MCP) services you can configure per project, an SSH terminal that lives right inside the app (no login prompt), a sensitive chat mode for prompts you'd rather not keep, and a batch of editor upgrades that make `@`-mentions work everywhere you expect them to.
+
+---
+
+## What We Shipped This Week
+
+### 🔌 Native MCP Services in Project Settings
+
+- **Configurable MCP services:** Project settings now include a dedicated MCP section where you can connect external tool providers — for example Linked API (LinkedIn, ~15k tools) and d3star documentation (3 tools).
+- **Bring your own credentials:** Specify API tokens and credentials per project, and toggle individual tools on or off so each project space only exposes what it needs.
+
+### 💻 In-App SSH Terminal with Automatic Proxying
+
+- **Embedded terminal:** The machine portal no longer redirects you out to an external page — the SSH terminal now renders directly inside DeepVista.
+- **No more login prompts:** Sessions are authenticated automatically through the web-internal proxy, so connecting to a managed VM is a single click instead of a username/password dance.
+
+### 🔒 Sensitive Chat Mode
+
+- **New "sensitive" toggle** in the chat input panel. Prompts marked sensitive run normally and give you a one-time response, but are excluded from chat history persistence — nothing is written to the database.
+
+### ✍️ Better `@`-Mentions in the Editor
+
+- **Smarter search:** `@`-mention autocomplete in the markdown editor now handles spaces, dots, and highlighted text spans, so mentioning a card with a real-world name just works.
+- **Workflow step editor support:** `@`-mention search is now available inside the workflow step editor modal, not just the main editor.
+- **Cleaner suggestions:** Each suggestion category (cards, tags, folders, machines) is capped at 10 results so the dropdown stays readable.
+
+### ⚡ Quick-Create with Explicit Card Types
+
+- The `c` keyboard shortcut modal was rebuilt so you can pick exactly which context card type to create — including **Environment Variable** cards.
+
+---
+
+## Under the Hood
+
+- **Workflow run logs moved to comments:** Run logs now live in card comments instead of the card description body. Editing or exporting a card can no longer accidentally overwrite or erase its execution history.
+- **Bundled skill manifests:** Bundled skill cards now carry manifest attributes, and their embedded scripts and reference assets upload to Google Cloud Storage automatically when a skill is downloaded.
+- **Mobile chat history fix:** The mobile history drawer no longer auto-closes when you toggle chat trigger controls.
+- **VistaBase drawer:** Added an explicit Close button to the right-side detail drawer panel.
+
+---
+
+## Fixed Issues
+
+| Issue / PR | Description | Owner |
+| --- | --- | --- |
+| PR #2817 | Project-level MCP services, web-internal SSH terminal proxy, and bundled skill manifest attributes | Lucas |
+| DV-1763 / PR #2826 | Workflow run logs refactored from card description text into comment feeds | RJ |
+| DV-1817 / PR #2826 | Sensitive chat mode for unpersisted prompt executions | RJ |
+| DV-1798 / PR #2826 | Fixed mobile chat history panel auto-closing behavior | RJ |
+| DV-1737 / PR #2826 | Quick-create modal extended to Environment Variable and custom card types | RJ |
+| DV-1824 / PR #2826 | `@`-mention search with spaces/dots, workflow step editor support, group caps, and VistaBase Close button | RJ |
