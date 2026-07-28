@@ -1,5 +1,5 @@
 ---
-title: "Automated Inbound Lead Capture & Qualification"
+title: "Automate Inbound Lead Capture & Qualification"
 description: "Transform raw website contact submissions into structured graph context, ICP ratings, instant Discord alerts, and personalized outreach drafts, all automatically."
 ---
 
@@ -34,6 +34,7 @@ Before you start, make sure you have:
     Upon receiving a form submission (first name, last name, work email, phone number, message), DeepVista extracts the company domain from the work email and checks the knowledge base first, so the same lead never gets recorded twice.
 
     DeepVista then creates or updates:
+
     - A **person** card for the lead
     - An **organization** card for their company
     - A **message** card recording their specific inquiry, word for word
@@ -44,30 +45,29 @@ Before you start, make sure you have:
       ![Person card and message card generated from a form submission, showing contact details and the inquiry text](/images/image-5.png)
     </Frame>
   </Step>
-
   <Step title="Validate identity and score ICP fit">
     DeepVista researches the lead across public sources to verify their actual identity, cross-checking role and organization to rule out name collisions.
 
     It then evaluates the lead against your ICP parameters, for example:
+
     - **AI native**: building AI-first products, or deeply integrating AI workflows?
     - **Stage and team size**: does their funding stage and team size match your target range?
     - **Operational need**: does their situation show demand for leverage over headcount?
 
-    Findings are saved as an ICP Analysis card (e.g. *9.5 / 10, strong fit*) linked to both the lead and organization cards.
+    Findings are saved as an ICP Analysis card (e.g. _9.5 / 10, strong fit_) linked to both the lead and organization cards.
 
     <Frame>
       ![ICP Analysis card showing a 9.5 out of 10 fit score with a criteria breakdown](/images/image-6.png)
     </Frame>
   </Step>
-
   <Step title="Get notified in Discord">
     DeepVista formats the lead details, company info, and ICP score into a Discord alert:
+
     - **Green** (`#10B981`): high-priority ICP fit (score 9.0 or higher)
     - **Amber** (`#F59E0B`): standard fit, or an ambiguous profile that needs manual review
 
     The alert posts directly to your team's configured Discord channel via webhook, so your team has immediate visibility without opening DeepVista.
   </Step>
-
   <Step title="Review and send the staged outreach email">
     For high-fit leads, DeepVista drafts a concise email reply, including a direct pilot proposal and a calendar booking link.
 
