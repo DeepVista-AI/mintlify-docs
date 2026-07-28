@@ -6,7 +6,7 @@ description: "Connect your machine to Claude Code Connectors and delegate any ta
 
 ## Overview
 
-By the end of this tutorial, you'll be authorized to run any deep workflow from DeepVista, see a real delegated task run end-to-end, and return results in chat.
+By the end of this tutorial, Claude Code will be authorized on your machine, you'll see which connectors are available to it, and you'll try delegating a task to one directly from DeepVista chat.
 
 ## What are you actually connecting?
 
@@ -56,6 +56,7 @@ Before you start, make sure you have:
       ![Terminal confirming a successful Claude login](/images/claude-connector-delegation/claude-login-success.png)
     </Frame>
   </Step>
+
   <Step title="Manage connectors on your machine">
     To manage what's connected, open **Claude → Customize**.
 
@@ -107,13 +108,13 @@ Before you start, make sure you have:
 
 ## Try a simple task with a Claude Code Connector
 
-For example, once Google Drive is connected, `@mention` your machine and ask something like:
+For example, once Google Drive is connected, `@mention` your machine in DeepVista chat (type `@` followed by its name) to send it a task directly, and ask something like:
 
 ```text
 I have already authed the Google Drive connector, can you list all my recent Google files?
 ```
 
-Your machine picks up the task, opens the connector, and returns the results right in chat — no need to open Google Drive yourself. 
+Your machine picks up the task, opens the connector, and returns the results right in chat — no need to open Google Drive yourself.
 
 <Frame>
   ![Chat response listing recent Google Drive files through a connector on a connected machine](/images/claude-connector-delegation/google-drive-live-demo.png)

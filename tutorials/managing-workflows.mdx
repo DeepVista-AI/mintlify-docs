@@ -1,11 +1,11 @@
 ---
-title: "Getting Discord Notification on Triggering Tasks. "
-description: "Trigger Discord Notification on key updates on tasks and outputs."
+title: "Get Discord Notifications on Task Updates"
+description: "Trigger a Discord notification on key task and output updates."
 ---
 
-## Sample Workflow
+## Overview
 
-You can now connecting Forms to Discord via Webhooks. By the end, every form signup will trigger an automatic Discord alert, with DeepVista handling the two-way webhook wiring so you don't write any code.
+You can now connect Forms to Discord via Webhooks. By the end, every form signup will trigger an automatic Discord alert, with DeepVista handling the two-way webhook wiring so you don't write any code.
 
 Connecting your front-end web form to a Discord notification requires a simple two-way webhook process:
 
@@ -20,24 +20,27 @@ Connecting your front-end web form to a Discord notification requires a simple t
 
     ![Setting up website form webhook](/images/web1.gif)
   </Step>
+
   <Step title="Train the Workflow with a UI Screenshot">
     Take a clean screenshot of your website's signup form interface. Back on the DeepVista canvas, upload this screenshot alongside the following text prompt:
 
-    > _"My input form looks like this, please update the workflow."_
+    > *"My input form looks like this, please update the workflow."*
 
     DeepVista will analyze the visual layout and map the form submission fields to your workflow logic.
 
     ![Training DeepVista with UI screenshot](/images/web6.gif)
   </Step>
+
   <Step title="Generate a Discord Webhook">
     To set up live success alerts, open your Discord application:
 
-    1. Go to your **Server Settings** \> **Integrations** \> **Webhooks**.
+    1. Go to your **Server Settings** > **Integrations** > **Webhooks**.
     2. Click **New Webhook**, name it, and select your target notification channel.
     3. Click **Copy Webhook URL** and save.
 
     ![Creating a Discord Webhook](/images/web11.gif)
   </Step>
+
   <Step title="Enable Live Channel Notifications">
     Return to your DeepVista workflow canvas and paste your copied Discord URL into the outbound notification configuration node. This grants DeepVista permission to seamlessly feed success messages into your specified Discord channel upon every new signup.
 
