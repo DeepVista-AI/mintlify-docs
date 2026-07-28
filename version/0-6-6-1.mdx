@@ -1,0 +1,48 @@
+---
+title: "Version 0.6.6.1"
+---
+
+July 25, 2026
+
+This release makes the editor a lot more forgiving, adds audio to your notes, and gives project owners real control over credits and infrastructure. Here's what shipped.
+
+---
+
+### **🎧 Audio Notes & Inline Playback**
+
+- **Upload audio directly:** Drop `.mp3`, `.wav`, or `.m4a` files straight into the markdown editor and play them back inline — no downloads, no external players.
+- **Automatic file cards:** Every audio upload generates its own `file` context card, so recordings live in your knowledge base alongside everything else.
+
+---
+
+### **✍️ A Much Sturdier Editor**
+
+We spent this cycle removing the sharp edges from long editing sessions.
+
+- **No more lost work on lock expiry:** If your edit lock lease expired while you were still typing, the editor could go blank and drop changes. Both the data loss and the blank screen are fixed.
+- **Reload grace window:** Refreshing a tab no longer lets a secondary tab snatch the edit lock out from under you.
+- **Tab key stays put:** Pressing Tab inside a task list or ordered list no longer blurs the editor by jumping to checkbox and chevron controls.
+
+---
+
+### **🗂️ Better Organization & Navigation**
+
+- **Move notes to folders:** A "Move to folder" action is now available directly in the card action menu, and the menu itself is reordered so the actions you use most are at the top.
+- **Inline workflow step editing:** Workflow step popovers now include an **Edit** button that focuses the editor immediately, so you can tweak a step without leaving your place.
+- **Drag the chat bubble anywhere:** The floating chat trigger can be dragged to any of the four screen corners, and it remembers where you put it across sessions.
+- **Cleaner shared cards:** "Shared by" badges no longer appear on cards you own yourself, and view-only tabs once again update live while someone else edits.
+
+---
+
+### **💳 Credits & Plan Upgrades**
+
+- **Upgrade in place:** Project owners now see **Compare all plans** and **Upgrade** controls right in the project credits view.
+- **Low-balance alerts:** A zero credit balance is flagged in red so you find out before a run fails instead of after.
+
+---
+
+### **⚙️ Under the Hood**
+
+- **Project-level VM provisioning:** Standalone VM management moved from the user level to the project level, with an admin VM interface backed by Terraform-managed Google Cloud compute.
+- **More proactive local agents:** Delegated tasks now auto-retry up to three times, and long-running workflows use non-blocking deferred confirmation instead of stalling on a prompt.
+- **Linear issue sync (internal):** An internal Linear issues tab syncs `issue` cards into your knowledge base carrying their Linear attributes — identifier, assignee, priority, and status.
