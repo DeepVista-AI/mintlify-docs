@@ -1,0 +1,161 @@
+---
+title: "Lead Research & Outbound Outreach Workflow"
+description: "Automate account research, ICP scoring, context enrichment, and personalized outbound outreach in DeepVista, without adding SDR headcount."
+---
+
+## Overview
+
+For lean technical teams, running high-touch outbound sales creates an operational dilemma: either founders spend hours on manual lead research, or they hire expensive SDR headcount prematurely.
+
+This tutorial demonstrates how to build a generalized, human-agent lead research and outreach engine in DeepVista across three core workflows:
+
+1. **Market Research & Account Profiling**
+2. **Outbound Lead Generation & Enrichment**
+3. **Inbound Qualification → Proposal Generation**
+
+<Frame>
+```
+[ Inbound Inquiry / Account Target List ]
+                   │
+                   ▼
+   Step 1: Automated Ingestion & Entity Graph Creation
+                   │
+                   ▼
+   Step 2: Automated Research Pass & ICP Matrix Scoring
+                   │
+                   ▼
+   Step 3: Project Isolation & Compliance Configuration
+                   │
+                   ▼
+   Step 4: Contextual Outbound Messaging & Proposal Drafting
+                   │
+                   ▼
+   Step 5: Human Review Gate & Automated Follow-Up Scheduling
+```
+</Frame>
+
+<Info>
+  This workflow is aimed at founders, CTOs, and GTM leaders running lean remote technical startups (5 to 15 employees), but the pattern generalizes to any high-touch, low-volume outbound motion. It only requires a connected Gmail account, so it runs entirely as a Light Workflow. No local machine or MCP server setup needed.
+</Info>
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+1. A DeepVista account with an active project
+2. [Gmail connected](/tutorials/gmail-daily-summary-workflow) to DeepVista, so drafted outreach can be reviewed and sent
+3. A target account list, or a process for inbound inquiries to land in DeepVista
+
+<Note>
+  You don't need to build or edit anything in VistaBase™ yourself. Everything below happens through chat: you describe the account and ask DeepVista for what you need, and DeepVista structures it into VistaBase behind the scenes.
+</Note>
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Tell DeepVista about the account">
+    In chat, paste in the inbound inquiry or describe the account you want to research: company name, domain, and who the decision maker is.
+
+    ```text
+    Add this account for research: [Company Name] (target-domain.com), a
+    [industry] company with a 5-person remote team. Decision maker is
+    [Name], [Role], [email].
+    ```
+
+    DeepVista turns this into a company profile and a contact profile in VistaBase™ and links them together automatically. You don't need to create or manage these yourself.
+  </Step>
+
+  <Step title="Ask DeepVista to research and score the account">
+    Ask DeepVista to look into the account and check it against your ideal customer profile (ICP):
+
+    ```text
+    Research this account and score it against our ICP.
+    ```
+
+    DeepVista checks public records, the company's domain, and other public signals, then scores the account:
+
+    | Criteria | What DeepVista checks | Weight | Example Score |
+    |---|---|---|---|
+    | Team Size | Lean, fully remote (5 to 15 employees) | High | 10/10 |
+    | Use Case Fit | High-value technical sales, limited GTM bandwidth | High | 10/10 |
+    | Technical Readiness | API-driven, cloud-native, or smart-contract based | Medium | 8/10 |
+    | Purchase Intent | Active inquiry, explicit pricing inquiry, or funding event | High | 9/10 |
+
+    You'll get an overall score (e.g. 9/10 = Strong Match) and a recommendation on whether to fast-track outreach. DeepVista adds these findings as notes on the account, so anything you'd already written about it stays untouched.
+  </Step>
+
+  <Step title="Ask DeepVista to set up a client workspace">
+    If the account is in a regulated industry (insurance, financial services, healthcare) or otherwise needs its data kept separate, ask DeepVista to isolate it:
+
+    ```text
+    Set up a separate project for [Company Name]. They'll need [GDPR
+    compliance / a specific data residency requirement].
+    ```
+
+    DeepVista creates a dedicated project so this client's data and research stay walled off from every other client's, and configures it to meet the compliance need you named, including full deletion on request if GDPR applies.
+  </Step>
+
+  <Step title="Ask DeepVista to draft the outreach email">
+    Once the account looks like a good fit, ask DeepVista to write the first outreach message:
+
+    ```text
+    Draft an outreach email to [Name] at [Company Name] using what we
+    found in the research.
+    ```
+
+    DeepVista writes a draft personalized with the research from Step 2, referencing the company by name and what it found about their setup:
+
+    ```text
+    Hi [Founder Name],
+
+    Saw your recent work scaling [Company Name]'s technical infrastructure
+    with a lean remote team.
+
+    For technical teams balancing product development with sales execution,
+    DeepVista provides human-agent workflows to automate market research,
+    account profiling, and inbound lead qualification within isolated
+    project workspaces.
+
+    We support strict data residency and complete GDPR compliance out of
+    the box.
+
+    Would you be open to reviewing a live workflow configured for
+    [Company Name]'s outbound lead qualification this week?
+
+    Best,
+    [Your Name / Team]
+    ```
+  </Step>
+
+  <Step title="Review the draft and ask for a follow-up reminder">
+    Open the draft in your workbench, edit anything you'd like to change, and approve it to send. DeepVista never sends outreach without this step.
+
+    Then ask DeepVista to keep track of the response:
+
+    ```text
+    Remind me to follow up if I haven't heard back in 3 business days.
+    ```
+
+    DeepVista schedules a check-in for you: it looks for a reply, and drafts a follow-up if you haven't gotten one.
+  </Step>
+</Steps>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Connect Gmail and Get a Daily Summary" icon="envelope" href="/tutorials/gmail-daily-summary-workflow">
+    Have DeepVista email you a daily recap pulling from your notes, syncs, and recent activity.
+  </Card>
+
+  <Card title="Managing Workflows" icon="list-check" href="/tutorials/managing-workflows">
+    Learn how to track, pause, and adjust the automated workflows you have running.
+  </Card>
+
+  <Card title="Input Forms" icon="table-list" href="/tutorials/input-forms">
+    Collect structured input from teammates or clients that feeds directly into DeepVista.
+  </Card>
+
+  <Card title="Automating Linear Tickets" icon="server" href="/tutorials/task-delegation-linear">
+    Ready for more? See how Deep Workflows delegate tasks to a locally-connected agent.
+  </Card>
+</CardGroup>
