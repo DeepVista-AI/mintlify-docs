@@ -1,0 +1,96 @@
+---
+title: "Automated Inbound Lead Capture & Qualification"
+description: "Transform raw website contact submissions into structured graph context, ICP ratings, instant Discord alerts, and personalized outreach drafts, all automatically."
+---
+
+## Overview
+
+When prospective customers submit a contact form, rapid qualification and response are critical. Manual lead processing leads to delayed follow-ups, incomplete records, and missed high-value accounts.
+
+By running the **Inbound Lead Capture** workflow in DeepVista, you turn raw form submissions into an automated pipeline that:
+
+1. **Eliminates manual data entry**: structures lead details into connected person, organization, and message context cards in your knowledge graph.
+2. **Cross-validates identity and ICP fit**: researches the lead's background across web sources, resolves identity ambiguities, and rates account fit against your Ideal Customer Profile (ICP).
+3. **Notifies your team in real time**: routes a color-coded alert directly into your team's Discord channel based on lead priority.
+4. **Stages high-agency outreach**: generates a concise, ready-to-send email reply draft with a calendar booking link for fast approval.
+
+<Info>
+  This workflow only needs a Discord webhook and Gmail connected, so it runs entirely as a **Light Workflow**. No local machine or MCP server setup needed.
+</Info>
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+1. A DeepVista account with an active project
+2. A Discord webhook URL configured for your team's channel
+3. [Gmail connected](/tutorials/gmail-daily-summary-workflow) to DeepVista, so drafted replies can be sent on your behalf
+4. An intake form (or another way for inquiries to reach DeepVista, like a forwarded email)
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Capture the form submission">
+    Upon receiving a form submission (first name, last name, work email, phone number, message), DeepVista extracts the company domain from the work email and checks the knowledge base first, so the same lead never gets recorded twice.
+
+    DeepVista then creates or updates:
+    - A **person** card for the lead
+    - An **organization** card for their company
+    - A **message** card recording their specific inquiry, word for word
+
+    All three are linked together in your graph, so past interactions surface automatically in future sessions.
+
+    <Frame>
+      ![Person card and message card generated from a form submission, showing contact details and the inquiry text](/images/image-5.png)
+    </Frame>
+  </Step>
+
+  <Step title="Validate identity and score ICP fit">
+    DeepVista researches the lead across public sources to verify their actual identity, cross-checking role and organization to rule out name collisions.
+
+    It then evaluates the lead against your ICP parameters, for example:
+    - **AI native**: building AI-first products, or deeply integrating AI workflows?
+    - **Stage and team size**: does their funding stage and team size match your target range?
+    - **Operational need**: does their situation show demand for leverage over headcount?
+
+    Findings are saved as an ICP Analysis card (e.g. *9.5 / 10, strong fit*) linked to both the lead and organization cards.
+
+    <Frame>
+      ![ICP Analysis card showing a 9.5 out of 10 fit score with a criteria breakdown](/images/image-6.png)
+    </Frame>
+  </Step>
+
+  <Step title="Get notified in Discord">
+    DeepVista formats the lead details, company info, and ICP score into a Discord alert:
+    - **Green** (`#10B981`): high-priority ICP fit (score 9.0 or higher)
+    - **Amber** (`#F59E0B`): standard fit, or an ambiguous profile that needs manual review
+
+    The alert posts directly to your team's configured Discord channel via webhook, so your team has immediate visibility without opening DeepVista.
+  </Step>
+
+  <Step title="Review and send the staged outreach email">
+    For high-fit leads, DeepVista drafts a concise email reply, including a direct pilot proposal and a calendar booking link.
+
+    You can review the staged draft inside DeepVista chat and approve delivery with a single instruction or click. DeepVista then sends the email through your connected Gmail account.
+
+    <Frame>
+      ![Drafted outreach email with a Send button, personalized to the lead and their company](/images/image-7.png)
+    </Frame>
+
+    <Frame>
+      ![The sent outreach email as received in the lead's inbox](/images/image-8.png)
+    </Frame>
+  </Step>
+</Steps>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Automate Lead Research & Targeted Outreach" icon="magnifying-glass" href="/tutorials/lead-research-targeted-outreach">
+    Pair this with outbound: research and reach out to accounts before they ever submit a form.
+  </Card>
+
+  <Card title="Get Discord Notifications on Task Updates" icon="discord" href="/tutorials/managing-workflows">
+    Learn more about routing DeepVista alerts into Discord for other workflows.
+  </Card>
+</CardGroup>
