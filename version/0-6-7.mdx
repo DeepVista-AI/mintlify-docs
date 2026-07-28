@@ -1,0 +1,54 @@
+---
+title: "Version 0.6.7"
+---
+
+July 26, 2026
+
+This release is all about making automation dependable. We tightened how scheduled reminders fire, gave workflow runs a clearer notification trail, hardened the task queue that powers local CLI agents, and polished a long list of editor and workspace details. Here's what shipped.
+
+---
+
+### **⏰ Interactive Scheduled Reminders**
+
+One-time reminders now behave exactly the way you'd expect them to.
+
+- **Reliable one-time schedules:** Reminders set to run once are triggered by your machine's CLI heartbeat, so they fire even when the app isn't open in front of you.
+- **Popover controls:** Reminders surface in an interactive popover instead of a static banner — act on one without losing your place.
+- **Command-click to a new tab:** `Cmd + Click` (`Ctrl + Click` on Windows) a reminder to open its target in a new tab.
+- **Clearer repeat labels:** One-time and recurring schedules now use consistent, plain-language labels wherever they appear, so "runs once" and a recurring cadence read the same on the card and in the list.
+
+---
+
+### **🔔 Workflow Run Status in the Notification Drawer**
+
+Long-running workflows no longer leave you guessing.
+
+- **Every run state is reported:** Success, failure, and human-in-the-loop approval requests all post to the notification drawer.
+- **Jump straight to the run:** Notifications navigate directly to the relevant run, including the approval step waiting on you — no hunting through the run list.
+
+---
+
+### **🗂️ Workspace Folder Sorting & Chip Controls**
+
+Managing a growing workspace got easier.
+
+- **Sortable folders:** Directory views — including Customer Stages — now support sorting, so the order matches how you actually work.
+- **Rename and delete inline:** Chips can be renamed or removed directly from the folder view.
+
+---
+
+### **✍️ Editor Focus & Cursor Polish**
+
+A batch of small fixes that add up to a smoother writing experience.
+
+- **No more cursor traps:** Image blocks, titles, and task list controls no longer capture your cursor — arrow keys and clicks move where you point them.
+- **Predictable focus transitions:** Moving between blocks and controls keeps focus where you'd expect it.
+
+---
+
+### **⚙️ Under the Hood**
+
+- **Row-level task queue locking:** Task queue execution now takes a row-level `SELECT FOR UPDATE` lock, so multiple local CLI agents can't pick up the same task during high-volume workflow dispatch.
+- **Quieter Sentry polling:** Sentry event triggers for active workflow runs settled on a 10-minute polling cadence, cutting unnecessary API traffic.
+- **One-step machine onboarding:** Setting up a machine as a DeepVista agent — environment checks for the Claude Code CLI plus machine registration — is now a single unified script.
+- **Template schema standardization:** Frontend components and the backend execution engine now share the same template schema contract, laying the groundwork for the upcoming Parser UI.
