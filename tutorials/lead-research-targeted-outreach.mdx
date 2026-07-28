@@ -1,0 +1,102 @@
+---
+title: "Automate Lead Research & Targeted Outreach"
+description: "Research, score, and enrich high-fit prospects, then stage personalized outreach drafts automatically."
+---
+
+## Overview
+
+Finding high-fit leads and crafting hyper-personalized outreach usually requires juggling multiple tabs, manual web searches, and fragmented notes.
+
+With the **Lead Research & Enrichment** workflow, DeepVista automates this end-to-end pipeline:
+
+1. Sources candidates based on your target ICP segment.
+2. Researches company fundamentals, funding stage, and key decision-makers.
+3. Scores and prioritizes leads against your exact criteria.
+4. Saves enriched organization and person cards into VistaBase™, automatically linking them in the knowledge graph.
+5. Stages a tailored outreach draft (an `email` card) for your final review before sending.
+
+This tutorial walks through invoking the workflow, providing inputs, and reviewing what it generates.
+
+## Why DeepVista for lead research?
+
+- **Persistent context**: unlike standalone scraping tools, DeepVista checks your existing VistaBase™ cards first to avoid duplicate contacts and build on notes from prior sessions.
+- **Staged and safe execution**: outreach drafts are saved as unsent `email` cards. Nothing is sent externally without your review and approval.
+- **Connected knowledge base**: every enriched lead, key contact, and outreach draft is cross-linked in your knowledge graph, so your pipeline stays traceable end to end.
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+1. A DeepVista account with an active project
+2. The **Lead Research & Enrichment** workflow installed in your workspace (or available in the Skill catalog)
+3. (Optional) [Gmail connected](/tutorials/gmail-daily-summary-workflow) if you plan to send the staged emails directly from chat
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Select or invoke the workflow">
+    Open DeepVista chat and invoke the workflow directly by name:
+
+    ```text
+    Run Workflow: Lead Research & Enrichment
+    ```
+
+    <Tip>
+      You can also trigger this workflow automatically on a schedule or via inbound webhooks by attaching a `schedule_job`.
+    </Tip>
+  </Step>
+
+  <Step title="Provide target segment inputs">
+    DeepVista prompts you for the inputs it needs before running:
+
+    - **Target segment or lead list** (`target_segment`, required): the ICP segment or list of candidate companies to research.
+    - **Existing leads** (`existing_leads`, optional): pull candidate organization cards directly from VistaBase™.
+    - **Notification email** (`outreach_contact_email`, optional): where to send a run summary once it completes.
+
+    Select **Provide input now** and enter your parameters.
+
+    <Frame>
+      ![DeepVista prompting for target segment, existing leads, and a notification email before running the workflow](/images/image-4.png)
+    </Frame>
+  </Step>
+
+  <Step title="Automated research and lead scoring">
+    DeepVista runs the pipeline in sequence:
+
+    1. **Source candidates**: compiles candidate targets from web search and VistaBase™.
+    2. **Research each lead**: looks up company background, funding stage, and key decision-makers.
+    3. **Score and prioritize**: ranks each lead on a 0 to 10 scale across ICP fit, urgency, reachability, and budget.
+
+    You can monitor progress on the workflow's live run view as each step advances from queued to running to done.
+  </Step>
+
+  <Step title="Review enriched context cards in VistaBase">
+    Once research completes, DeepVista creates or updates structured context cards:
+
+    - **Organization card**: product overview, funding details, decision-makers, and ICP score rationale.
+    - **Person card**: profile for each identified decision-maker.
+    - **Graph links**: person cards are automatically connected to their organization card and to the workflow run that created them.
+  </Step>
+
+  <Step title="Review and send the staged outreach email">
+    For top-priority leads, DeepVista drafts a short, specific outreach note referencing exact findings from research.
+
+    The draft is saved as an `email` card with `to` and `subject` fields filled in. It stays unsent until you review and approve it.
+
+    <Note>
+      To send it, open the staged email card and click **Send**, or tell chat: `"Send the outreach draft to [contact name]"`.
+    </Note>
+  </Step>
+</Steps>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Automated Inbound Lead Capture & Qualification" icon="inbox" href="/tutorials/inbound-lead-capture-qualification">
+    Pair this with inbound: capture and qualify leads the moment they reach out to you.
+  </Card>
+
+  <Card title="Connect Gmail and Get a Daily Summary" icon="envelope" href="/tutorials/gmail-daily-summary-workflow">
+    Have DeepVista email you a daily recap pulling from your notes, syncs, and recent activity.
+  </Card>
+</CardGroup>
