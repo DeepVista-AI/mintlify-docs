@@ -1,0 +1,74 @@
+---
+title: "Automated Inbound Lead Capture & Qualification"
+---
+
+Transform raw website contact submissions into structured graph context, verified ICP ratings, instant Discord alerts, and personalized outreach drafts—all automatically.
+
+## Overview
+
+When prospective customers submit a contact form, rapid qualification and response are critical. Manual lead processing leads to delayed follow-ups, incomplete CRM records, and missed high-value accounts.
+
+By running the **Inbound Lead Capture** workflow in DeepVista, you convert raw form submissions into an automated pipeline that:
+
+1. **Eliminates Manual Data Entry:** Automatically structures lead details into connected `person`, `organization`, and `message` Context Cards in your knowledge graph.
+2. **Cross-Validates Identity & ICP Fit:** Researches lead background across web sources, resolves identity ambiguities, and rates account fit against your Ideal Customer Profile (ICP).
+3. **Notifies the Team Real-Time:** Routes color-coded rich-embed alerts directly into your team's Discord channel based on lead priority.
+4. **Stages High-Agency Outreach:** Generates concise, ready-to-send email reply drafts with calendar booking links for fast founder approval.
+
+## Step-by-Step Guide
+
+1. Upon receiving form submission fields (\`first\_name\`, \`last\_name\`, \`work\_email\`, \`phone\_number\`, \`message\`), DeepVista extracts the company domain and queries the knowledge base to prevent duplicate records.
+
+```text
+DeepVista creates or updates:
+- A `person`card for the lead (e.g., Shayla Liao).
+- An `organization`card for their company (FounderCoHo).
+- A `message`card recording their specific inquiry text.
+
+All cards are linked bi-directionally in your graph database so past interactions surface automatically in future sessions.
+```
+
+<Frame>
+  ![Image](/images/image-4.png "Image")
+</Frame>
+
+<Frame>
+  ![Image](/images/image-5.png "Image")
+
+  DeepVista conducts web and social research (via \`exa\_search\`) to verify the lead's actual identity, cross-checking locations, handles, and current organizational roles to rule out name collisions.
+</Frame>
+
+```text
+Next, it evaluates the lead against defined ICP parameters:
+- AI Native:Building AI-first products or deeply integrating AI workflows?
+- Stage & Team Size: Early-stage (Seed / Series A) with lean team size (5–15 people)?
+- Operational Need: Demonstrates demand for agentic leverage over headcount expansion?
+
+Synthesized findings are persisted in an `ICP Analysis`** keypoint card (e.g., *9.5 / 10 Strong ICP Fit*) linked directly to both the lead and organization cards.
+
+```
+
+<Frame>
+  ![Image](/images/image-6.png "Image")
+</Frame>
+
+The workflow formats lead details, company metrics, and the ICP score into a Discord rich-embed payload: - \*\*Green (\`#10B981\`):\*\* High-priority ICP fit (Score \$\\ge\$ 9.0). - \*\*Amber (\`#F59E0B\`):\*\* Standard fit or ambiguous profile requiring manual review.
+
+```text
+The payload posts directly to your team's designated Discord channel via webhook, giving immediate visibility to team members.
+```
+
+For high-fit leads, DeepVista drafts an ultra-concise email reply card following high-agency outreach guidelines—including direct pilot proposals and founder calendar booking links (\`https://go.deepvista.ai/j15m\`).
+
+```text
+You can review the staged email draft inside DeepVista chat and approve delivery with a single instruction or click. DeepVista routes the outbound email directly through your connected Gmail integration.
+
+```
+
+<Frame>
+  ![Image](/images/image-7.png "Image")
+</Frame>
+
+<Frame>
+  ![Image](/images/image-8.png "Image")
+</Frame>
