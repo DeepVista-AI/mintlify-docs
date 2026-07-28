@@ -95,16 +95,7 @@
               "tutorials/server/private"
             ]
           }
-        ],
-        "global": {
-          "anchors": [
-            {
-              "anchor": "Discord Community",
-              "icon": "discord",
-              "href": "https://go.deepvista.ai/discord"
-            }
-          ]
-        }
+        ]
       },
       {
         "tab": "API reference",
@@ -126,6 +117,11 @@
           }
         ],
         "hidden": true
+      },
+      {
+        "tab": "Discord Community",
+        "icon": "discord",
+        "href": "https://go.deepvista.ai/discord"
       }
     ]
   },
