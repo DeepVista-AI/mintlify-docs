@@ -1,5 +1,5 @@
 ---
-title: "Setting Up the Rebrandly CLI for DeepVista Task Delegation"
+title: "Setting Up the Rebrandly CLI"
 description: "Generate custom short links through DeepVista workflows using the Rebrandly CLI on a connected machine, while keeping your API credentials out of chat history."
 ---
 
@@ -19,9 +19,11 @@ When delegating CLI operations to a local runner, sensitive credentials (API key
   <Card title="Mac Setup" icon="terminal" href="/tutorials/mac-setup">
     Install the developer tools and Claude Code CLI this setup depends on.
   </Card>
+
   <Card title="Set Up Your Claude Code Connector" icon="link" href="/tutorials/server/claude-connector-delegation">
     Authenticate Claude Code with your Claude account.
   </Card>
+
   <Card title="Connect Your Own Machine" icon="server" href="/tutorials/server/local">
     Install the DeepVista CLI and connect your machine as a local runner.
   </Card>
@@ -51,7 +53,6 @@ With your machine connected and `deepvista tasks run` polling, you'll also need 
     rebrandly --version
     ```
   </Step>
-
   <Step title="Store your API key locally">
     Configure authentication on your local machine so the key stays off chat history. Pick one:
 
@@ -92,7 +93,6 @@ With your machine connected and `deepvista tasks run` polling, you'll also need 
       Keeping the key in a local file or environment variable means cloud prompts only ever need to pass non-sensitive flags like the destination URL. It won't be saved in chat history.
     </Tip>
   </Step>
-
   <Step title="Connect your machine as a DeepVista local runner">
     Authenticate the DeepVista CLI and start polling for dispatched tasks:
 
@@ -103,7 +103,6 @@ With your machine connected and `deepvista tasks run` polling, you'll also need 
 
     Keep this process running. DeepVista routes Rebrandly execution tasks to this runner.
   </Step>
-
   <Step title="Trigger a Rebrandly task from chat">
     Ask DeepVista to create a short link, without ever mentioning your API key:
 
@@ -125,7 +124,6 @@ With your machine connected and `deepvista tasks run` polling, you'll also need 
     rebrandly links create --destination "https://yourdomain.com/landing-page-july-2026" --slashtag "summer-promo" --domain "link.yourdomain.com"
     ```
   </Step>
-
   <Step title="Verify the link was created">
     The local runner picks up the task, runs `rebrandly links create` using your locally stored key, and returns the result to DeepVista:
 
@@ -142,7 +140,6 @@ With your machine connected and `deepvista tasks run` polling, you'll also need 
 
     The short URL comes back into your DeepVista workflow. Your API key stays on your machine the whole time.
   </Step>
-
   <Step title="Save it as a reusable workflow step">
     Turn this into something you can trigger by name instead of re-typing the prompt each time. In chat, describe the new step in plain language:
 
@@ -161,6 +158,7 @@ With your machine connected and `deepvista tasks run` polling, you'll also need 
 <AccordionGroup>
   <Accordion title="The task fails with an expired or invalid API token" icon="triangle-exclamation">
     Rebrandly API keys don't rotate automatically. If a task comes back with an authentication error:
+
     1. Generate a fresh key from your Rebrandly workspace settings.
     2. Update `~/.config/rebrandly/config.json` or your `REBRANDLY_API_KEY` environment variable on the connected machine.
     3. Re-run the task. No changes are needed on the DeepVista side, since the cloud prompt never held the key to begin with.

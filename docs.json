@@ -33,7 +33,7 @@
             "group": "Deep Workflow",
             "pages": [
               {
-                "group": "Set Up",
+                "group": "Required Set Up",
                 "expanded": true,
                 "pages": [
                   "tutorials/mac-setup",
@@ -41,9 +41,14 @@
                   "tutorials/server/local"
                 ]
               },
+              {
+                "group": "Optional Set Up",
+                "pages": [
+                  "tutorials/rebrandly-cli-delegation"
+                ]
+              },
               "tutorials/task-delegation-linear",
-              "tutorials/x-post-workflow",
-              "tutorials/rebrandly-cli-delegation"
+              "tutorials/x-post-workflow"
             ]
           },
           {
