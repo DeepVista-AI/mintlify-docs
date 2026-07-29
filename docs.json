@@ -42,7 +42,8 @@
                 ]
               },
               "tutorials/task-delegation-linear",
-              "tutorials/x-post-workflow"
+              "tutorials/x-post-workflow",
+              "tutorials/rebrandly-cli-delegation"
             ]
           },
           {

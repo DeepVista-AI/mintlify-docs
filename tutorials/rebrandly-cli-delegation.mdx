@@ -1,0 +1,198 @@
+---
+title: "Setting Up the Rebrandly CLI for DeepVista Task Delegation"
+description: "Generate custom short links through DeepVista workflows using the Rebrandly CLI on a connected machine, while keeping your API credentials out of chat history."
+---
+
+## Overview
+
+Integrating the **Rebrandly CLI** with DeepVista lets your workflows programmatically create, customize, and manage branded short URLs (e.g. `link.yourdomain.com/xyz`) directly from cloud-triggered prompts.
+
+When delegating CLI operations to a local runner, sensitive credentials (API keys and workspace tokens) stay in your local config files or environment variables. Your API key is never passed through chat prompts, uploaded to cloud servers, or stored in DeepVista chat history.
+
+## Prerequisites
+
+<Note>
+  Deep Workflows need a connected machine before you can run them. Complete these three setup steps first, in order:
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="Mac Setup" icon="terminal" href="/tutorials/mac-setup">
+    Install the developer tools and Claude Code CLI this setup depends on.
+  </Card>
+  <Card title="Set Up Your Claude Code Connector" icon="link" href="/tutorials/server/claude-connector-delegation">
+    Authenticate Claude Code with your Claude account.
+  </Card>
+  <Card title="Connect Your Own Machine" icon="server" href="/tutorials/server/local">
+    Install the DeepVista CLI and connect your machine as a local runner.
+  </Card>
+</CardGroup>
+
+With your machine connected and `deepvista tasks run` polling, you'll also need a [Rebrandly](https://www.rebrandly.com) account with an active workspace API key.
+
+## How credentials stay off the cloud
+
+- **Local config storage**: your API key lives in a local file (`~/.config/rebrandly/config.json`) or a local environment variable, never in a DeepVista prompt.
+- **High-level prompts only**: cloud prompts specify the destination URL, slug, and domain. The local agent loads the API key at runtime.
+- **No cloud logging**: because the key never appears in a prompt, it never ends up in cloud LLM logs or session chat history.
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Install the Rebrandly CLI">
+    On your connected machine, install the CLI:
+
+    ```bash
+    npm install -g rebrandly-cli
+    ```
+
+    Verify it worked:
+
+    ```bash
+    rebrandly --version
+    ```
+  </Step>
+
+  <Step title="Store your API key locally">
+    Configure authentication on your local machine so the key stays off chat history. Pick one:
+
+    **Option A: local config file**
+
+    ```json
+    {
+      "apiKey": "your_rebrandly_api_key_here",
+      "workspaceId": "your_workspace_id_optional"
+    }
+    ```
+
+    Save that as `~/.config/rebrandly/config.json`, then lock down its permissions:
+
+    ```bash
+    chmod 600 ~/.config/rebrandly/config.json
+    ```
+
+    **Option B: environment variable**
+
+    On macOS or Linux, add this line to your shell profile (`~/.zshrc` on macOS, `~/.bashrc` on most Linux distros):
+
+    ```bash
+    export REBRANDLY_API_KEY="your_rebrandly_api_key_here"
+    ```
+
+    Then reload it:
+
+    ```bash
+    source ~/.bashrc   # or source ~/.zshrc
+    ```
+
+    <Tip>
+      Running the machine as a long-lived headless runner (a server, not a laptop you log into)? Set the variable for every session by adding it to `/etc/environment` instead, or to a systemd `EnvironmentFile` if `deepvista tasks run` is managed as a service. Either way, the key still never touches a DeepVista prompt.
+    </Tip>
+
+    <Tip>
+      Keeping the key in a local file or environment variable means cloud prompts only ever need to pass non-sensitive flags like the destination URL. It won't be saved in chat history.
+    </Tip>
+  </Step>
+
+  <Step title="Connect your machine as a DeepVista local runner">
+    Authenticate the DeepVista CLI and start polling for dispatched tasks:
+
+    ```bash
+    deepvista auth login
+    deepvista tasks run
+    ```
+
+    Keep this process running. DeepVista routes Rebrandly execution tasks to this runner.
+  </Step>
+
+  <Step title="Trigger a Rebrandly task from chat">
+    Ask DeepVista to create a short link, without ever mentioning your API key:
+
+    ```text
+    Run a task on my local agent to create a Rebrandly short link:
+    Destination: https://yourdomain.com/landing-page-july-2026
+    Slashtag: summer-promo
+    Domain: link.yourdomain.com
+    ```
+
+    Behind the scenes, DeepVista packages this as a task card:
+
+    ```yaml
+    ---
+    agent_id: "your-machine-id"
+    agent_role: "marketing-ops"
+    ---
+    Execute the following local command using the configured Rebrandly CLI:
+    rebrandly links create --destination "https://yourdomain.com/landing-page-july-2026" --slashtag "summer-promo" --domain "link.yourdomain.com"
+    ```
+  </Step>
+
+  <Step title="Verify the link was created">
+    The local runner picks up the task, runs `rebrandly links create` using your locally stored key, and returns the result to DeepVista:
+
+    ```json
+    {
+      "id": "link_abc123xyz",
+      "title": "summer-promo",
+      "slashtag": "summer-promo",
+      "destination": "https://yourdomain.com/landing-page-july-2026",
+      "shortUrl": "https://link.yourdomain.com/summer-promo",
+      "status": "active"
+    }
+    ```
+
+    The short URL comes back into your DeepVista workflow. Your API key stays on your machine the whole time.
+  </Step>
+
+  <Step title="Save it as a reusable workflow step">
+    Turn this into something you can trigger by name instead of re-typing the prompt each time. In chat, describe the new step in plain language:
+
+    ```text
+    Add a step called "Create promo link" that runs a task on my local
+    agent to create a Rebrandly short link for a given destination URL
+    and slashtag, using domain link.yourdomain.com.
+    ```
+
+    DeepVista wires the task card and parameters for you. From then on, running that workflow step just asks for the destination and slashtag, without you having to restate the task-delegation details.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The task fails with an expired or invalid API token" icon="triangle-exclamation">
+    Rebrandly API keys don't rotate automatically. If a task comes back with an authentication error:
+    1. Generate a fresh key from your Rebrandly workspace settings.
+    2. Update `~/.config/rebrandly/config.json` or your `REBRANDLY_API_KEY` environment variable on the connected machine.
+    3. Re-run the task. No changes are needed on the DeepVista side, since the cloud prompt never held the key to begin with.
+
+    <Tip>
+      If this happens often, create a dedicated automation key with a longer expiry (or no expiry, if your Rebrandly plan supports it) instead of reusing a personal key.
+    </Tip>
+  </Accordion>
+
+  <Accordion title="The runner can't find my credentials" icon="folder-open">
+    Confirm the config file path and environment variable name match exactly what's shown above, and that you reloaded your shell profile (or restarted the runner process) after adding them. `deepvista tasks run` only picks up environment changes made before it starts.
+  </Accordion>
+
+  <Accordion title="I want to rotate keys without any downtime" icon="rotate">
+    Add the new key alongside the old one first (most Rebrandly plans allow multiple active keys per workspace), update your local config to the new key, verify a test task succeeds, then revoke the old key from Rebrandly.
+  </Accordion>
+</AccordionGroup>
+
+## Best practices
+
+- **Use a dedicated API key** scoped to automation, separate from your personal Rebrandly login.
+- **Restrict file permissions** on any local config file that holds a key (`chmod 600`).
+- **Never paste keys into chat.** Prompts should only ever carry the destination URL, slug, and domain.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Automating Linear Tickets via DeepVista Task Delegation" icon="ticket" href="/tutorials/task-delegation-linear">
+    See the same local-credential pattern used to file Linear tickets headlessly.
+  </Card>
+
+  <Card title="Set Up an X Posting Workflow" icon="hashtag" href="/tutorials/x-post-workflow">
+    Research, draft, and publish X posts with the Buffer CLI.
+  </Card>
+</CardGroup>
