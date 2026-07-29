@@ -68,99 +68,10 @@ With your machine connected and `deepvista tasks run` polling, you'll also need 
     <Tip>
       This is the recommended way to hand off any credential to DeepVista. It's simpler than manually creating a local config file, and the key still never appears in your regular chat history.
     </Tip>
-  </Step>
 
-  <Step title="Connect your machine as a DeepVista local runner">
-    If it isn't already running, authenticate the DeepVista CLI and start polling for dispatched tasks:
-
-    ```bash
-    deepvista auth login
-    deepvista tasks run
-    ```
-
-    Keep this process running. DeepVista routes Rebrandly execution tasks to this runner, and the sensitive message from the previous step is what it uses to authenticate.
-  </Step>
-
-  <Step title="Trigger a Rebrandly task from chat">
-    Ask DeepVista to create a short link, without ever mentioning your API key again:
-
-    ```text
-    Run a task on my local agent to create a Rebrandly short link:
-    Destination: https://yourdomain.com/landing-page-july-2026
-    Slashtag: summer-promo
-    Domain: link.yourdomain.com
-    ```
-
-    Behind the scenes, DeepVista packages this as a task card:
-
-    ```yaml
-    ---
-    agent_id: "your-machine-id"
-    agent_role: "marketing-ops"
-    ---
-    Execute the following local command using the configured Rebrandly CLI:
-    rebrandly links create --destination "https://yourdomain.com/landing-page-july-2026" --slashtag "summer-promo" --domain "link.yourdomain.com"
-    ```
-  </Step>
-
-  <Step title="Verify the link was created">
-    The local runner picks up the task, runs `rebrandly links create` using your key, and returns the result to DeepVista:
-
-    ```json
-    {
-      "id": "link_abc123xyz",
-      "title": "summer-promo",
-      "slashtag": "summer-promo",
-      "destination": "https://yourdomain.com/landing-page-july-2026",
-      "shortUrl": "https://link.yourdomain.com/summer-promo",
-      "status": "active"
-    }
-    ```
-
-    The short URL comes back into your DeepVista workflow. Done, you can now rebrand a link from any DeepVista workflow just by chatting.
-  </Step>
-
-  <Step title="Save it as a reusable workflow step">
-    Turn this into something you can trigger by name instead of re-typing the prompt each time. In chat, describe the new step in plain language:
-
-    ```text
-    Add a step called "Create promo link" that runs a task on my local
-    agent to create a Rebrandly short link for a given destination URL
-    and slashtag, using domain link.yourdomain.com.
-    ```
-
-    DeepVista wires the task card and parameters for you. From then on, running that workflow step just asks for the destination and slashtag, without you having to restate the task-delegation details.
+    Done, you can now rebrand any link in a DeepVista workflow just by chatting.
   </Step>
 </Steps>
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title="The task fails with an expired or invalid API token" icon="triangle-exclamation">
-    Rebrandly API keys don't rotate automatically. If a task comes back with an authentication error:
-    1. Generate a fresh key from your Rebrandly workspace settings (Steps 1 to 3 above).
-    2. Send the new key to DeepVista as a sensitive message again, the same way as Step 4.
-    3. Re-run the task. Nothing else needs to change, since the old key was never stored in regular chat history to begin with.
-
-    <Tip>
-      If this happens often, create a dedicated automation key with a longer expiry (or no expiry, if your Rebrandly plan supports it) instead of reusing a personal key.
-    </Tip>
-  </Accordion>
-
-  <Accordion title="My local runner says it can't find valid credentials" icon="folder-open">
-    Confirm `deepvista tasks run` was already running on your machine when you sent the sensitive message in Step 4. If you started the runner afterward, resend the key so the currently running process picks it up.
-  </Accordion>
-
-  <Accordion title="I want to rotate keys without any downtime" icon="rotate">
-    Generate the new key first (most Rebrandly plans allow multiple active keys per workspace), send it to DeepVista as a new sensitive message, verify a test task succeeds, then revoke the old key from Rebrandly.
-  </Accordion>
-</AccordionGroup>
-
-## Best practices
-
-- **Use a dedicated API key** scoped to automation, separate from your personal Rebrandly login.
-- **Only ever send keys as a sensitive message.** Never paste a key into a regular chat message; regular messages are saved to chat history.
-- **Rotate the key** if you ever suspect it was sent as a regular message by mistake.
 
 ## Next steps
 
