@@ -1,0 +1,92 @@
+---
+title: "Automate Your Customer Relationship Tracker"
+description: "Set up a CRM tracker in DeepVista, import your accounts, and let AI keep pipeline stages and next steps up to date from your conversations."
+---
+
+## Overview
+
+Customer relationships tracked across scattered spreadsheets, project tabs, and chat threads fall out of date fast. This tutorial sets up a single customer tracker in DeepVista, where every row is a real account you can update just by chatting, and every discovery call or customer message can update it automatically.
+
+<Info>
+  This workflow only needs chat, so it runs entirely as a **Light Workflow**. No local machine setup needed.
+</Info>
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+1. A DeepVista account with an active project
+2. A list of the accounts you want to track (or a project workspace with them already in it)
+
+<Note>
+  You don't need to build a spreadsheet or database yourself. Every row in your tracker is a real organization or person card in VistaBase™, so updating a row updates that account everywhere in your workspace.
+</Note>
+
+## Step-by-step guide
+
+<Steps>
+  <Step title="Ask DeepVista to set up your tracker">
+    In chat, describe the tracker you want and the columns it should have:
+
+    ```text
+    Set up a customer tracker with these columns: stage (Lead, Discovery,
+    Pilot, Active, Expanded, Churned), priority (Urgent, High, Medium,
+    Low), contact person, contact email, domain, ARR/MRR, health score
+    (High, Medium, Low), and next action.
+    ```
+
+    DeepVista creates a table card using these columns as the schema. A common starting set looks like this:
+
+    | Column | What it tracks |
+    |---|---|
+    | `stage` | Lead, Discovery, Pilot, Active, Expanded, or Churned |
+    | `priority` | Urgent, High, Medium, or Low |
+    | `contact_person` / `contact_email` / `domain` | Who you talk to, and where |
+    | `arr_mrr` | Recurring revenue commitment |
+    | `health_score` | High, Medium, or Low |
+    | `next_action` | The next thing to do for this account |
+  </Step>
+
+  <Step title="Bring your accounts into the tracker">
+    Add accounts however is fastest for you:
+
+    ```text
+    Add these accounts to the tracker: [paste a list of company names,
+    or describe the project workspace to pull them from].
+    ```
+
+    or add one at a time:
+
+    ```text
+    Add [Company Name] to the tracker as a new lead.
+    ```
+
+    DeepVista creates a row for each account, defaulting new ones to `stage: Lead` and `health_score: Medium` unless you say otherwise. Each row is linked to the account's organization card, so nothing gets duplicated.
+  </Step>
+
+  <Step title="Update the tracker from a conversation">
+    After a call or a customer chat, paste the notes or transcript in and ask DeepVista to apply them:
+
+    ```text
+    Here are my notes from today's call with [Company Name]. Update
+    their tracker row: [paste notes or transcript]
+    ```
+
+    DeepVista reads the conversation for commitments, sentiment, and action items, then:
+    - Moves `stage` forward if it should (e.g. Lead to Pilot)
+    - Sets a dated `next_action` (e.g. "Send enterprise security review")
+    - Adds the summary as a comment on the account's card, without touching your original notes
+  </Step>
+</Steps>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Automate Lead Research & Targeted Outreach" icon="magnifying-glass" href="/tutorials/lead-research-targeted-outreach">
+    Feed new leads into your tracker automatically, already researched and scored.
+  </Card>
+
+  <Card title="Automate Inbound Lead Capture & Qualification" icon="inbox" href="/tutorials/inbound-lead-capture-qualification">
+    Capture and qualify new accounts the moment they reach out to you.
+  </Card>
+</CardGroup>
