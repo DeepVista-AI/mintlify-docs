@@ -19,13 +19,12 @@ Before you start, make sure you have:
 
 <Steps>
   <Step title="Open Account and Settings">
-    Click user, then select **+ Gmail**.
+    Click user, then select **\+ Gmail**.
 
     <Frame>
       ![Settings page with the User menu open, showing the Gmail data connector](/images/image-1.png)
     </Frame>
   </Step>
-
   <Step title="Grant access">
     Make sure DeepVista has the following access.
 
@@ -33,7 +32,6 @@ Before you start, make sure you have:
       ![Google OAuth consent screen showing the Gmail permissions DeepVista requests](/images/image-2.png)
     </Frame>
   </Step>
-
   <Step title="Get redirected to the homepage">
     Upon success, you'll see this page and get redirected to the home page automatically.
 
@@ -41,16 +39,19 @@ Before you start, make sure you have:
       ![Confirmation screen after Gmail is successfully connected](/images/image-3.png)
     </Frame>
   </Step>
-
   <Step title="Ask DeepVista for a daily summary">
     In chat, ask for a summary and name the recipient:
 
-    ```text
-    send a daily summary to [recipient name]
+    ```text wrap
+    Can you list my emails in the last day and create an overall summary and send it to me. Schedule a job to do it daily
     ```
 
     <Frame>
-      ![Prompting DeepVista to send a daily summary to Shayla](/images/gmail-daily-summary/chat-daily-summary-prompt.png)
+      ![Image](/images/image-14.png "Image")
+    </Frame>
+
+    <Frame>
+      ![Image](/images/image-15.png "Image")
     </Frame>
 
     DeepVista searches your memory and notes for relevant context — recent syncs, daily planning entries, and anything tied to the recipient.
@@ -59,12 +60,10 @@ Before you start, make sure you have:
       The more specific your notes are (dated planning entries, sync recaps, named follow-ups), the more useful the generated summary will be. DeepVista pulls directly from what's already in memory.
     </Tip>
   </Step>
-
   <Step title="Check the delivered email">
     The recipient receives a formatted summary email — in this example, "DeepVista Daily Progress & Sync Summary" for the day, recapping feedback, decisions, and an agenda for the next sync.
 
     <Frame>
-      ![Received daily summary email in Gmail](/images/gmail-daily-summary/gmail-daily-summary-email.png)
     </Frame>
   </Step>
 </Steps>
