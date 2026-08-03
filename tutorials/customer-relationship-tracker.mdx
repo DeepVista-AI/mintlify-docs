@@ -1,33 +1,36 @@
 ---
-title: "Automate Your Customer Relationship Tracker"
+title: "Set Up Your Customer Relationship Tracker"
 description: "Set up a CRM tracker and let DeepVista keep pipeline stages and next steps up to date from your conversations."
 ---
 
 ## Overview
 
-Customer relationships tracked across scattered spreadsheets, project tabs, and chat threads fall out of date fast. This tutorial sets up a single customer tracker in DeepVista, where every row is a real account you can update just by chatting, and every discovery call or customer message can update it automatically.
+Customer relationships tracked across scattered spreadsheets, project tabs, and chat threads fall out of date fast. This tutorial sets up a single customer tracker in DeepVista, where every row is a real account you can update just by chatting.
 
 ## Prerequisites
 
 Before you start, make sure you have:
 
 1. A DeepVista account with an active project
-2. A list of the accounts you want to track
-
-Every row in your tracker is a real organization or person card in VistaBase, so updating a row updates that account everywhere in your workspace.
 
 ## Step-by-step guide
 
 <Steps>
   <Step title="Ask DeepVista to set up your tracker">
-    In chat, describe the customers you want to track. You can type them out, or drop in screenshots of a project list, spreadsheet, or any other format you already have them in:
+    If you already track customers somewhere, describe them in chat, or drop in screenshots of a project list, spreadsheet, or any other format you already have them in:
 
     ```text
     Here are some customers we have, please help me set up a customer
     tracking system.
     ```
 
-    DeepVista creates a table card using these columns as the schema. A common starting set looks like this:
+    Starting from scratch? Ask for a blank tracker instead. New leads populate it automatically once you complete Step 2:
+
+    ```text
+    Set up a blank customer tracker so I can start capturing leads.
+    ```
+
+    DeepVista creates a table card using these columns as the schema:
 
     <Frame>
       ![DeepVista confirming the Customer CRM Tracker table card was created](/images/image-13.png)
@@ -41,32 +44,13 @@ Every row in your tracker is a real organization or person card in VistaBase, so
     | `arr_mrr` | Recurring revenue commitment |
     | `health_score` | High, Medium, or Low |
     | `next_action` | The next thing to do for this account |
-  </Step>
 
-  <Step title="Update the tracker from a conversation">
-    After a call or a customer chat, paste the notes or transcript in and ask DeepVista to apply them:
-
-    ```text
-    Here are my notes from today's call with [Company Name]. Update
-    their tracker row: [paste notes or transcript]
-    ```
-
-    DeepVista reads the conversation for commitments, sentiment, and action items, then:
-
-    - Moves `stage` forward if it should (e.g. Lead to Pilot)
-    - Sets a dated `next_action` (e.g. "Send enterprise security review")
-    - Adds the summary as a comment on the account's card, without touching your original notes
+    Every row in your tracker is a real organization or person card in VistaBase, so updating a row updates that account everywhere in your workspace.
   </Step>
 </Steps>
 
-## Next steps
+## Next step
 
-<CardGroup cols={2}>
-  <Card title="Automate Lead Research & Targeted Outreach" icon="magnifying-glass" href="/tutorials/lead-research-targeted-outreach">
-    Feed new leads into your tracker automatically, already researched and scored.
-  </Card>
-
-  <Card title="Automate Inbound Lead Capture & Qualification" icon="inbox" href="/tutorials/inbound-lead-capture-qualification">
-    Capture and qualify new accounts the moment they reach out to you.
-  </Card>
-</CardGroup>
+<Card title="Capture Inbound Leads" icon="inbox" href="/tutorials/inbound-lead-capture-qualification">
+  Start filling your tracker automatically the moment a lead reaches out.
+</Card>

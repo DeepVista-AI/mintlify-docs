@@ -22,12 +22,11 @@
           {
             "group": "Light Workflow",
             "pages": [
-              "tutorials/gmail-daily-summary-workflow",
-              "tutorials/managing-workflows",
-              "tutorials/input-forms",
+              "tutorials/light-workflow-overview",
+              "tutorials/customer-relationship-tracker",
               "tutorials/inbound-lead-capture-qualification",
               "tutorials/lead-research-targeted-outreach",
-              "tutorials/customer-relationship-tracker"
+              "tutorials/customer-relationship-tracker-updates"
             ]
           },
           {
