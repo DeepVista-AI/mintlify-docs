@@ -1,67 +1,73 @@
 ---
 title: "Conduct Outbound Research & Stage Targeted Outreach"
-sidebarTitle: "3. Research & Reach Out"
+sidebarTitle: "2. Research & Reach Out"
 description: "Research, score, and enrich high-fit prospects, then stage personalized outreach drafts."
 ---
 
-Step 2 already connected Gmail and revealed which ICP traits convert. This step acts on that signal: researching and reaching out to more accounts that look like your best inbound leads, sending through the same Gmail connection you set up once in Step 2.
+With your tracker set up, this step builds your first outbound workflow: connect Gmail once, then let DeepVista find and reach out to ICP-fit accounts automatically every day.
 
-## Analyze High-Converting Inbound ICP Signals
-
-Before researching new accounts, look at the ICP Analysis cards your inbound leads have generated. Identify which traits (company size, tech stack, industry, funding stage) show up most often among your highest-scoring leads. Carry those same traits into your research inputs below, so outbound targeting stays grounded in what's actually converting.
-
-## Run Web & Company Background Research
+## Connect Gmail
 
 <Steps>
-  <Step title="Select or invoke the workflow">
-    Open DeepVista chat and invoke the workflow directly by name:
-
-    ```text
-    Run Workflow: Lead Research & Enrichment
-    ```
-
-    <Tip>
-      You can also trigger this workflow automatically on a schedule or via inbound webhooks by attaching a `schedule_job`.
-    </Tip>
-  </Step>
-  <Step title="Provide target segment inputs">
-    DeepVista prompts you for the inputs it needs before running:
-
-    - **Target segment or lead list** (`target_segment`, required): the ICP segment or list of candidate companies to research.
-    - **Existing leads** (`existing_leads`, optional): pull candidate organization cards directly from VistaBase™.
-    - **Notification email** (`outreach_contact_email`, optional): where to send a run summary once it completes.
-
-    Select **Provide input now** and enter your parameters.
+  <Step title="Open the Gmail data connector">
+    Click your account menu, then select **+ Gmail**.
 
     <Frame>
-      ![DeepVista prompting for target segment, existing leads, and a notification email before running the workflow](/images/image-4.png)
+      ![Settings page with the User menu open, showing the Gmail data connector](/images/image-1.png)
     </Frame>
   </Step>
-  <Step title="Automated research and lead scoring">
-    DeepVista runs the pipeline in sequence:
+  <Step title="Grant access">
+    Make sure DeepVista has the following access.
 
-    1. **Source candidates**: compiles candidate targets from web search and VistaBase.
-    2. **Research each lead**: looks up company background, funding stage, and key decision-makers.
-    3. **Score and prioritize**: ranks each lead on a 0 to 10 scale across ICP fit, urgency, reachability, and budget.
-
-    You can monitor progress on the workflow's live run view as each step advances from queued to running to done.
+    <Frame>
+      ![Google OAuth consent screen showing the Gmail permissions DeepVista requests](/images/image-2.png)
+    </Frame>
   </Step>
-  <Step title="Review enriched context cards in VistaBase">
-    Once research completes, DeepVista creates or updates structured context cards:
+  <Step title="Confirm the connection">
+    Upon success, you'll see this page and get redirected to the home page automatically.
 
-    - **Organization card**: product overview, funding details, decision-makers, and ICP score rationale.
-    - **Person card**: profile for each identified decision-maker.
-    - **Graph links**: person cards are automatically connected to their organization card and to the workflow run that created them.
+    <Frame>
+      ![Confirmation screen after Gmail is successfully connected](/images/image-3.png)
+    </Frame>
   </Step>
 </Steps>
 
-## Send Staged Outreach Drafts
+## Create Your First Outbound Workflow
 
 <Steps>
-  <Step title="Review and send the staged draft">
-    For top-priority leads, DeepVista drafts a short, specific outreach note referencing exact findings from research, saved as an `email` card with `to` and `subject` fields filled in.
+  <Step title="Describe your company and what you want automated">
+    In DeepVista chat, give your company website and describe the daily outbound motion you want. For example:
 
-    Review the staged draft inside DeepVista chat and approve delivery with a single instruction or click. DeepVista then sends the email through your connected Gmail account.
+    ```text
+    Here's my company website: https://www.deepvista.ai/landing. Help me
+    find 20 ICPs and send tailored outreach email every day. Schedule it
+    as a daily workflow.
+    ```
+
+    <Frame>
+      ![DeepVista chat building a Daily ICP Lead Sourcing & Tailored Outreach workflow from a company website prompt](/images/icp-workflow-prompt.png)
+    </Frame>
+  </Step>
+  <Step title="Review the workflow DeepVista builds">
+    DeepVista lays out the workflow as a clear sequence, with an approval gate before anything sends:
+
+    <Frame>
+      ![Workflow diagram: Input, Source and Qualify 20 ICP Leads, Draft Tailored Outreach Emails, Approve: Send Emails, Review and Deliver Outreach, Output](/images/icp-workflow-diagram.png)
+    </Frame>
+  </Step>
+  <Step title="Confirm the daily schedule">
+    The workflow runs on its own from here on, at the cadence you asked for.
+
+    <Frame>
+      ![Scheduled job confirmation for the Daily ICP Sourcing and Tailored Outreach Job, running weekdays at 9:00 AM](/images/icp-scheduled-job.png)
+    </Frame>
+  </Step>
+  <Step title="See an example of what it drafts">
+    Each run stages a personalized outreach email referencing real findings about the target account, ready for you to review before it sends.
+
+    <Frame>
+      ![Example staged outreach email, reviewed and edited before sending](/images/icp-outreach-example.png)
+    </Frame>
   </Step>
 </Steps>
 
