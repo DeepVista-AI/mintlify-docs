@@ -1,10 +1,31 @@
 ---
 title: "Automate Inbound Lead Capture, Qualification & Alerts"
 description: "Deliver speed to context on every inbound inquiry: automate identity verification, ICP scoring, real-time alerts, and personalized outreach drafts, before buyer interest cools."
-sidebarTitle: "2. Capture Inbound Leads"
+sidebarTitle: "4. Capture Inbound Leads"
 ---
 
-With your tracker in place, this step handles Inbound Motion end to end: capturing and qualifying every inbound lead, alerting your team in real time, and connecting Gmail once so every future outreach step, including Step 3, can send on your behalf.
+Outbound research and your own notes cover leads you find or talk to directly. This step covers the other source: leads who find you first. Once this is set up, every inbound inquiry writes into the same tracker automatically, closing the loop.
+
+## Route Real-Time Discord Notifications (Optional)
+
+Only set this up if you already have a Discord community you want alerted.
+
+<Steps>
+  <Step title="Generate a Discord webhook">
+    Go to **Server Settings → Integrations → Webhooks**. Click **New Webhook**, name it, select your channel, and copy the webhook URL.
+
+    <Frame>
+      ![Creating a Discord Webhook](/images/web11.gif)
+    </Frame>
+  </Step>
+  <Step title="Enable live channel notifications">
+    Paste the copied URL into DeepVista's outbound notification node. Alerts post **green** (`#10B981`) for high-priority fit (score 9.0 or higher), and **amber** (`#F59E0B`) for standard fit or an ambiguous profile that needs manual review.
+
+    <Frame>
+      ![Finalizing DeepVista to Discord link](/images/web4.png)
+    </Frame>
+  </Step>
+</Steps>
 
 ## Set Up Public Web Input Forms
 
@@ -54,54 +75,11 @@ With your tracker in place, this step handles Inbound Motion end to end: capturi
   </Step>
 </Steps>
 
-## Route Real-Time Discord Notifications
-
-<Steps>
-  <Step title="Generate a Discord webhook">
-    Go to **Server Settings → Integrations → Webhooks**. Click **New Webhook**, name it, select your channel, and copy the webhook URL.
-
-    <Frame>
-      ![Creating a Discord Webhook](/images/web11.gif)
-    </Frame>
-  </Step>
-  <Step title="Enable live channel notifications">
-    Paste the copied URL into DeepVista's outbound notification node. Alerts post **green** (`#10B981`) for high-priority fit (score 9.0 or higher), and **amber** (`#F59E0B`) for standard fit or an ambiguous profile that needs manual review.
-
-    <Frame>
-      ![Finalizing DeepVista to Discord link](/images/web4.png)
-    </Frame>
-  </Step>
-</Steps>
-
-## Connect Gmail & Send Staged Outreach Drafts
-
-<Steps>
-  <Step title="Connect your Gmail account">
-    Click your account menu, then select **\+ Gmail**.
-
-    <Frame>
-      ![Settings page with the User menu open, showing the Gmail data connector](/images/image-1.png)
-    </Frame>
-
-    Make sure DeepVista has the following access.
-
-    <Frame>
-      ![Google OAuth consent screen showing the Gmail permissions DeepVista requests](/images/image-2.png)
-    </Frame>
-
-    Upon success, you'll see this page and get redirected to the home page automatically.
-
-    <Frame>
-      ![Confirmation screen after Gmail is successfully connected](/images/image-3.png)
-    </Frame>
-  </Step>
-</Steps>
-
 ## Send an Instant Reply with a Booking Link
 
 <Steps>
   <Step title="Review and send the staged reply">
-    For high-fit leads, DeepVista drafts a concise email reply, including a direct pilot proposal and a calendar booking link. Review the staged draft inside DeepVista chat and approve delivery with a single instruction or click. DeepVista then sends the email through your connected Gmail account.
+    For high-fit leads, DeepVista drafts a concise email reply, including a direct pilot proposal and a calendar booking link. Review the staged draft inside DeepVista chat and approve delivery with a single instruction or click. DeepVista sends the email through the Gmail connection you set up in Step 2.
 
     <Frame>
       ![Drafted outreach email with a Send button, personalized to the lead and their company](/images/image-7.png)
@@ -113,8 +91,4 @@ With your tracker in place, this step handles Inbound Motion end to end: capturi
   </Step>
 </Steps>
 
-## Next step
-
-<Card title="Research & Reach Out" icon="magnifying-glass" href="/tutorials/lead-research-targeted-outreach">
-  Use your best-converting inbound leads to find more accounts just like them.
-</Card>
+With this in place, every path into your business, outbound, notes, or inbound, now closes the loop back into the same tracker you set up in Step 1.

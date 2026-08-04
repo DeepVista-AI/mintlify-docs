@@ -1,21 +1,40 @@
 ---
 title: "Keep Your Relationship Tracker Auto-Updated"
-sidebarTitle: "4. Keep the Tracker Auto-Updated"
+sidebarTitle: "3. Keep the Tracker Auto-Updated"
 description: "Maintain clean pipeline visibility and eliminate manual CRM entry after every call or reply."
 ---
 
-Every reply from Step 2's inbound alerts or Step 3's outreach eventually needs a home. This step keeps the tracker from Step 1 current automatically, closing the loop so the next touchpoint starts with full context instead of a blank slate.
+Your outbound workflow from Step 2 already keeps the tracker current on its own. This step covers the other way it stays updated: from your own notes and conversations.
 
 ## Log Touchpoints & Call Notes
 
 <Steps>
+  <Step title="Take notes on a call or conversation">
+    Take notes the way you normally would, then open that note's chat to work with it directly.
+
+    <Frame>
+      ![A discovery-call note with its Chat action highlighted](/images/tracker-note-example.png)
+    </Frame>
+  </Step>
   <Step title="Update the tracker from a conversation">
-    After a call or customer chat, paste the notes or transcript in and ask DeepVista to apply them:
+    Paste the notes or transcript in and ask DeepVista to apply them:
 
     ```text
     Here are my notes from today's call with [Company Name]. Update
     their tracker row: [paste notes or transcript]
     ```
+
+    Or, working from a note you've already taken:
+
+    ```text
+    Based on this, update my CRM tracker.
+    ```
+
+    DeepVista links the note to the contact's person card and the CRM tracker, updating the row in place.
+
+    <Frame>
+      ![The note linked to a person card and the DeepVista Customer CRM Tracker card](/images/tracker-linked-cards.png)
+    </Frame>
   </Step>
 </Steps>
 
@@ -24,6 +43,19 @@ Every reply from Step 2's inbound alerts or Step 3's outreach eventually needs a
 <Steps>
   <Step title="Auto-advance the pipeline stage">
     DeepVista reads the conversation for commitments, sentiment, and action items, then moves `stage` forward if it should (e.g. Lead to Pilot), sets a dated `next_action`, and adds the summary as a comment on the account's card, without touching your original notes.
+  </Step>
+  <Step title="Draft the follow-up in the same step">
+    Ask for the follow-up while the context is still loaded:
+
+    ```text
+    Help me draft a follow-up email.
+    ```
+
+    DeepVista drafts it from the same notes, ready to send or refine.
+
+    <Frame>
+      ![A drafted follow-up email with options to send via Gmail or refine the draft](/images/tracker-followup-draft.png)
+    </Frame>
   </Step>
 </Steps>
 
@@ -37,6 +69,6 @@ Every reply from Step 2's inbound alerts or Step 3's outreach eventually needs a
 
 ## Next step
 
-<Card title="Back to Step 1" icon="arrow-rotate-left" href="/tutorials/customer-relationship-tracker">
-  The tracker you just updated is the same one you set up first. The loop continues from here.
+<Card title="Capture Inbound Leads" icon="inbox" href="/tutorials/inbound-lead-capture-qualification">
+  See the other source that feeds this same tracker: leads who find you first.
 </Card>
