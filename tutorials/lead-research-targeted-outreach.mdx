@@ -1,78 +1,98 @@
 ---
-title: "Research & Stage Targeted Outreach"
-sidebarTitle: "2. Research & Reach Out"
-description: "Research, score, and enrich high-fit prospects, then stage personalized outreach drafts."
+title: "Draft, Send & Schedule Outreach"
+sidebarTitle: "2. Draft, Send & Schedule Outreach"
+description: "Draft outreach emails for your leads, connect Gmail to send them, then schedule the whole motion to run daily."
 ---
 
-With your tracker set up, this step builds your first outbound workflow: connect Gmail once, then let DeepVista find and reach out to ICP-fit accounts automatically every day.
-
-## Connect Gmail
+## Ask DeepVista to Draft Outreach Email
 
 <Steps>
-  <Step title="Open the Gmail data connector">
-    Click your account menu, then select **+ Gmail**.
+  <Step title="Ask DeepVista to draft outreach emails">
+    Ask DeepVista:
+
+    ```text
+    Help me draft outreach emails for all of the leads.
+    ```
+
+    DeepVista will save your email drafts as context cards.
+
+    <Frame>
+      ![Drafted outreach email with a Send button, personalized to the lead and their company](/images/image-7.png)
+    </Frame>
+  </Step>
+  <Step title="Review and edit the draft">
+    Click into the email card to view and edit the draft.
+
+    To make changes, you can also ask DeepVista directly:
+
+    ```text
+    Add my email signature.
+    ```
+
+    DeepVista will automatically pull the necessary information from your VistaBase context cards.
+  </Step>
+</Steps>
+
+## Connect Your Gmail and Send Your Email
+
+<Steps>
+  <Step title="Connect your Gmail">
+    To send out an email, click **Send** and connect your Gmail.
 
     <Frame>
       ![Settings page with the User menu open, showing the Gmail data connector](/images/image-1.png)
     </Frame>
   </Step>
   <Step title="Grant access">
-    Make sure DeepVista has the following access.
+    Make sure DeepVista has all the access it needs.
 
     <Frame>
       ![Google OAuth consent screen showing the Gmail permissions DeepVista requests](/images/image-2.png)
     </Frame>
   </Step>
   <Step title="Confirm the connection">
-    Upon success, you'll see this page and get redirected to the home page automatically.
+    Upon success, you'll see the confirmation page below.
 
     <Frame>
       ![Confirmation screen after Gmail is successfully connected](/images/image-3.png)
     </Frame>
   </Step>
+  <Step title="Send the email">
+    Once ready, click **Send** in the bottom-right corner, or ask DeepVista to send all of them automatically.
+  </Step>
+  <Step title="Confirm delivery">
+    To confirm, open Gmail and find the sent email in your Gmail "Sent" tab.
+
+    <Frame>
+      ![The sent outreach email as received in the lead's inbox](/images/image-8.png)
+    </Frame>
+  </Step>
 </Steps>
 
-## Create Your First Outbound Workflow
+## Ask DeepVista to Schedule a Daily Job
 
 <Steps>
-  <Step title="Describe your company and what you want automated">
-    In DeepVista chat, give your company website and describe the daily outbound motion you want. For example:
+  <Step title="Schedule the daily motion">
+    Ask DeepVista:
 
     ```text
-    Here's my company website: https://www.yourcompany.com. Help me
-    find 20 ICPs and send tailored outreach email every day. Schedule it
-    as a daily workflow.
+    Schedule a daily task to source 20 new leads every day. Never repeat
+    companies already in the tracker.
     ```
 
-    <Frame>
-      ![DeepVista chat building a Daily ICP Lead Sourcing & Tailored Outreach workflow from a company website prompt](/images/icp-workflow-prompt.png)
-    </Frame>
-  </Step>
-  <Step title="Review the workflow DeepVista builds">
-    DeepVista lays out the workflow as a clear sequence, with an approval gate before anything sends:
+    DeepVista will create an automated **workflow** and a **scheduled job** for you.
 
     <Frame>
-      ![Workflow diagram: Input, Source and Qualify 20 ICP Leads, Draft Tailored Outreach Emails, Approve: Send Emails, Review and Deliver Outreach, Output](/images/icp-workflow-diagram.png)
+      ![Scheduled job confirmation, running on a daily cadence](/images/icp-scheduled-job.png)
     </Frame>
   </Step>
-  <Step title="Confirm the daily schedule">
-    The workflow runs on its own from here on, at the cadence you asked for.
-
-    <Frame>
-      ![Scheduled job confirmation for the Daily ICP Sourcing and Tailored Outreach Job, running weekdays at 9:00 AM](/images/icp-scheduled-job.png)
-    </Frame>
-  </Step>
-  <Step title="See an example of what it drafts">
-    Each run stages a personalized outreach email referencing real findings about the target account, ready for you to review before it sends.
-
-    <Frame>
-      ![Example staged outreach email, reviewed and edited before sending](/images/icp-outreach-example.png)
-    </Frame>
+  <Step title="Review and adjust">
+    Click the context cards to view details and make changes.
   </Step>
 </Steps>
 
 ## Next step
 
-<Card title="Capture Inbound Leads" icon="inbox" href="/tutorials/inbound-lead-capture-qualification">
+<Card title="Capture & Follow Up Inbound Leads" icon="inbox" href="/tutorials/inbound-lead-capture-qualification">
   See the other source that feeds this same tracker: leads who find you first.
 </Card>
