@@ -1,70 +1,41 @@
 ---
-title: "Keep Your Relationship Tracker Auto-Updated"
-sidebarTitle: "4. Keep the Tracker Auto-Updated"
-description: "Maintain clean pipeline visibility and eliminate manual CRM entry after every call or reply."
+title: "4. Keep Your CRM Running With You"
+sidebarTitle: "4. Keep Your CRM Running With You"
+description: "Keep pipeline visibility clean by letting DeepVista update your tracker from your notes, screenshots, and inbox automatically."
 ---
 
-Your outbound workflow from Step 2 already keeps the tracker current on its own. This step covers the other way it stays updated: from your own notes and conversations.
+## Capture a Note/ a Screenshot
 
-## Log Touchpoints & Call Notes
+1. Copy and paste it in chat, ask DeepVista to "add customer A to my CRM Tracker."
 
-<Steps>
-  <Step title="Take notes on a call or conversation">
-    Take notes the way you normally would, then open that note's chat to work with it directly.
+   DeepVista will automatically update the row.
 
-    <Frame>
-      ![A discovery-call note with its Chat action highlighted](/images/tracker-note-example.png)
-    </Frame>
-  </Step>
-  <Step title="Update the tracker from a conversation">
-    Paste the notes or transcript in and ask DeepVista to apply them:
+<Frame>
+  ![](/images/lightworkflow-doc-crm-tracker-customer-a.png)
+</Frame>
 
-    ```text
-    Here are my notes from today's call with [Company Name]. Update
-    their tracker row: [paste notes or transcript]
-    ```
+## Monitor your Email
 
-    Or, working from a note you've already taken:
+1. Ask DeepVista: Monitor my email inbox and update the CRM Tracker everyday.
 
-    ```text
-    Based on this, update my CRM tracker.
-    ```
+   DeepVista will create a **Scheduled job** to run the monitor **workflow** automatically.
 
-    DeepVista links the note to the contact's person card and the CRM tracker, updating the row in place.
+<Frame>
+  ![](/images/lightworkflow-doc-inbox-monitor-cards.png)
+</Frame>
 
-    <Frame>
-      ![The note linked to a person card and the DeepVista Customer CRM Tracker card](/images/tracker-linked-cards.png)
-    </Frame>
-  </Step>
-</Steps>
+2. Get an email alert when a CRM contact has an update.
 
-## Auto-Advance Pipeline Stages
+<Frame>
+  ![](/images/lightworkflow-doc-inbox-alert-email.png)
+</Frame>
 
-<Steps>
-  <Step title="Auto-advance the pipeline stage">
-    DeepVista reads the conversation for commitments, sentiment, and action items, then moves `stage` forward if it should (e.g. Lead to Pilot), sets a dated `next_action`, and adds the summary as a comment on the account's card, without touching your original notes.
-  </Step>
-  <Step title="Draft the follow-up in the same step">
-    Ask for the follow-up while the context is still loaded:
+3. On the CRM tracker, click to check **Person Card** for recent interaction.
 
-    ```text
-    Help me draft a follow-up email.
-    ```
+<Frame>
+  ![](/images/lightworkflow-doc-person-card-interaction.png)
+</Frame>
 
-    DeepVista drafts it from the same notes, ready to send or refine.
+## Congratulations.
 
-    <Frame>
-      ![A drafted follow-up email with options to send via Gmail or refine the draft](/images/tracker-followup-draft.png)
-    </Frame>
-  </Step>
-</Steps>
-
-## Query Context Before Next Action
-
-<Steps>
-  <Step title="Pull full context before you reach out">
-    Before your next call or reply, ask DeepVista for the account's full context (current stage, last touch, prior notes), pulled straight from the tracker you've been keeping updated, so nothing gets re-explained or missed.
-  </Step>
-</Steps>
-
-With this in place, every path into your business, outbound, notes, or inbound, now closes the loop back into the same tracker you set up in Step 1.
+You just built an intelligent CRM Tracker. Start acquire, engage, and retent!

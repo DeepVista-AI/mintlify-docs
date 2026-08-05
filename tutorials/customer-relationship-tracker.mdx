@@ -1,53 +1,65 @@
 ---
-title: "Set Up Your Customer Relationship Tracker"
-description: "Set up a CRM tracker and let DeepVista keep pipeline stages and next steps up to date from your conversations."
-sidebarTitle: "1. Set Up Your CRM Tracker"
+title: "Build Your Intelligent CRM Tracker in Minutes"
+description: "Build your intelligent CRM tracker in minutes, then let DeepVista research and populate it for you."
+sidebarTitle: "1. Build Your CRM Automatically"
 ---
 
 ## Prerequisites
 
-Before you start, make sure you have:
+Before you start, make sure you have a DeepVista account with an active project.
 
-1. A DeepVista account with an active project
+To create an account, [sign up here](https://app.deepvista.ai/login?redirectUrl=%2Fsign%2520in).
 
-## Step-by-step guide
+Once you're in, you'll land on a blank homepage, ready to start.
 
-<Steps>
-  <Step title="Ask DeepVista to set up your tracker">
-    If you already track customers somewhere, describe them in chat, or drop in screenshots of a project list, spreadsheet, or any other format you already have them in:
+<Frame>
+  ![](/images/lightworkflow-doc-homepage.png)
+</Frame>
 
-    ```text
-    Here are some customers we have, please help me set up a customer
-    tracking system.
-    ```
+## Onboard Your Company
 
-    You can also start from scratch. Ask for a blank tracker instead:
+1. In chat, provide your company website: [https://www.yourcompany.com](https://www.yourcompany.com). DeepVista will learn your value propositions, ICPs, and key capabilities.
 
-    ```text
-    Set up a blank customer tracker so I can start capturing leads.
-    ```
+   This data is saved as an **organization card** within VistaBase.
 
-    DeepVista creates a table card using these columns as the schema:
+<Frame>
+  ![](/images/lightworkflow-doc-org-card.png)
+</Frame>
 
-    <Frame>
-      ![DeepVista confirming the Customer CRM Tracker table card was created](/images/image-13.png)
-    </Frame>
+## Ask DeepVista to Search Leads for You
 
-    | Column | What it tracks |
-    | --- | --- |
-    | `stage` | Lead, Discovery, Pilot, Active, Expanded, or Churned |
-    | `priority` | Urgent, High, Medium, or Low |
-    | `contact_person` / `contact_email` / `domain` | Who you talk to, and where |
-    | `arr_mrr` | Recurring revenue commitment |
-    | `health_score` | High, Medium, or Low |
-    | `next_action` | The next thing to do for this account |
+2. Ask DeepVista: "Help me find 20 new leads."
 
-    Every row in your tracker is a real organization or person card in VistaBase, so updating a row updates that account everywhere in your workspace.
-  </Step>
-</Steps>
+   DeepVista will research and generate a **table card**, which serves as your CRM tracker.
 
-## Next step
+   <Frame>
+     ![](/images/lightworkflow-doc-crm-tracker-created.png)
+   </Frame>
 
-<Card title="Research & Reach Out" icon="magnifying-glass" href="/tutorials/lead-research-targeted-outreach">
-  Turn this tracker into your first automated outbound workflow.
+3. Click the table card to expand the full list.
+
+   <Frame>
+     ![](/images/lightworkflow-doc-crm-tracker-expanded.png)
+   </Frame>
+
+4. To view details for a specific entry, hover over the table row and click "**Open**."
+
+   <Frame>
+     ![](/images/lightworkflow-doc-crm-tracker-open-entry.png)
+   </Frame>
+
+## Customize Your Search Fields
+
+5. To retrieve additional information, prompt DeepVista: "Please add a column for the LinkedIn page. Research and populate it."
+
+   The system will automatically add and populate the new column with the requested data.
+
+   <Frame>
+     ![](/images/lightworkflow-doc-crm-tracker-linkedin-column.png)
+   </Frame>
+
+## Next steps: Draft, Send, and Schedule Outreach Emails
+
+<Card title="2. Draft, Send, and Schedule Outreach Email" icon="magnifying-glass" href="/tutorials/lead-research-targeted-outreach">
+  Draft, Send, Schedule Outreach Email
 </Card>

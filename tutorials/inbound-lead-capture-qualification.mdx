@@ -1,96 +1,62 @@
 ---
-title: "Automate Inbound Lead Capture, Qualification & Alerts"
-description: "Deliver speed to context on every inbound inquiry: automate identity verification, ICP scoring, real-time alerts, and personalized outreach drafts, before buyer interest cools."
-sidebarTitle: "3. Capture Inbound Leads"
+title: "3. Capture, Notified, and Follow up with Inbound Leads"
+description: "Capture inbound leads with a public input form, get notified the moment someone fills it out, and follow up while interest is still fresh."
+sidebarTitle: "3. Capture, Follow up with Inbound Leads"
 ---
 
-## Route Real-Time Discord Notifications (Optional)
+## Capture Inbound Leads
 
-If you have a Discord community, you can set this up to get alerted there too.
+1. Ask DeepVista: Help me create an early-access signup workflow.
 
-<Steps>
-  <Step title="Generate a Discord webhook">
-    Go to **Server Settings → Integrations → Webhooks**. Click **New Webhook**, name it, select your channel, and copy the webhook URL.
+2. Click into the context card to **Run** the workflow.
 
-    <Frame>
-      ![Creating a Discord Webhook](/images/web11.gif)
-    </Frame>
-  </Step>
-  <Step title="Enable live channel notifications">
-    Paste the copied URL into DeepVista's outbound notification node. Alerts post **green** (`#10B981`) for high-priority fit (score 9.0 or higher), and **amber** (`#F59E0B`) for standard fit or an ambiguous profile that needs manual review.
+<Frame>
+  ![](/images/lightworkflow-doc-signup-workflow-diagram.png)
+</Frame>
 
-    <Frame>
-      ![Finalizing DeepVista to Discord link](/images/web4.png)
-    </Frame>
-  </Step>
-</Steps>
+3. You'll be asked to set up an input form. Hover over to the upper right corner and generate a URL for your input form.
 
-## Set Up Public Web Input Forms
+<Frame>
+  ![](/images/lightworkflow-doc-signup-workflow-detail-1.png)
+</Frame>
 
-<Steps>
-  <Step title="Enable the input form">
-    Navigate to your active workflow and click **Settings**. Locate the **Input Form** section and toggle it on. This publishes a public form generated directly from your workflow's input configuration.
+4. To customize the input form, on the workflow page, click **"Input" \>"Input Form" \> "Add input**" to get a sample prompt you can modify easily.
 
-    <Frame>
-      ![Enable Input Form](/images/ex3-1.gif)
-    </Frame>
-  </Step>
-  <Step title="Verify form labels">
-    Review the public form's appearance to ensure all field labels and descriptions accurately reflect the information you want to collect.
+<Frame>
+  ![](/images/lightworkflow-doc-signup-workflow-detail-2.png)
+</Frame>
 
-    <Frame>
-      ![Verify Form Labels](/images/ex3-4.gif)
-    </Frame>
-  </Step>
-  <Step title="Test and share the link">
-    Copy the generated public form link, open it in a new window, and submit a test response to verify it kicks off your automated run.
+## Get Notified with Inbound Activities
 
-    <Frame>
-      ![Test Form Submission](/images/ex3-2.gif)
-    </Frame>
-  </Step>
-</Steps>
+5. You can now share the input form URL with potential leads via email.
 
-## Auto-Score ICP Fit & Populate Tracker
+<Frame>
+  ![](/images/lightworkflow-doc-signup-form-email.png)
+</Frame>
 
-<Steps>
-  <Step title="Capture the form submission">
-    DeepVista extracts the company domain from the work email and checks the knowledge base first, so the same lead never gets recorded twice. It then creates or updates a **person** card, an **organization** card, and a **message** card, all linked together in your graph.
+6. Once someone fills out the form, you'll get an email notification.
 
-    <Frame>
-      ![Person card and message card generated from a form submission, showing contact details and the inquiry text](/images/image-5.png)
-    </Frame>
-  </Step>
-  <Step title="Validate identity and score ICP fit">
-    DeepVista researches the lead across public sources to verify their actual identity, cross-checking role and organization to rule out name collisions. It then evaluates the lead against your ICP parameters: AI-native fit, stage and team size, and operational need. Findings are saved as an ICP Analysis card linked to both the lead and organization cards.
+<Frame>
+  ![](/images/lightworkflow-doc-form-submission-notification.png)
+</Frame>
 
-    <Frame>
-      ![ICP Analysis card showing a 9.5 out of 10 fit score with a criteria breakdown](/images/image-6.png)
-    </Frame>
-  </Step>
-  <Step title="Populate your tracker">
-    The new person and organization cards attach as a row in the customer tracker you set up in Step 1, so every qualified lead shows up there without manual entry.
-  </Step>
-</Steps>
+## Follow up with High-fit Leads
 
-## Send an Instant Reply with a Booking Link
+7. Capture a screenshot of the message. Copy and paste to DeepVista. Ask it: Create a follow up email for me.
 
-<Steps>
-  <Step title="Review and send the staged reply">
-    For high-fit leads, DeepVista drafts a concise email reply, including a direct pilot proposal and a calendar booking link. Review the staged draft inside DeepVista chat and approve delivery with a single instruction or click. DeepVista sends the email through the Gmail connection you set up in Step 2.
+<Frame>
+  ![](/images/lightworkflow-doc-followup-request-chat.png)
+</Frame>
 
-    <Frame>
-      ![Drafted outreach email with a Send button, personalized to the lead and their company](/images/image-7.png)
-    </Frame>
+8. DeepVista will search across VistaBase to retrieve relevant context about this person, email, and relationship.
+9. In the email card, edit and hit **Send**.
 
-    <Frame>
-      ![The sent outreach email as received in the lead's inbox](/images/image-8.png)
-    </Frame>
-  </Step>
-</Steps>
+   <Frame>
+     ![](/images/lightworkflow-doc-followup-email-draft.png)
+   </Frame>
 
-## Next step
+## Next step: Keep Your CRM Running With You
 
-<Card title="Keep the Tracker Auto-Updated" icon="arrows-rotate" href="/tutorials/customer-relationship-tracker-updates">
-  See the other way the same tracker stays current: from your own notes and calls.
+<Card title="4. Keep Your CRM Running With You" icon="arrows-rotate" href="/tutorials/customer-relationship-tracker-updates">
+  4. Keep Your CRM Running With You
 </Card>
