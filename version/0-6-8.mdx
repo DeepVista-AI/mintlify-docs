@@ -1,0 +1,123 @@
+---
+title: "Version 0.6.8"
+---
+
+August 6, 2026
+
+This release makes your data structured and your integrations plug-in. Vistabase tables now carry a real schema you edit at the column level, context cards are edited by your whole team at once instead of one person at a time, and connecting an outside service — Google Workspace, or any of the hundreds behind Composio — is a setting rather than an engineering request.
+
+**Highlights**
+
+- **Connect Google Workspace and hundreds of other apps without waiting on an integration.** MCP servers now support OAuth sign-in, with one-click presets for Sheets, Docs, Drive, Calendar, and Gmail, plus Composio as a managed provider.
+- **Edit a context card together, live.** The single-editor lock is gone. Everyone types into the same document, you see each other's cursors and faces, and nothing gets overwritten.
+- **Build real tables in Vistabase.** Column types, display labels, sort order, text wrapping, and clickable links are all set on the column itself instead of buried in each row.
+- **See exactly which chat or run produced a card.** Sourcing & Relations now lists the conversations and workflow runs behind a card, and every link records who made it.
+
+---
+
+## Workflows enhanced in our library
+
+The features below are building blocks. Here are the end-to-end workflows in the DeepVista library that they upgrade:
+
+<CardGroup cols={2}>
+  <Card title="Automate Your Customer Relationship Tracker" icon="id-card" href="/tutorials/customer-relationship-tracker">
+    Set up a CRM tracker and let DeepVista keep pipeline stages up to date from your conversations.
+  </Card>
+
+  <Card title="Keep Your Tracker Up to Date" icon="arrows-rotate" href="/tutorials/customer-relationship-tracker-updates">
+    Let card-change triggers refresh records the moment something moves.
+  </Card>
+
+  <Card title="Automate Lead Research & Targeted Outreach" icon="magnifying-glass" href="/tutorials/lead-research-targeted-outreach">
+    Research, score, and enrich high-fit prospects, then stage personalized outreach.
+  </Card>
+
+  <Card title="Automate Inbound Lead Capture & Qualification" icon="inbox" href="/tutorials/inbound-lead-capture-qualification">
+    Capture and qualify new accounts the moment they reach out to you.
+  </Card>
+</CardGroup>
+
+---
+
+## What we shipped
+
+### 🔑 Sign in to MCP servers with OAuth
+
+Connecting an external tool no longer means pasting an API token — many services never issued one to paste.
+
+- **OAuth 2.0 support.** Add a server, click **Connect**, and sign in with the provider. DeepVista refreshes the token before each use, so a connection does not go stale mid-conversation.
+- **Google Workspace presets.** Sheets, Docs, Drive, Calendar, and Gmail are one-click entries in **Settings → MCP Servers**. These servers are OAuth-only, so they were previously unreachable.
+- **Your credentials stay yours.** The OAuth application is registered once per project by an owner. Each member then connects their own account, and one member's token is never visible to another.
+- **Multiple Gmail accounts.** Connect more than one Gmail account to the same project and address them separately.
+
+### 🧩 Composio as a managed provider
+
+Composio brokers connections to hundreds of applications. Enable it once and your agent can discover and run tools across every toolkit you have connected there, without a separate DeepVista integration per service.
+
+Rather than loading every tool's schema into every prompt, the agent uses a small set of meta-tools to find the right tool on demand — so adding a tenth connected app does not slow down your chats.
+
+Remote code execution tools are deliberately excluded from the allowlist. Connecting a calendar should not hand an agent a shell.
+
+### ✍️ Real-time collaborative editing
+
+Version 0.6.5 introduced card locking, where a second person saw a banner and had to take over. That is replaced.
+
+- **Everyone edits at once.** All editors type into one shared document and changes merge cleanly. No lock, no take-over, no lost draft.
+- **Live cursors and presence.** You see collaborators' cursors as they move, and their avatars in the presence chips at the top of the card.
+- **Table edits and body edits coexist.** Changing a cell in a table writes to the card's body. Previously that edit could be silently reverted hours later when someone with the card open next typed. Those writes are now merged into the live document.
+
+### 🗂️ Vistabase tables you can actually shape
+
+Table structure moved off individual rows and onto the columns, which is where you edit it.
+
+- **Editable column display labels** — rename a column without touching the underlying field.
+- **Text wrapping** in cells, so long values are readable instead of truncated.
+- **Clickable URLs** in table cells.
+- **Sort by choice order** — status and choice columns sort in the order you declared the options, not alphabetically.
+- **Version history for every card type**, not just workflows and notes, with a scrollable history panel inside the card dialog.
+- **Duplicate to another project** now works for notes and context cards, not just workflows.
+- **Sort by title.** Card titles are now a first-class, indexed field, so any list of cards sorts by name — and every card list in the app loads faster as a result.
+
+### 🔗 Sourcing & Relations shows where a card came from
+
+Open a card's **Sourcing & Relations** panel and you now see the chats and workflow runs that produced it, not just the cards it belongs to. Every relationship also records which session or run created it, shown in the relationship tooltip. Older links that predate this change appear too — no migration needed on your side.
+
+### 🏠 A homepage built around your work
+
+- The home feed is organized around **workbenches**, with inline-editable context tables.
+- **Pin workbenches** to set your own order — your arrangement is yours, not the project's.
+- The context-type row became a **type list** with per-workbench memory, and **Created by** defaults to you.
+- **Creator filter and author avatars** in chat history, so you can find your own conversations at a glance.
+
+### 💬 A calmer chat composer
+
+- **⌘/Ctrl+Enter sends** by default, so Enter is free for line breaks.
+- The home composer **collapses until you hover**, keeping the feed clear.
+- **Attached images** moved to a thumbnail strip in the bottom-left of the input.
+- **Slash-command menus were removed** from the editor and chat — they interrupted typing more often than they helped.
+- The **no-ai-slop skill** is now built in, and the agent will not invent a table cell value it has no source for.
+- Context cards open correctly from the **mobile chat popover**.
+
+### ⚡ Automation that runs whether or not you are at your desk
+
+- **Card-change triggers.** A Vistabase card changing can now start a workflow, with source scoping so a trigger only fires for the cards you meant.
+- **Webhook and form runs execute in the cloud.** Previously a run could be queued to a local agent that was not running, where it sat indefinitely — indistinguishable from the trigger never firing. Cloud is now the default, and the run-location picker has been removed from the webhook and form dialogs.
+- **X (Twitter) webhooks verify correctly.** X validates a webhook URL with a challenge request that DeepVista did not answer, so subscriptions were refused or later revoked and no events arrived. That challenge is now answered, and X direct-message events are parsed.
+
+### 🚀 Performance and reliability
+
+- One project-wide update stream replaces a per-card watcher, cutting connection churn on busy projects.
+- Fixed a hang caused by unbounded Redis pub/sub connections.
+- Large notes no longer freeze the home feed.
+- Ticking a task-list checkbox no longer blocks the interface.
+- The notes view no longer floods image generation with reconnects.
+- Data and table insight questions route to Claude Sonnet 5.
+- Project icons and user avatars no longer break on load.
+
+---
+
+## Notes for administrators
+
+- **OAuth client secrets are project-scoped and editor-only.** Members connecting their own accounts cannot alter the project's registered application.
+- **Platform-credentialed servers show no credential form.** Where DeepVista supplies the key, there is nothing for you to paste, so no field is offered.
+- **Feature-gated providers stay hidden until enabled**, including after a connection test. Turning a gate back on restores the server and its settings — nothing is deleted.
