@@ -1,0 +1,81 @@
+---
+title: "Version 0.6.9"
+---
+
+August 7, 2026
+
+Cards are now multiplayer, and connecting a third-party tool no longer means wiring up an endpoint by hand.
+
+**Highlights**
+
+- **Edit the same card as your teammates, at the same time.** No more waiting for someone to close a card before you can type in it. You see their cursor, they see yours, and nobody's edits get overwritten.
+- **Connect hundreds of tools through Composio.** Pick a managed provider instead of registering a Model Context Protocol (MCP) endpoint yourself.
+- **Sign in to MCP servers with OAuth 2.0.** This unblocks Google Workspace servers, so your agents can reach Docs, Sheets, and Drive with a normal sign-in flow.
+- **Give your agents live web research with Exa.** Turn on the Exa provider and your agents can search and read the open web while they work.
+- **See what a run costs.** Token usage is now reported in credits, so you can tell which workflows are expensive before the bill arrives.
+
+---
+
+## Workflows enhanced in our library
+
+Collaborative editing, managed MCP providers, and credit reporting all feed the end-to-end playbooks in the DeepVista library. Here are the workflows they upgrade:
+
+<CardGroup cols={2}>
+  <Card title="Create Your Intelligent CRM Tracker in Minutes" icon="table" href="/tutorials/customer-relationship-tracker">
+    Set up a CRM tracker and let DeepVista keep pipeline stages and next steps up to date from your conversations.
+  </Card>
+
+  <Card title="Automate Lead Research & Targeted Outreach" icon="magnifying-glass" href="/tutorials/lead-research-targeted-outreach">
+    Research, score, and enrich high-fit prospects, then stage personalized outreach.
+  </Card>
+
+  <Card title="Automate Any Gmail Workflow" icon="envelope" href="/tutorials/gmail-daily-summary-workflow">
+    Connect Gmail and ask the agent to run any task you'd normally do by hand.
+  </Card>
+
+  <Card title="Automate Inbound Lead Capture & Qualification" icon="inbox" href="/tutorials/inbound-lead-capture-qualification">
+    Capture and qualify new accounts the moment they reach out to you.
+  </Card>
+</CardGroup>
+
+---
+
+## What we shipped this week
+
+### 👥 Collaborative card editing
+
+Open a card someone else is already editing and just start typing. DeepVista replaced the single-editor lock with live shared editing, so you are never bumped into read-only and you never lose text you already wrote. Presence chips show who else has the card open, now with their profile picture instead of their initials, and you can watch their cursor move through the document. Tag and title changes you make in one tab no longer revert a moment later when the same card is open somewhere else.
+
+### 🔌 Composio as a managed MCP provider
+
+Connect third-party tools through Composio instead of registering each MCP endpoint by hand. Choose the provider in your project settings and the tools become available to your agents.
+
+### 🔑 OAuth 2.0 for MCP servers
+
+Sign in to MCP servers with OAuth 2.0. This unblocks Google Workspace MCP servers, so agents can reach your Google tools through a standard authorization flow rather than a static key.
+
+### 🔍 Exa web research for agents
+
+Turn on the Exa Agent provider to give your agents live web search and page reading. The provider is behind a feature flag while it rolls out.
+
+### 🧬 Chat and run lineage in Sourcing & Relations
+
+Every card now shows where it came from. Open **Sourcing & Relations** to see the chat session or workflow run that produced the card, and follow those links back through the graph.
+
+### 💳 Token consumption reported in credits
+
+Usage now appears in credits rather than raw token counts, so you can compare what different chats and scheduled workflows actually cost.
+
+### 🧹 Fixes in this release
+
+- Creating a table card with a title that already exists is now refused instead of quietly producing a duplicate.
+- MCP tool failures no longer end a turn silently with no output, and Gemini model calls no longer fail on schema field casing.
+- Inbound X (Twitter) webhooks now answer the challenge-response check and parse direct-message events, so DM-triggered skills receive their events.
+- Deploys no longer stall when two branches land database migrations at the same time.
+- Card titles are stored directly rather than derived at query time, which speeds up card search and listing.
+
+---
+
+## Ready to try it?
+
+Open a card with a teammate and start typing at the same time, or connect a Composio tool and let your agent use it. Try it out today and share your feedback with us in the community channel!
