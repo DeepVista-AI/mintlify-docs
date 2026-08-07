@@ -1,0 +1,72 @@
+---
+title: "LinkedIn Auto-Reply"
+sidebarTitle: "LinkedIn Auto-Reply"
+---
+
+Auto-reply to new LinkedIn messages triggered by a webhook using a Unipile account.
+
+## Create a DeepVista Workflow
+
+Ask DeepVista:
+
+```text
+Help me create a new workflow: auto-reply to new LinkedIn messages
+triggered by webhook using my Unipile account. Be friendly, don't
+make promises, and don't share sensitive information.
+```
+
+## Create a Unipile Account
+
+To create an account, [sign up here](https://dashboard.unipile.com/signup/).
+
+<Steps>
+  <Step title="Select LinkedIn as your API">
+    When selecting APIs, check **LinkedIn**.
+
+    <Frame>
+      ![Unipile signup form with LinkedIn selected under APIs](/images/linkedin-auto-reply-select-api.png)
+    </Frame>
+  </Step>
+  <Step title="Connect your LinkedIn account">
+    <Frame>
+      ![Connecting a LinkedIn account from the Unipile dashboard](/images/linkedin-auto-reply-connect-account.gif)
+    </Frame>
+  </Step>
+  <Step title="Get your webhook URL from the workflow card">
+    <Frame>
+      ![Copying the webhook URL from the DeepVista workflow card](/images/linkedin-auto-reply-webhook-url-card.gif)
+    </Frame>
+  </Step>
+  <Step title="Create a webhook and paste the URL">
+    <Frame>
+      ![Creating a Unipile webhook with the copied callback URL](/images/linkedin-auto-reply-create-webhook.gif)
+    </Frame>
+  </Step>
+  <Step title="Generate an access token and copy the command">
+    <Frame>
+      ![Generating a Unipile access token](/images/linkedin-auto-reply-access-token.gif)
+    </Frame>
+  </Step>
+  <Step title="Copy your DSN">
+    You'll find it in the top-left corner of the sidebar.
+
+    <Frame>
+      ![Unipile dashboard with the DSN highlighted in the sidebar](/images/linkedin-auto-reply-copy-dsn.png)
+    </Frame>
+  </Step>
+  <Step title="Provide the command and DSN to DeepVista">
+    ```text
+    Here's the command and the DSN: <paste the copied command and DSN from Unipile>
+    ```
+  </Step>
+  <Step title="Confirm the setup">
+    Upon success, you should see confirmation of the setup.
+
+    <Frame>
+      ![DeepVista confirming the Unipile connection and workflow setup](/images/linkedin-auto-reply-confirmation.png)
+    </Frame>
+  </Step>
+  <Step title="You're ready to go">
+    You're ready to auto-reply to any new LinkedIn messages.
+  </Step>
+</Steps>
