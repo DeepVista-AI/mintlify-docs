@@ -20,7 +20,7 @@
             ]
           },
           {
-            "group": "Quickstart Workflow",
+            "group": "Light Workflow",
             "pages": [
               {
                 "group": "Customer Research & Tracking",
@@ -29,16 +29,19 @@
                   "tutorials/customer-relationship-tracker",
                   "tutorials/inbound-lead-capture-qualification",
                   "tutorials/customer-relationship-tracker-updates"
-                ]
+                ],
+                "expanded": true
               },
               {
                 "group": "Social Media Management",
                 "pages": [
                   "social-media-overview",
                   "tutorials/linkedin-auto-reply"
-                ]
+                ],
+                "expanded": true
               }
-            ]
+            ],
+            "expanded": true
           },
           {
             "group": "Deep Workflow",
