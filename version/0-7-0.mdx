@@ -1,0 +1,49 @@
+---
+title: "Version 0.7.0"
+---
+
+August 8, 2026
+
+The collaborative editor and the chat runtime stop getting in your way.
+
+**Highlights**
+
+- **Edit a card without losing your place.** Images stay put when you press Enter above them, and a card no longer rebuilds itself a moment after it opens and wipes the text you just highlighted.
+- **See what the agent just made, without reloading.** Workflows, table columns, and card edits the assistant creates now appear in place while you watch.
+- **Run two chats at once.** Starting a second conversation while the first is still answering keeps them separate, and quick actions fill only the box you clicked.
+- **Your home page remembers who you filter by.** The **Created by** filter now starts at **Anyone** and keeps whatever you pick, on every device.
+
+---
+
+## Try these on DeepVista
+
+### 1. Add an image to a card, then press Enter above it.
+
+The image holds its place instead of reloading and greying out, and your text selection survives the edit.
+
+### 2. Ask the chat to build a workflow, then open your Workflows list.
+
+The new workflow is already there. The same is true for columns and rows the chat adds to a table card, and for edits the assistant makes to a card you have open.
+
+### 3. Start a second chat while the first one is still answering.
+
+Both conversations keep their own tool steps and their own answer. Connected-app steps now say what they acted on, so you can tell which account or record a tool touched.
+
+### 4. Set the **Created by** filter on your home page to a teammate.
+
+Come back tomorrow, on any browser, and it is still set the way you left it. Share the URL and the link's own filter wins, so a shared view always looks the same for whoever opens it.
+
+## Under the hood
+
+- **Scheduled jobs are scoped to their project.** Built-in job kinds can no longer resolve across a project boundary.
+- **Usage is reported in credits,** with a nightly rollup behind a new admin usage page.
+- **Database cleanup.** Card comments moved onto real `comment` cards, dead columns and unused SQL functions dropped, and the agent sync log trimmed from 182 MB to 56 kB.
+- **Daily planning output links back to your knowledge base.** Generated plans now emit real chat-session and context-card references instead of placeholder text.
+
+## Check out the most popular workflow among GTM leaders
+
+By the end of this tutorial, you will close one continuous loop of automated playbooks to acquire, engage, and retain your customer.
+
+<Card title="Create Your Intelligent CRM Tracker in Minutes" icon="table" href="/tutorials/customer-relationship-tracker">
+  Set up a CRM tracker and let DeepVista keep pipeline stages and next steps up to date from your conversations.
+</Card>
