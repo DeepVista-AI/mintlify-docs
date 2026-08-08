@@ -20,13 +20,17 @@
             ]
           },
           {
-            "group": "Light Workflow",
+            "group": "Quickstart Workflow",
             "pages": [
-              "tutorials/light-workflow-overview",
-              "tutorials/customer-relationship-tracker",
-              "tutorials/lead-research-targeted-outreach",
-              "tutorials/inbound-lead-capture-qualification",
-              "tutorials/customer-relationship-tracker-updates",
+              {
+                "group": "Customer Research & Tracking",
+                "pages": [
+                  "tutorials/light-workflow-overview",
+                  "tutorials/customer-relationship-tracker",
+                  "tutorials/inbound-lead-capture-qualification",
+                  "tutorials/customer-relationship-tracker-updates"
+                ]
+              },
               "tutorials/linkedin-auto-reply"
             ]
           },
