@@ -31,7 +31,13 @@
                   "tutorials/customer-relationship-tracker-updates"
                 ]
               },
-              "tutorials/linkedin-auto-reply"
+              {
+                "group": "Social Media Management",
+                "pages": [
+                  "untitled-page",
+                  "tutorials/linkedin-auto-reply"
+                ]
+              }
             ]
           },
           {
