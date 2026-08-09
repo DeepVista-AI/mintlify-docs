@@ -1,0 +1,53 @@
+---
+title: "Version 0.7.1"
+---
+
+August 9, 2026
+
+Your notes, your cards, and your tabs all get faster and less surprising.
+
+**Highlights**
+
+- **Keep dozens of tabs open without the app hanging.** Every tab used to hold its own live-updates connection; they now share one, so nothing stalls waiting for a free socket.
+- **Open a card faster.** Opening a card makes one request instead of four, and a card shared from another project finally shows its run history.
+- **See when a note last changed.** The notes list now shows a relative timestamp on each card, with the exact date and time on hover.
+- **Stay in the tab you are in.** **Open Workflow** and **Open Note** in a preview now navigate in place instead of spawning a new browser tab.
+- **A better first five minutes.** A project that has notes but no workflow yet shows your real dashboard, and a genuinely empty feed hands you a get-started button that writes the first prompt for you.
+
+---
+
+## Try these on DeepVista
+
+### 1. Open five or six DeepVista tabs at once.
+
+Clicks and reloads keep working. One tab is elected to hold the live card-events stream and broadcasts updates to the rest, so the browser's per-host connection limit no longer starves the app. If a leader tab closes, another takes over and resyncs anything missed during the handover.
+
+### 2. Open a card and watch the run dots.
+
+The card, its tags, its runs, and its run stats now arrive together in a single request. A card shared into your project from somewhere else resolves against its own project, so its run history shows up instead of coming back empty. Live polling during an in-progress run is unchanged.
+
+### 3. Look at your notes list.
+
+Each note card carries a relative timestamp — **2h ago**, **3d ago** — at the bottom. Hover it for the full date and time. Drafts stay blank, since they have no real timestamp yet. While you are there, press the notes-list toggle and the tooltip now tells you its keyboard shortcut.
+
+### 4. Preview a workflow or note, then click **Open Workflow**.
+
+You stay in the same tab. The same is true for **Open Note** and for linked context cards listed inside workflow step popovers.
+
+### 5. Start a project and add a note before you add a workflow.
+
+You get the dashboard, not the onboarding screen — having any feed-visible card is now enough to count as a started project. If the Recent Activity feed really is empty, **Get started with your first workflow** drops a ready-to-edit prompt into the chat box above so you can fill in your company and go. A feed emptied by a search or a person filter keeps its **Go to VistaBase** link.
+
+## Under the hood
+
+- **Faster local development.** The dev server now writes to `.next-dev` instead of sharing `.next` with production builds, so a build no longer wipes the dev cache and forces a minutes-long cold compile. The React Compiler pass runs in production builds only.
+- **Corrupted CSS is gone.** Tailwind was scanning the binary Turbopack cache inside `.next-dev` and emitting mangled utility classes, which produced build warnings and broke the dev server outright. The directory is now excluded from the scan.
+- **Navigation cleanup.** **Download** has been removed from the navigation, and **CLI** moved to the end.
+
+## Check out the most popular workflow among GTM leaders
+
+By the end of this tutorial, you will close one continuous loop of automated playbooks to acquire, engage, and retain your customer.
+
+<Card title="Create Your Intelligent CRM Tracker in Minutes" icon="table" href="/tutorials/customer-relationship-tracker">
+  Set up a CRM tracker and let DeepVista keep pipeline stages and next steps up to date from your conversations.
+</Card>
