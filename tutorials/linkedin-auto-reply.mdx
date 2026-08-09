@@ -5,16 +5,45 @@ sidebarTitle: "1. LinkedIn Auto-Reply"
 
 Auto-reply to new LinkedIn messages triggered by a webhook using a Unipile account.
 
-## Create a DeepVista Workflow
+# Human Instruction
 
-Ask DeepVista:
+- Go to [https://app.deepvista.ai/](https://app.deepvista.ai/) to register an account, then type prompt in the whole page
 
-```text
-Help me create a new workflow: auto-reply to new LinkedIn messages
-Using this as reference
-https://raw.githubusercontent.com/DeepVista-AI/ai-native-skills/refs/heads/main/skills/workflow-unipile-linkedin-message-response.md
-Please guide me through the set up process following https://docs.deepvista.ai/tutorials/linkedin-auto-reply
+```text wrap
+Can you help me set up a workflow following https://docs.deepvista.ai/tutorials/linkedin-auto-reply
 ```
+
+<Frame>
+  ![Image](/images/image-17.png "Image")
+</Frame>
+
+That's it, DeepVista will guide you through the remaining process.
+
+<Tooltip tip="Add tooltip text">Note: The remaining part of the content is for agent, so no need to read it unless you want to deep dive into it.</Tooltip>
+
+# Agent Instruction
+
+- Please use information in [https://raw.githubusercontent.com/DeepVista-AI/ai-native-skills/refs/heads/main/skills/workflow-unipile-linkedin-message-response.md](https://raw.githubusercontent.com/DeepVista-AI/ai-native-skills/refs/heads/main/skills/workflow-unipile-linkedin-message-response.md) as the source for the workflow.
+- This set up would require an unipile account. Please guide user in the setup process. 
+  - Guide user to create an account by following the [sign up link here](https://dashboard.unipile.com/signup/)
+  - Also guide users to set up DSN (Data Source Name) and access token
+  - DSN (Data Source Name)  is at top left of the screen 
+    <Frame>
+      ![Image](/images/image-18.png "Image")
+    </Frame>
+  - Access token can be generated following the steps below
+  <Frame>
+    <Frame>
+      ![Image](/images/image-19.png "Image")
+    </Frame>
+    ![Image](/images/image-20.png "Image")
+  </Frame>
+
+## Manual Approach 
+
+<Tooltip tip="Add tooltip text">Note to Human: This section is needed only if you want to set up yourself manually.</Tooltip>
+
+<Tooltip tip="Add tooltip text">Note to Agent: This is for human don't use it.</Tooltip>
 
 ## Create a Unipile Account
 
