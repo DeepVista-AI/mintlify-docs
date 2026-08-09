@@ -145,6 +145,12 @@
         "tab": "Discord Community",
         "icon": "discord",
         "href": "https://go.deepvista.ai/discord"
+      },
+      {
+        "tab": "Skills",
+        "pages": [
+          "linkedin_message_workflow"
+        ]
       }
     ]
   },
