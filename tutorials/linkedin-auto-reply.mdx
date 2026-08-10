@@ -5,79 +5,29 @@ sidebarTitle: "1. LinkedIn Auto-Reply"
 
 Auto-reply to new LinkedIn messages triggered by a webhook using a Unipile account.
 
-# Human Instruction
-
-- Go to [https://app.deepvista.ai/](https://app.deepvista.ai/) to register an account, then type prompt in the whole page
-
-```text wrap
-Can you help me set up a workflow following https://docs.deepvista.ai/tutorials/linkedin-auto-reply
-```
-
-<Frame>
-  ![Image](/images/image-17.png "Image")
-</Frame>
-
-That's it, DeepVista will guide you through the remaining process.
-
-<Tooltip tip="Add tooltip text">Note: The remaining part of the content is for agent, so no need to read it unless you want to deep dive into it.</Tooltip>
-
-# Agent Instruction
-
-- Please use information in [https://raw.githubusercontent.com/DeepVista-AI/ai-native-skills/refs/heads/main/skills/workflow-unipile-linkedin-message-response.md](https://raw.githubusercontent.com/DeepVista-AI/ai-native-skills/refs/heads/main/skills/workflow-unipile-linkedin-message-response.md) as the source for the workflow.
-- **Prefer your built-in tools over manual dashboard steps.** Once `UNIPILE_API_KEY` and `UNIPILE_DSN` are available, use `create_linkedin_auth_link` to connect the user's LinkedIn account and `create_unipile_webhook` to register the webhook — do NOT send the user to the Unipile dashboard for either of these steps.
-- The only genuinely manual steps are creating the Unipile account and copying the API key and DSN. Guide the user through them:
-  - Guide user to create an account by following the [sign up link here](https://dashboard.unipile.com/signup/) (check **LinkedIn** under API selection)
-  - Also guide users to set up DSN (Data Source Name) and access token
-  - DSN (Data Source Name)  is at top left of the screen 
-    <Frame>
-      ![Image](/images/image-18.png "Image")
-    </Frame>
-  - Access token can be generated following the steps below
-  <Frame>
-    <Frame>
-      ![Image](/images/image-19.png "Image")
-    </Frame>
-    ![Image](/images/image-20.png "Image")
-  </Frame>
-- Once the user has pasted the access token and DSN, save them as the `UNIPILE_API_KEY` and `UNIPILE_DSN` environment variables, then complete the rest with tools:
-  1. Call `create_linkedin_auth_link` and show the returned hosted URL to the user — opening it connects their LinkedIn account. The connection completes out-of-band; DeepVista is notified via webhook.
-  2. Enable the workflow's inbound webhook with `manage_skill_webhook`, then call `create_unipile_webhook` with that URL, source `messaging`, and events `["message_received"]`. This replaces manually creating a webhook in the Unipile dashboard.
-  3. Confirm the setup to the user once both succeed.
-
-## Manual Approach 
-
-<Tooltip tip="Add tooltip text">Note to Human: This section is needed only if you want to set up yourself manually.</Tooltip>
-
-<Tooltip tip="Add tooltip text">Note to Agent: This is for human don't use it.</Tooltip>
-
-## Create a Unipile Account
-
-To create an account, [sign up here](https://dashboard.unipile.com/signup/).
+- Please sign up an DeepVista account at [https://app.deepvista.ai](https://app.deepvista.ai)
+- Please sign up an Unipile account at: [https://dashboard.unipile.com/signup/](https://dashboard.unipile.com/signup/)
 
 <Steps>
-  <Step title="Select LinkedIn as your API">
-    When selecting APIs, check **LinkedIn**.
+  <Step title="Type the following prompt in https://app.deepvista.ai">
+    ```text wrap
 
+    
+    Help me set up a workflow to auto respond linkedin DM
+    ```
+  </Step>
+  <Step title="DeepVista will try to set up the workflow and configure the webhook. In order to move forward, DeepVista would need you to set up a Unipile account.  ">
     <Frame>
-      ![Unipile signup form with LinkedIn selected under APIs](/images/linkedin-auto-reply-select-api.png)
+      <img
+        src="/images/image-21.png"
+        alt="Image"
+        title="Image"
+        className="mx-auto"
+        style={{ width:"91%" }}
+      />
     </Frame>
   </Step>
-  <Step title="Connect your LinkedIn account">
-    <Frame>
-      ![Connecting a LinkedIn account from the Unipile dashboard](/images/linkedin-auto-reply-connect-account.gif)
-    </Frame>
-  </Step>
-  <Step title="Get your webhook URL from the workflow card">
-    <Frame>
-      ![Copying the webhook URL from the DeepVista workflow card](/images/linkedin-auto-reply-webhook-url-card.gif)
-    </Frame>
-  </Step>
-  <Step title="Create a webhook and paste the URL">
-    <Frame>
-      ![Creating a Unipile webhook with the copied callback URL](/images/linkedin-auto-reply-create-webhook.gif)
-    </Frame>
-  </Step>
-  <Step title="Generate an access token and copy the command">
+  <Step title="In your Unipile dashboard, you can cenerate an access token and copy the command">
     <Frame>
       ![Generating a Unipile access token](/images/linkedin-auto-reply-access-token.gif)
     </Frame>
@@ -86,7 +36,11 @@ To create an account, [sign up here](https://dashboard.unipile.com/signup/).
     You'll find it in the top-left corner of the sidebar.
 
     <Frame>
-      ![Unipile dashboard with the DSN highlighted in the sidebar](/images/linkedin-auto-reply-copy-dsn.png)
+      <img
+        src="/images/linkedin-auto-reply-copy-dsn.png"
+        alt="Unipile dashboard with the DSN highlighted in the sidebar"
+        style={{ width:"75%" }}
+      />
     </Frame>
   </Step>
   <Step title="Provide the command and DSN to DeepVista">
@@ -94,14 +48,26 @@ To create an account, [sign up here](https://dashboard.unipile.com/signup/).
     Here's the command and the DSN: <paste the copied command and DSN from Unipile>
     ```
   </Step>
-  <Step title="Confirm the setup">
-    Upon success, you should see confirmation of the setup.
+  <Step title="DeepVista will guide you to authorize Linkedin">
+    DeepVista will create a Linkedin authorization link.
 
     <Frame>
-      ![DeepVista confirming the Unipile connection and workflow setup](/images/linkedin-auto-reply-confirmation.png)
+      ![Image](/images/image-23.png "Image")
     </Frame>
   </Step>
+  <Step title="Authorize Linkedin, you will see a page like this.">
+    <Frame>
+      <img
+        src="/images/image-24.png"
+        alt="Image"
+        title="Image"
+        style={{ width:"88%" }}
+      />
+    </Frame>
+
+    Then put your linkedin credential to login. Note that this is a [unipile.com](http://unipile.com) authorization page. 
+  </Step>
   <Step title="You're ready to go">
-    You're ready to auto-reply to any new LinkedIn messages.
+    You're ready to auto-reply to any new LinkedIn messages
   </Step>
 </Steps>
