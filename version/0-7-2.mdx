@@ -1,0 +1,98 @@
+---
+title: "Version 0.7.2"
+---
+
+August 10, 2026
+
+This release makes your workspace genuinely multiplayer, wires LinkedIn and Google Workspace in without leaving chat, and cuts the request load behind every card you open.
+
+**Highlights**
+
+- **Edit a context card at the same time as your teammates.** The single-editor lock is gone. You now see everyone's cursor and avatar live in the card body, so two people can write in one card without taking turns.
+- **Connect LinkedIn, Google Workspace, and Composio apps from chat.** Ask the agent to wire a message-triggered workflow and it registers the webhook and hosted auth for you, instead of walking you through two dashboards.
+- **Watch agent work appear without reloading.** Workflows, table columns and rows, and edits to a card you already have open now propagate to your screen as the agent makes them.
+- **Open cards faster, and keep a dozen tabs open.** Opening a card is one request instead of four, and every tab now shares a single event stream, so a busy workspace stops hanging.
+- **See usage in credits.** Token consumption is now reported as credits, with a nightly rollup behind it.
+
+---
+
+## Workflows enhanced in our library
+
+Connected apps, live propagation, and the new workflow setup section are building blocks that enhance real, end-to-end workflows in the DeepVista library. Here are the workflows that were upgraded this week:
+
+<CardGroup cols={2}>
+  <Card title="Automate LinkedIn Replies" icon="linkedin" href="/tutorials/linkedin-auto-reply">
+    Connect LinkedIn through hosted auth and let the agent register the webhook and answer incoming messages.
+  </Card>
+
+  <Card title="Automate Your X Presence" icon="x-twitter" href="/tutorials/x-post-workflow">
+    Trigger a workflow from an X mention or DM, now that inbound webhook payloads parse reliably.
+  </Card>
+
+  <Card title="Delegate Linear Work to an Agent" icon="list-check" href="/tutorials/task-delegation-linear">
+    Hand off long-running triage. Delegated tasks now have 30 minutes to finish instead of timing out.
+  </Card>
+
+  <Card title="Build a Light Workflow" icon="wand-magic-sparkles" href="/tutorials/light-workflow-overview">
+    Document prerequisites in the new **Instructions** section so a workflow can set itself up on first run.
+  </Card>
+</CardGroup>
+
+---
+
+## What we shipped this week
+
+### 👥 Collaborative card editing
+
+Write in the same context card as your teammates at the same time. Presence cursors and avatars show you who is editing where, and the old single-editor lock that forced you to wait your turn is gone.
+
+### 🔗 LinkedIn, Google Workspace, and Composio connectors
+
+Connect LinkedIn through Unipile hosted auth, then send and receive messages from a workflow. Composio is now a managed MCP provider, and a new OAuth 2.0 auth scheme unblocks Google Workspace MCP servers. Exa Agent is available as a flag-gated provider.
+
+Ask the agent to set a message-triggered workflow up and it does the wiring itself: it can enable, disable, or regenerate a skill webhook, and register a Unipile webhook using your project's stored credentials. Credentials resolve from `environment_variable` context cards, so you store a key once and every workflow in the project can use it.
+
+### ⚡ Live propagation of agent work
+
+Objects the agent creates now show up as they happen. New workflows appear in your workflow list, new table columns and rows fill in, and edits to a card you already have open update in place — all without a reload.
+
+### 🖼️ Card editor stability
+
+Pressing Enter to split a paragraph no longer reloads the images around it. Cards open in one clean state rather than flickering through a delayed re-render that stole your selection, and a teammate's remote cursor no longer redraws the page under you.
+
+### 🚀 Faster card opens and calmer tabs
+
+Opening a card now calls a single `get_context_card_bundle` endpoint that resolves the card and fetches its tags, runs, and stats concurrently, replacing four separate requests. The bundle is scoped to the card's own project, so a card shared across projects returns its real run history instead of an empty list.
+
+Tabs now elect a leader through the Web Locks API and share one `/api/card_events` stream over a `BroadcastChannel`. A handful of open tabs used to exhaust the browser's six-connection-per-host limit and hang every request in the workspace.
+
+### 💬 Chat that finishes its sentence
+
+A run could answer every tool call and then end with no visible reply, leaving you looking at a silent turn. DeepVista now detects that and asks the model for its closing message. Streaming answers no longer freeze with tool steps vanishing mid-run, concurrent chats stay separate, quick actions apply only to the box you clicked, and steps that call a connected app now name which app they are using.
+
+### 🤖 A more persistent agent
+
+The agent now works a problem harder before it comes back to you. It exhausts alternate tools and query formulations and reports partial progress rather than stopping at the first dead end, and it treats asking you a question as the expensive last resort. When something goes wrong or you push back, it reflects on what it did, checks that against one specific assumption, and proposes a concrete fix. When it does need information, it offers an option menu instead of an open-ended question.
+
+### 📋 Setup instructions in workflows
+
+The workflow format (v2.10.0) gained an optional **Instructions** section, placed before **Workflow**, for prerequisites and external configuration. On a first run — or whenever you ask to set the workflow up — the agent walks you through it. Links you drop in a trigger message are now always fetched and passed to the run instead of being quietly dropped.
+
+### ✨ Notes, navigation, and naming
+
+- Note cards in `/notes` show a relative last-updated time, with the exact datetime in a tooltip.
+- **Open Workflow** and **Open Note** in the preview dialog now navigate in the same tab, as do context card links in workflow step popovers.
+- **Chat history** is now **Session history**, and its **Job** filter is now **Scheduled job**.
+- The home **Created by** filter defaults to Anyone and remembers your choice.
+- A project with notes but no workflow shows the real dashboard, and a genuinely empty activity feed offers a get-started button that prefills your first prompt with concrete example values.
+- The notes list toggle tooltip names its keyboard shortcut, the save confirmation has a **View** button, and the project switcher shows creation dates.
+- **Download** left the desktop nav with **CLI** moved to the end. On mobile, **Discover** and **Download app** are gone, and the notification bell now shares a row with the website link.
+
+### 🔧 Under the hood
+
+- Token usage is reported in credits, backed by a nightly rollup and an admin usage page.
+- Delegated tasks now wait up to 30 minutes before timing out.
+- Scheduled job kinds are scoped per project.
+- X webhooks answer the CRC challenge correctly and parse DM event payloads.
+- Fixed duplicate table card titles, Gemini schema casing that caused silently failing tool turns, a migration race under `--include-all`, and context card title denormalization.
+- Database schema cleanup, production backfills, and a re-versioned CRDT migration that had collided on its prefix.
