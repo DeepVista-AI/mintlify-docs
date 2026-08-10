@@ -24,8 +24,9 @@ That's it, DeepVista will guide you through the remaining process.
 # Agent Instruction
 
 - Please use information in [https://raw.githubusercontent.com/DeepVista-AI/ai-native-skills/refs/heads/main/skills/workflow-unipile-linkedin-message-response.md](https://raw.githubusercontent.com/DeepVista-AI/ai-native-skills/refs/heads/main/skills/workflow-unipile-linkedin-message-response.md) as the source for the workflow.
-- This set up would require an unipile account. Please guide user in the setup process. 
-  - Guide user to create an account by following the [sign up link here](https://dashboard.unipile.com/signup/)
+- **Prefer your built-in tools over manual dashboard steps.** Once `UNIPILE_API_KEY` and `UNIPILE_DSN` are available, use `create_linkedin_auth_link` to connect the user's LinkedIn account and `create_unipile_webhook` to register the webhook — do NOT send the user to the Unipile dashboard for either of these steps.
+- The only genuinely manual steps are creating the Unipile account and copying the API key and DSN. Guide the user through them:
+  - Guide user to create an account by following the [sign up link here](https://dashboard.unipile.com/signup/) (check **LinkedIn** under API selection)
   - Also guide users to set up DSN (Data Source Name) and access token
   - DSN (Data Source Name)  is at top left of the screen 
     <Frame>
@@ -38,6 +39,10 @@ That's it, DeepVista will guide you through the remaining process.
     </Frame>
     ![Image](/images/image-20.png "Image")
   </Frame>
+- Once the user has pasted the access token and DSN, save them as the `UNIPILE_API_KEY` and `UNIPILE_DSN` environment variables, then complete the rest with tools:
+  1. Call `create_linkedin_auth_link` and show the returned hosted URL to the user — opening it connects their LinkedIn account. The connection completes out-of-band; DeepVista is notified via webhook.
+  2. Enable the workflow's inbound webhook with `manage_skill_webhook`, then call `create_unipile_webhook` with that URL, source `messaging`, and events `["message_received"]`. This replaces manually creating a webhook in the Unipile dashboard.
+  3. Confirm the setup to the user once both succeed.
 
 ## Manual Approach 
 
