@@ -2,62 +2,77 @@
 title: "Version 0.6.9"
 ---
 
-August 11, 2026
+**Since this moment, you can unlock more magic on DeepVista, just by using a quick enable button and chatting!** Long story short, we've expanded DeepVista's connectivity engine to integrate with third-party applications via Composio, enabling real-time deep research with Exa Agent and introducing interactive chat decision controls during conversations.
 
-This week we expand DeepVista's connectivity engine — connecting live third-party apps, running real-time deep research with Exa Agent, and introducing interactive chat decision controls during conversations.
+Try:
 
-**Highlights**
+[Find lead emails and build an intelligent CRM tracker](/tutorials/customer-relationship-tracker).
 
-- **Connect external software natively with Composio MCP & OAuth2.** Securely pass managed credentials and grant agents live access to third-party APIs without manual key configuration.
-- **Batch-find lead emails with Exa Agent.** Run live web queries directly inside agent workflows for up-to-date market intelligence and company research.
-- **Guide your agent to act more precisely in chat.** Make choices via structured checkbox widgets (`<ask>` blocks) instead of typing out manual instructions.
-- **Organize projects easily with agent-created Workbenches.** Let agents automatically create custom Workbenches and pin your favorites for instant access.
-- **Trace card lineage and attribution.** See which chat session or workflow execution generated every context card in your project, for complete auditability across team and multi-agent runs.
+[Automate replies on LinkedIn](/tutorials/linkedin-auto-reply).
 
-Remote collaboration and context organization across projects are also getting smarter — [again](/version/0-6-8). You can now co-edit a doc with multiple team members in real time, and ask the agent to drop your recent output (a note, a workflow, or any context card) into a Workbench so it's easy to find later.
+**Additionally, remote collaboration & context organization across projects are getting smarter [again.](/version/0-6-8)**
 
----
+You can now:
 
-## Try these on DeepVista
+- Co-edit a doc with multiple team members in real time.
 
-### 1. Enable Composio and Exa deep research
+![image.png](/images/release-0-6-9-doc-coedit.png)
 
-Connect live APIs and query real-time web content natively inside your agent workflows. To enable Composio, go to **User → Composio**. To enable Exa Agent, go to **Experimental → Enable Deep Research**.
+- Ask the agent to drop your recent output & ongoing work process—a note, a workflow, or any context card—into a workbench and find them easily.
 
-<Frame>
-  ![Enable Composio and Exa deep research](/images/release-0-6-9-exa-deep-research.gif)
-</Frame>
+![image.png](/images/release-0-6-9-workbench-drop.png)
 
-### 2. Answer `<ask>` blocks inline
+# Want to dive in?
 
-Prevent your agent from guessing missing context or stopping mid-workflow to ask open-ended questions. When an agent presents options during a run, click your preferred choices directly on the interactive card to resume execution.
+**Technically, you can:**
 
-<Frame>
-  ![Answer ask blocks inline](/images/release-0-6-9-ask-blocks.gif)
-</Frame>
+- **Connect external software natively with Composio MCP & OAuth2:** Securely pass managed credentials and grant agents live access to third-party APIs without manual key configuration.
+- **Batch-find lead emails with Exa Agent:** Run live web queries directly inside agent workflows for up-to-date market intelligence and company research.
+- **Guide your agent to act more precisely in chat:** Make choices via structured checkbox widgets (`<ask>` blocks) without typing out manual instructions.
+- **Organize projects easily with agent-created Workbenches:** Let agents automatically create custom Workbenches and pin your favorites for instant access.
 
-### 3. Organize outputs into a Workbench
+# **What we shipped**
 
-Keep growing projects structured automatically, without manual folder creation and navigation. Ask your agent to organize outputs into a new Workbench.
+### 1. Composio Managed MCP & Exa Web Search
 
-<Frame>
-  ![Organize outputs into a Workbench](/images/release-0-6-9-workbench-organization.gif)
-</Frame>
+Connect live APIs and query real-time web content natively inside your agent workflows.
 
-### 4. Trace a card back to its source
+**How to use it:**
 
-Open any context card's details panel to view the chat sessions and workflow executions that produced it.
+- To enable Composio, navigate to **User → Composio**.
 
-<Frame>
-  ![Trace a card back to its source](/images/release-0-6-9-card-lineage.gif)
-</Frame>
+![image.png](/images/release-0-6-9-enable-composio.png)
 
-## Ready for magic? Try out these automated workflows today
+- To enable Exa Agent, navigate to **Experimental → Enable Deep Research.**
 
-<Card title="Build a Real-Time Intelligence CRM Tracker and Capture Lead Emails" icon="table" href="/tutorials/customer-relationship-tracker">
-  Set up a CRM tracker and let DeepVista keep pipeline stages, lead emails, and next steps up to date from your conversations.
-</Card>
+![Screen Recording 2026-08-11 at 6.26.12 PM_2-12s.gif](/images/release-0-6-9-exa-deep-research.gif)
 
-<Card title="Automate LinkedIn Replies" icon="linkedin" href="/tutorials/linkedin-auto-reply">
-  Auto-reply to LinkedIn messages and DMs with message linking built in.
-</Card>
+1. **&lt;Ask&gt; blocks that present questions & options inside chat**
+
+Prevent your agent from guessing missing context or stopping mid-workflow to ask open-ended questions.
+
+- **How to use it:** When an agent presents options during a run, click your preferred choices directly on the interactive card to resume execution.
+
+![Screen Recording 2026-08-11 at 6.33.36 PM_27-60s_3x.gif](/images/release-0-6-9-ask-blocks.gif)
+
+### 3. Agent Workbench Organization
+
+Keep growing projects structured automatically without requiring manual folder creation and navigation.
+
+- **How to use it:** Ask your agent to organize outputs into a new Workbench.
+
+![Screen Recording 2026-08-11 at 7.08.53 PM_0-5s_and_2m55-3m07s.gif](/images/release-0-6-9-workbench-organization.gif)
+
+### 4. Card Lineage Tracing & Attribution
+
+Trace which chat session or workflow execution generated every context card in your project. Provides complete auditability for team collaboration and multi-agent workflow runs.
+
+- **How to use it:** Open any context card details panel to view its connected source chat sessions and workflow executions.
+
+![Screen Recording 2026-08-11 at 7.26.26 PM_4-10s.gif](/images/release-0-6-9-card-lineage.gif)
+
+## Ready for magic? Try out these automated workflows today:
+
+[Build a real-time intelligence CRM tracker and capture lead emails](/tutorials/customer-relationship-tracker).
+
+[Automate LinkedIn replies with message linking and DMs](/tutorials/linkedin-auto-reply).
