@@ -139,6 +139,40 @@
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/tutorials/light-workflow-overview",
+      "destination": "/tutorials/customer-research-and-tracking"
+    },
+    {
+      "source": "/tutorials/customer-research-and-tracking-overview",
+      "destination": "/tutorials/customer-research-and-tracking"
+    },
+    {
+      "source": "/tutorials/customer-relationship-tracker",
+      "destination": "/tutorials/customer-research-and-tracking#1-research-leads-and-set-up-a-crm-tracker"
+    },
+    {
+      "source": "/tutorials/customer-relationship-tracker-updates",
+      "destination": "/tutorials/customer-research-and-tracking"
+    },
+    {
+      "source": "/tutorials/lead-research-targeted-outreach",
+      "destination": "/tutorials/customer-research-and-tracking#2-draft-send-and-schedule-outreach-email"
+    },
+    {
+      "source": "/tutorials/inbound-lead-capture-qualification",
+      "destination": "/tutorials/social-media-campaign#get-notified-with-inbound-activities"
+    },
+    {
+      "source": "/tutorials/linkedin-auto-reply",
+      "destination": "/social-media-management"
+    },
+    {
+      "source": "/social-media-overview",
+      "destination": "/social-media-management"
+    }
+  ],
   "logo": {
     "light": "/images/NewDeepvistafiulllogonameblack(4).png",
     "dark": "/images/NewDeepvistafiulllogonamewhite(5).png",
@@ -147,14 +181,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Community",
+        "href": "https://go.deepvista.ai/discord"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Open DeepVista",
+      "href": "https://app.deepvista.ai"
     }
   },
   "contextual": {
@@ -171,9 +205,7 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "discord": "https://go.deepvista.ai/discord"
     }
   },
   "description": "Stop repeating yourself. DeepVista turns your feedback into consistent execution across your team and agents."
