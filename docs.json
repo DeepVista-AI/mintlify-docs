@@ -22,35 +22,9 @@
           {
             "group": "Light Workflow",
             "pages": [
-              {
-                "group": "Customer Research & Tracking",
-                "pages": [
-                  "tutorials/customer-research-and-tracking-overview",
-                  "tutorials/customer-relationship-tracker",
-                  "tutorials/lead-research-targeted-outreach",
-                  "tutorials/customer-relationship-tracker-updates"
-                ],
-                "expanded": true
-              },
-              {
-                "group": "Social Media Campaign",
-                "pages": [
-                  "tutorials/social-media-campaign-overview",
-                  "tutorials/social-media-campaign-content-library",
-                  "tutorials/social-media-campaign-build-campaign",
-                  "tutorials/social-media-campaign-daily-tracking",
-                  "tutorials/social-media-campaign-lead-follow-up"
-                ],
-                "expanded": true
-              },
-              {
-                "group": "Social Media Management",
-                "pages": [
-                  "social-media-overview",
-                  "tutorials/linkedin-auto-reply"
-                ],
-                "expanded": true
-              }
+              "tutorials/customer-research-and-tracking",
+              "tutorials/social-media-campaign",
+              "social-media-management"
             ],
             "expanded": true
           },
