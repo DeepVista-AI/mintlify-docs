@@ -1,12 +1,32 @@
 ---
-title: "LinkedIn Auto-Reply"
-sidebarTitle: "1. LinkedIn Auto-Reply"
+title: "Social Media Management"
+description: "Automate your social distribution and inbound engagement without losing personal context or sending generic AI responses."
 ---
+
+<Tip>
+  **Our Core Playbook:** This is the exact workflow our team uses to handle inbound DMs, auto-reply on LinkedIn and X, and draft structured social posts from product updates.
+</Tip>
+
+Automate your social distribution and inbound engagement without losing personal context or sending generic AI responses.
+
+## Who should read this
+
+This guide is designed for **founders, marketing operators, and developer advocates** who want to maintain an active social presence and respond instantly to inbound interest.
+
+You should follow this playbook if you:
+
+- **Receive inbound messages or comments on LinkedIn and X** and want contextually relevant replies drafted automatically.
+- **Want to capture leads from social interactions** directly into your VistaBase CRM tracker.
+- **Convert internal notes, product updates, or trending topics** into ready-to-publish X posts.
+
+## 1. LinkedIn Auto-Reply
 
 Auto-reply to new LinkedIn messages triggered by a webhook using a Unipile account.
 
 - Please sign up an DeepVista account at [https://app.deepvista.ai](https://app.deepvista.ai)
 - Please sign up an Unipile account at: [https://dashboard.unipile.com/signup/](https://dashboard.unipile.com/signup/)
+
+### Connect Unipile and DeepVista
 
 <Steps>
   <Step title="Type the following prompt in https://app.deepvista.ai">
@@ -46,6 +66,11 @@ Auto-reply to new LinkedIn messages triggered by a webhook using a Unipile accou
     Here's the command and the DSN: <paste the copied command and DSN from Unipile>
     ```
   </Step>
+</Steps>
+
+### Authorize LinkedIn
+
+<Steps>
   <Step title="DeepVista will guide you to authorize Linkedin">
     DeepVista will create a Linkedin authorization link.
 
@@ -63,8 +88,13 @@ Auto-reply to new LinkedIn messages triggered by a webhook using a Unipile accou
       />
     </Frame>
 
-    Then put your linkedin credential to login. Note that this is a [unipile.com](http://unipile.com) authorization page. 
+    Then put your linkedin credential to login. Note that this is a [unipile.com](http://unipile.com) authorization page. 
   </Step>
+</Steps>
+
+### Go Live
+
+<Steps>
   <Step title="After you login, now you can go back to DeepVista and type">
     `Set up the workflow webhook callback URL using manage_skill_webhook.`
 
