@@ -20,7 +20,7 @@
             ]
           },
           {
-            "group": "Light Workflow",
+            "group": "Playbooks",
             "pages": [
               {
                 "group": "Customer Research & Tracking",
@@ -35,7 +35,7 @@
             "expanded": true
           },
           {
-            "group": "Deep Workflow",
+            "group": "Deep Walkthrough",
             "pages": [
               {
                 "group": "Required Set Up",
