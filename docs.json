@@ -23,6 +23,7 @@
             "group": "Light Workflow",
             "pages": [
               "tutorials/customer-research-and-tracking",
+              "tutorials/apollo-integration",
               "tutorials/social-media-campaign",
               "social-media-management"
             ],
