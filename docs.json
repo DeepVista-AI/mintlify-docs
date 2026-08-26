@@ -8,6 +8,12 @@
     "dark": "#174a3f"
   },
   "favicon": "/images/DeepVistaProfilePic(2).png",
+  "integrations": {
+    "posthog": {
+        "apiKey": "phc_zkTyPdRk7Jb3ezj2S6b1j4BgSFkNilck75fWrxazSZd",
+        "sessionRecording": true
+    }
+  },
   "navigation": {
     "tabs": [
       {
