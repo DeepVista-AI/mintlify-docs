@@ -1,0 +1,446 @@
+---
+title: "Version 0.7.1"
+---
+
+August 25, 2026
+
+Version 0.7.1 is the release around the Trackers work in 0.7.0. A Google Calendar invite or a Gmail message can now start a workflow on its own. Your workbenches have a page of their own, your chats file themselves into the workbenches they touch, and search finds a card by its title and its whole body. Notifications reach you the moment they are raised, you can link to a single line inside a card, and a chat that drops when your phone sleeps comes back with its answer instead of an error. Every card is now one collaborative document with a single owner, `/vistabase/<id>` is the canonical address for all of them, and Table cards are called Databases, all the way down to the stored type. A brand new project answers its own first prompt instead of leaving you at an empty chat, a database can be snapshotted before you change it, and a note that read blank to the agent repairs itself.
+
+**Highlights**
+
+- **Let a calendar invite or an email start a workflow.** A workflow can subscribe to a Google Calendar or Gmail event through your Composio connection and run itself when that event fires, with no secret URL for anything to post to.
+- **Keep your answer when your phone sleeps.** Switching apps mid-answer used to kill the stream and lose the reply. DeepVista now recognises a backgrounded tab, keeps the run alive server-side, and shows you the finished answer when you come back.
+- **Edit a card without it duplicating itself.** Card collaboration was rebuilt around one owner for each document, so an agent edit and your typing can no longer land as two copies of the same paragraph, and a card that rendered blank is repaired in place.
+- **Press ⌘K to find a card.** A search palette opens from any page, shows your most recent cards before you type, and opens the one you pick.
+- **Find a card by what is in it.** Search indexes a card's title and its whole body, re-indexes on every edit, and matches prefixes, so a note you just wrote comes back by its own name.
+- **Browse your workbenches.** Workbenches have their own page with a searchable grid, a list or grid toggle, and a creator filter, and you can give each one an icon and a color.
+- **Find a chat by the workbench it was about.** A conversation files itself into the workbenches whose cards it touches, and you can start a new chat straight from a workbench.
+- **See a notification the moment it is raised.** New notifications arrive as a toast while you work, from any project you can edit, instead of waiting for the bell to poll.
+- **Link to one line in a card.** Hover any block to copy a link straight to it. Opening that link scrolls the card to the line and flashes it.
+- **Answer a workflow's inputs before it runs.** **Run** collects every declared input up front, prefills your defaults, and lists every past run of the workflow.
+- **Pin a workflow step open.** A step popover becomes a floating panel you can drag around the canvas while you click other nodes, and it stays where you left it.
+- **Approve a scheduled job before it starts running.** The agent now creates a schedule paused, shows you its cadence, timezone, and next run time, and activates it only when you say so.
+- **Start your first run without knowing what to type.** An empty chat offers two starter prompts, answers the one you pick instantly, turns your answers into an organization card, and asks where to file what it produces.
+- **Snapshot a database before you change it.** **Snapshot** writes the whole grid, as you are looking at it, into a card of its own that you can read, compare, and ask the agent to restore.
+- **Ask the agent to publish a workflow's form.** You can now share, unshare, or rotate a workflow's public form link in conversation, instead of only from the card's form settings.
+- **Press Enter to send.** Enter sends your message by default and Shift+Enter makes a new line. The send button greys out while a file is still uploading.
+- **Let editors change project settings.** Project settings are no longer owner-only, while ownership transfer stays with the owner.
+- **Open cards faster and keep a dozen tabs open.** Opening a card is one request instead of six, and every tab shares a single event stream.
+
+---
+
+## Workflows enhanced in our library
+
+Event triggers, live notifications, shared connectors, full-text search, and a card layer that holds still under concurrent editing are building blocks that enhance real, end-to-end workflows in the DeepVista library. Here are the workflows that were upgraded this cycle:
+
+<CardGroup cols={2}>
+  <Card title="Research leads and track customers" icon="magnifying-glass" href="/tutorials/customer-research-and-tracking">
+    Lead research looks for an email and a LinkedIn profile every time and falls back to public web search before asking you. Adding a row asks you for its values straight away instead of reading the whole tracker first.
+  </Card>
+
+  <Card title="Enrich a tracker from Apollo" icon="rocket" href="/tutorials/apollo-integration">
+    Connected apps live in one shared **Connectors** card, and your Composio session now connects itself the first time a turn needs it.
+  </Card>
+
+  <Card title="Automate LinkedIn replies" icon="linkedin" href="/linkedin_message_workflow">
+    Connect LinkedIn through hosted auth and let the agent answer incoming messages. It can now work your pending connection invitations too.
+  </Card>
+
+  <Card title="Run a content marketing campaign" icon="megaphone" href="/tutorials/social-media-campaign">
+    A new skill turns your product docs into a 10-day campaign: an indexed library of posts with UTM-tracked links, an inbound form for the leads they bring in, and a daily job that dispatches the next one.
+  </Card>
+
+  <Card title="Delegate Linear work to an agent" icon="list-check" href="/tutorials/task-delegation-linear">
+    Hand off long-running triage. Delegated tasks have 30 minutes to finish, and a tool call that hangs now fails loudly instead of stalling the turn forever.
+  </Card>
+</CardGroup>
+
+---
+
+## What we shipped
+
+### 📅 Workflows that a calendar invite or an email can start
+
+You could already start a workflow from outside DeepVista two ways: the per-skill webhook and the public input form. Both need something out there to know a secret URL and post to it. A workflow can now subscribe instead. Pick a Google Calendar or Gmail event on the connection you already made through **Connectors**, and that event starts the run.
+
+The first workflow built on it prepares you for a meeting. A calendar invite arrives, and the agent researches the attendees and writes you a prep note before you sit down.
+
+The inbound endpoint is one URL for every member and every toolkit, so its signature is the whole gate rather than a secret buried in the path. Every delivery is verified before anything else happens, and a deployment that is missing the signing secret refuses deliveries outright instead of accepting ones it cannot tell from a forgery. Repeat deliveries are collapsed by their delivery id, so an at-least-once retry does not write you a second prep note for the same meeting. If you re-authorize a toolkit and your stored subscription goes stale, your workflow keeps firing rather than going quiet with nothing in the UI to explain why, except where two of your own subscriptions on the same app are genuinely ambiguous, in which case it declines to guess rather than run against the wrong calendar.
+
+### 🔗 A form link the agent can hand out
+
+A workflow's public form, the page you send someone so they can start a run without an account, could only be published from the card's **Form** settings dialog. You can now ask the agent for it. It reports whether a form is already shared, publishes one, unpublishes it, or rotates the link if it has been passed around too widely. Publishing twice is safe: an already-shared link keeps working rather than being replaced under whoever is holding it.
+
+The agent also tells you which inputs the form will render, so it can warn you up front when a workflow declares none and the page falls back to a single free-text box. It knows the difference between the two ways in as well, and will point you at the webhook when something machine-driven needs to start the run, and at the form when a person does.
+
+### 📱 A chat that survives your phone going to sleep
+
+A phone does not keep a backgrounded tab alive. Android and iOS freeze the page, throttle its timers, and let the operating system reclaim the idle connection, so a chat turn still generating when you switched apps came back as a network error. The run itself was fine: the backend kept going and saved the finished answer. Only the transport died, and you got a hard error toast and lost the response.
+
+DeepVista now tells the two cases apart. A drop that happened while the tab was hidden is treated as recoverable, so instead of a toast the chat re-reads the session when you return and the completed turn simply appears. A drop while the tab was in front of you is still a real failure and still tells you so, immediately.
+
+Three follow-ons came with it:
+
+- **A long silent step keeps the connection open.** Model reasoning, a web search, or a multi-minute tool call used to leave the wire quiet for longer than the 30 to 60 second idle timers that carrier networks actually enforce. A keepalive frame now goes out every 15 seconds. It waits on a slow step rather than cancelling it.
+- **A turn under recovery says so.** The interface used to mark a turn finished the instant the socket dropped, so a still-generating answer sat there looking like the final one. The affected message now shows a loading state and a "checking if this finished" caption, and a foregrounded tab polls rather than waiting for a resume event that will never come.
+- **Recovery waits long enough.** The attempt budget was written for resume events and burned through in about 16 seconds once polling was added, so recovery gave up and reported the answer lost while the backend was still writing it. The budget now covers about six minutes.
+
+A socket the operating system discards silently also used to leave the reader pending forever, which wedged the composer in its streaming state until you reloaded. A stall watchdog closes that out.
+
+On Android, the on-screen keyboard no longer covers the composer you are typing into. The layout viewport does not resize when the keyboard opens, so nothing was repositioning the composer; DeepVista now scrolls it back into view itself.
+
+### 🖇️ One owner for every card document
+
+Card collaboration was rebuilt rather than patched. Its defects traced to three design faults rather than three bugs: authority lived in the memory of whichever server process held the card, content flowed in both directions between the live document and the readable markdown copy, and writes from outside the document could neither be guarded nor refused. Each previous fix added another special case, so nearly every branch of the file cited a ticket.
+
+What changed for you:
+
+- **A card no longer duplicates its own body.** When the agent edited a card, it read the document, spent a round trip rendering the change, and applied that change to whatever the document had become in the meantime. If the document had picked up the same text from an autosave or a reconnected editor, the two inserts landed side by side and you saw the paragraph twice. Edits now re-check the document before applying, re-render against it if it moved, and overlapping saves of the same card are serialized.
+- **A card that rendered blank is repaired.** A row that held no document at all still counted as "this card has a document", so seeding skipped it forever and the client fallback was disarmed too. The card was permanently blank even though its readable body was intact, and the next render would have erased that body as well. Those rows are now recognised, rebuilt from the body that survived, and a render that would write an empty document over a real body is refused outright.
+- **A stale tab can no longer overwrite a card you are all working in.** Any tab could post its own plain copy of the text back and delete every edit made since it last wrote one, and a dropped socket was enough to set it off. Only a tab in sync with the document sends the copy now, only when it changed, and only one tab is elected to send it. A write from outside the document is merged into what is there rather than replacing it, and a brief disconnect reconnects the editor instead of rebuilding it around an old buffer.
+- **Renaming a card no longer reverts its body.** An unsaved title froze the card's copy of the body, and the next save posted that stale copy over whatever had been written in the meantime, including a saved table layout, a column schema, or an agent run's edits. Editing the title now holds only the title.
+- **A card whose server instance died mid-edit is readable again.** The scheduled cleanup job saved the document correctly and then left the readable body a version behind, which is exactly the staleness it exists to prevent. Search, embeddings, the agent, the grid, and export all read that body, so a card could look stale to every one of them until a human next opened it. The job now renders after it saves.
+- **A card the agent called blank is readable again.** The step that copies a card's document back to its readable body was asking the database for a column that no longer exists, and the failure came back looking like "this card was deleted", so the copy quietly stopped running. The document was intact and the editor showed it, but everything that reads the body instead, search, embeddings, the agent, the grid, and export, saw a version from before the change. 444 of 1,103 cards were affected. The read now uses the column the body actually lives in, a failed read is told apart from an empty card, and the backlog is folded forward.
+- **A card that fell behind while nobody was watching now catches up on its own.** A failed copy used to be remembered only in the memory of the server process that hit it, so when that process ended, the card stayed behind forever with nothing recording that it had. Each card now stamps when it was last copied, and a scheduled sweep picks up any card whose stamp is older than its content and repairs it.
+- **Credential cards get no document.** An `environment_variable` card's body is a secret and is deliberately never stored in plaintext, so it is excluded from the collaborative layer rather than routed around that protection.
+
+Underneath, durability lives in Postgres, ordering comes from a Redis stream, and every save merges the durable state in first, so safety rests on saves being append-only rather than on the stream being lossless. Rendering is debounced at one second idle with a fifteen second ceiling, which is 11 renders across three minutes of normal editing where the old fixed tick produced 65, with lower latency for a single edit. A 36-fixture corpus pins exactly which markdown constructs survive a whole-body round trip, so a write that would damage content the format cannot carry is refused rather than applied. Two leaks closed with it: a session credential refresh that outlived the card it belonged to and re-minted forever for a card nobody had open, and a document status read that dragged the entire card body across the wire on every session start.
+
+### 🗂️ A page for your workbenches
+
+Workbenches now have their own page with a searchable grid, reachable from the main menu. Opening one no longer drops you into a chat, so you can browse straight to the next one. Give each workbench an icon and a color when you create or edit it.
+
+A workbench feed switches between the row list and the same card grid used on `/notes` and `/skills`, shows the creator's avatar on grid tiles, and carries the same person filter the home feed has, so you can read just what a teammate added. The panel's collapse toggle works: it was shown but wired to nothing, so clicking it left the gallery in place.
+
+A new pinned-items menu lists your pinned workbenches, notes, and workflows together in one searchable popover, grouped with the primary navigation, and pinned cards are back in the VistaBase type listings. The workbench feed in the right panel scrolls, where cards past the fold used to be clipped with no way to reach them.
+
+Workflows are browsable alongside your other saved items, with their own section and filter. Your chat history shows which filters are applied as clearable pills, and the separate workflow and scheduled-job filters are now one **Run** choice. A run's status dot shows what the run is doing right now instead of the last step it happened to write down.
+
+On a phone, the left panel scrolls as one list with the project switcher pinned at the top and your account row at the bottom, and your pinned items sit above the chat history in collapsible groups.
+
+### 💼 Chats that file themselves in a workbench
+
+A workbench collected cards but never the conversations about them, so the chat where you built a tracker was findable only by scrolling your history. Chats now file themselves. When a turn touches a card that sits in a workbench, runs a workflow filed in one, or you name a workbench in your message, the agent tags the conversation with that workbench before it replies. Reading or searching a card counts as touching it, so a question you never wrote anything for still lands in the right place, and cards the conversation creates inherit the same workbench.
+
+Unlike other cards, a chat can belong to several workbenches at once, because one conversation legitimately spans them. Two surfaces read the link:
+
+- A workbench header has a **Chats** button listing the chats and workflow runs filed there, with a **New chat** button that opens a conversation already tagged with that workbench.
+- Chat history rows carry a workbench pill. One workbench names itself, several collapse to **N workbenches** and open a list, and clicking either opens that workbench in the gallery's right panel.
+
+Both popovers search the server now. The search box used to filter only the rows already loaded, which meant the first 10 for a card and 20 for a workbench, so a word from an older chat answered **No chats match**. Both lists page as you scroll instead of stopping at their first screen, and a count reads `20+` while more remain rather than claiming the page you can see is the whole list.
+
+### 🧭 A workbench you can navigate away from
+
+Opening a workbench used to write a query parameter with no history entry behind it, so **Back** walked off `/workbenches` entirely instead of closing what you had just opened. A workbench is now its own page at `/workbenches/<id>`, the way `/notes` and `/skills` detail views already were. On a phone, tapping a workbench navigates there rather than raising a bottom drawer, and cards you open from its feed render inline as tabs, each pushing its own history entry, so **Back** steps through them one at a time.
+
+Workbenches created before ids were introduced carry their title as their id, so route segments are encoded on the way in and decoded on the way out. A workbench named `My New Folder` resolves instead of missing the registry.
+
+Your right-panel tab set now persists per chat session. It survived only a reload whose URL already pointed at the saved view, so leaving a chat dropped the set and opening a different card wiped it. Tabs are stored per session id, so a set survives a browser restart and follows the session it belongs to rather than pooling every new chat together. A new chat starts clean, the URL's own view still wins, and returning to a chat reopens the view you left it on. Restored sets cap at 12 tabs.
+
+The workbench feed's type chips read the workbench. They used to open on a fixed Notes and Workflows pair with no counts, so a workbench full of people and files looked empty until you went hunting through **More**. A workbench now opens on the types it actually holds, each chip carrying its count.
+
+### 🔍 Search that reads the whole card
+
+A card that plainly contained your query did not always come back. The search index was built from one field: the five most frequent words of the card's description, computed once when the card was created. A card's **title** was never searchable, so a note could miss on its own exact name, and a card created empty and written into later, like a Quick Note or a workflow you scaffolded and then filled in, kept keywords describing a body it no longer had.
+
+Search now indexes the title, the keywords, the full body, and a workflow's chart, weighted in that order, and re-indexes whenever you edit the card. Prefix matching means a partial word finds the card. All 11,843 existing cards were backfilled.
+
+**Press ⌘K anywhere.** A search palette opens from any page in the workspace. Empty, it shows your most recently updated cards. Typing narrows them as you type rather than after a pause, and Enter opens the card on its own route. The shortcut stays out of the way where it already means something, so ⌘K inside an input or the editor is still Quick Edit. There is also a search button in the left nav rail for reaching the palette without the keyboard.
+
+### 🧱 One address for every card
+
+`/vistabase/<id>` is now the canonical address for every card, notes and workflows included, so a link you copy from one surface opens the same way everywhere. Existing `/notes/<id>` and `/skills/<id>` links keep working through a redirect.
+
+The `/vistabase` landing page was rebuilt around what it is for. The **Recent Captures** table is gone, the per-type count tiles are larger and centered as the page's focus, and a featured top row puts **Database**, **Person**, and **Organization** ahead of the rest. The home feed's default cluster is now Notes, Databases, and Workflows. On a short screen the page anchors to the top and scrolls normally instead of centering itself and clipping the row you were trying to read.
+
+**Table cards are called Databases.** The rename started as a display name and now goes all the way down: the stored card type is `database`, the skill that maintains one is `deepvista-database`, and the agent's own vocabulary matches what you read on screen. Existing cards were converted in place and kept their recency, and anything still sending the old `table` spelling, a stale browser tab or an older CLI, is accepted and mapped forward. Nothing you have built needs updating.
+
+### 📊 Databases that hold still while you work
+
+Version 0.7.0 covered the Trackers overhaul. Four smaller things shipped alongside it.
+
+**A database created before August 6 could render blank**, and its version history with it, even though every row, cell, and version was intact on the server. A database is only its header and schema, since each row is a separate card linked to it, and a change that gave those links a dedicated type shipped without converting the existing ones. A database you never edited again was never rewritten, so its rows stayed invisible. The links are converted in place: 315 of them, across 25 databases. Nothing was lost.
+
+**An edit in progress survives a live update.** Typing into a cell while another row changed lost what you had typed. Rows were tracked by their position, the default sort is most-recently-updated first, so any incoming update re-sorted the grid, moved the row you were editing, and tore down the cell under your cursor. The half-typed value could even be committed onto whichever row slid into that position. Rows are keyed by card id now, so a reorder moves the row instead of rebuilding it, and the grid holds still while a cell is open.
+
+**Add a new row** is much faster to answer. Clicking it used to send the agent off to load two skills, read the card, and list its rows, roughly forty seconds of work, before it asked you for anything. The prompt now carries the row's card type, the column schema with each column's options and descriptions, and the database's own description, so the agent's first reply is the question. It also lands in the conversation you already have open rather than opening a fresh floating chat over it.
+
+**Enum columns sort alphabetically, like every other column.** An earlier change stored an enum cell as its position in the column's option list so that sorting returned declared order. A position has to stay correct through every writer and every schema edit, and it did not: editing a column's options stranded every existing row, and any writer that skipped the repair left bare labels that sorted ahead of encoded ones one way and behind them the other. A column read back as medium, low, high. The scheme is removed, along with the 99-option cap it imposed and its rejection of labels that happened to look like a rank. An enum's options are the values the column accepts, not an order.
+
+A database also declares its own Title column correctly, an empty one still renders as a grid with its header and an **Add a new row** action rather than dropping to a line of prose, and a wide one can be reordered: dragging a header near either edge scrolls the grid, faster the closer you get.
+
+### 📸 A snapshot of a database you can go back to
+
+A database's version history could tell you what its header and schema looked like last Tuesday, but not what was in it. Rows are separate cards, so history could only re-link the rows that still exist, and it showed them with today's contents rather than the contents they held at the time. A row edited since read as though it had always said that, and a row deleted since could not be brought back at all.
+
+**Snapshot** answers the question directly. It reads every row, renders the grid exactly as **Export CSV** would, same rows and same columns, and writes it into a card of its own linked back to the database. Because the whole table lives in the snapshot's body rather than in links to rows, it keeps saying what it said even after those rows are edited or deleted. Each snapshot is titled with the instant it was taken, so a list of them reads as a timeline, and you can ask the agent to restore one.
+
+### 🔔 Notifications that arrive as they happen
+
+A new notification now raises a toast on your screen while you work. Notification cards are created through the service layer, which never announced itself, so the bell only moved on its own poll. It now emits an inbox ping on create.
+
+The ping travels on a channel scoped to you rather than to a project, because your inbox spans every project you can edit: something raised in a project you are not looking at still has to reach you. That channel rides the existing card-event stream, so it costs no extra browser connection, and the poll drops from every 30 seconds to every 2 minutes as a backstop rather than the delivery path.
+
+A run notification shows the agent's closing reply and opens the run at its own chat session. Read and unread rows are separated into two tones so a full inbox is scannable.
+
+The bell also loads a page at a time. It showed a handful of rows but fetched your whole inbox, and every notification title and body is decrypted server-side, so opening the app cost you your entire history. The inbox now reads 20 rows instead of 100, with **has more** answered by reading one row past the page instead of a second count query, and the unread badge gets its own endpoint that never decrypts anything.
+
+### ⏰ A schedule you approve before it runs
+
+Asking the agent to set something up on a cadence used to create a live job as a side effect of the conversation. The agent now creates the schedule paused, tells you its cadence, its timezone, and when the next run would be, and shows an activation block with the choice in it. Nothing runs until you pick **Activate now**, and keeping it paused is a real option rather than something you have to go and undo.
+
+### 👥 Project settings for editors
+
+Editors can now change project settings. Previously only the owner could, even though **Editor** is the role you give a teammate who is meant to run the project with you. The permission is enforced in the database rather than in the form, so the CLI and the web app agree: viewers and non-members still see nothing, and a guard blocks anyone but the owner from taking ownership. Transferring a project remains an owner-only action.
+
+Sharing a card or a skill out of a project stays owner-only, and the UI now says so. A collaborator who opened the share dialog on someone else's project got a raw server error and a dead end. The **Share** action is disabled for non-owners with a tooltip naming who can do it.
+
+### 🧠 Auto that reaches for a stronger model
+
+**Auto** now sends complex and table-heavy turns to Sonnet 5 and keeps lighter turns on the fast path, now Gemini 3.7 Flash, which replaces 3.6 Flash across the model picker, the router, and the backend defaults. Your model choice is stored in your project preferences and read on the server, so it persists across sessions and devices instead of being attached to each message you send. Quick Edit is unaffected.
+
+**Claude Opus 5 and Fable 5 are selectable.** Both appear in the model switcher under **Settings → Experimental**, each with its 1M-token context window. **Auto** will not escalate to either on its own, so picking one is a deliberate choice rather than something the router can spend on your behalf. Fable 5 requires 30-day data retention on the Anthropic organization behind your workspace, and can decline a turn outright on security-adjacent content.
+
+**A turn with audio in it always goes to Gemini 3.7 Flash.** Attaching audio overrides both **Auto** and a model you picked yourself, because it is the only first-party model in the stack with verified native audio understanding. Anything else would either refuse the attachment or answer around it.
+
+**Auto no longer has a smallest model to fall to.** Asking the chat to add one bullet to a meeting agenda sounds trivial, and the router classified it that way. Then the turn ran four searches and rewrote the entire note through the model it had picked, which dropped a character out of an image's storage URL on the way through. The bullet landed; one image came back as a grey box. The router cannot reliably tell a request that sounds small from one that will end up rewriting a document, so **Auto** is a two-model choice between a normal turn and a complex turn, and a document edit always goes to the stronger one.
+
+### 🔌 Connectors your team can see
+
+Connected apps live in a single **Connectors** card that lists your Composio apps with a toggle to enable each one, shows a connected-app count, and is visible to your project rather than only to whoever set it up. Scheduled jobs run as the person who created them, so a job that depends on a connected account keeps working for the whole team.
+
+Connecting is now automatic. Your Composio session is created the first time a turn needs it rather than waiting for you to find a connect step, and a failure to create one degrades to "no connected-app tools this turn" instead of surfacing as an error in your chat.
+
+Composio tool steps also read as English. The tool-router calls streamed through as raw identifiers and rendered as `Composio COMPOSIO MULTI EXECUTE TOOL`. Each one now carries a plain label and names the app tool it is actually running, such as **Slack Search Messages**, as the step's detail.
+
+The agent can also work your LinkedIn invitations. Two tools list the connection requests you have received, with who sent each one, and accept or decline them. Classic LinkedIn accounts issue some invitations without the key the API normally expects, and those are handled rather than failing. Your credentials stay server-side.
+
+### 🕵️ Lead emails from public sources
+
+When the agent cannot find a recipient's address in your context cards or Gmail history, it now searches public web pages, such as company team pages, LinkedIn profiles, and personal sites, before it tags a draft as needing a recipient or points you at an enrichment API. Lead research always looks for both an email and a LinkedIn profile, and contact enrichment runs query the people-data sources by default instead of searching only the open web. The agent still never invents an address.
+
+### ✉️ Sending an email is a deliberate act
+
+An email card's toolbar button used to send. It is now a plain **Chat** button, the same as every other card: it puts the card in the composer and waits for you. **Send** moved to the quick-prompt row above the chat input, where it appears whenever the composer holds an email card, so dispatching is a separate click you have to mean. Saved email cards also gained the related-chats popover other cards have.
+
+The agent's own send rules tightened to match. A turn that edits a draft never sends it, an imperative instruction from you is required before anything leaves, and send intent does not carry over into the next turn after a failed or timed-out attempt, so a retry cannot fire twice.
+
+**Send is back on the card header, and it asks first.** An email card carries a **Send** button again, but it no longer dispatches. It routes through the chat, where the agent shows you the complete email it is about to send, recipients, subject, and the full body with any `[Name]` placeholder resolved or flagged, and then asks with a Yes or No you can click. Nothing leaves until you pick **Yes**, and an edit request or a new question is not a confirmation. The same step runs whether you clicked the button or typed the instruction.
+
+**A sent email links to itself.** After a send, the agent's reply carries a link to the message in Gmail, and the card stores that link in its frontmatter alongside `to`, `cc`, `bcc`, and `subject`, so you can find the real thread from the card later.
+
+### 🚀 Faster card opens and calmer tabs
+
+Opening a card now calls a single bundle endpoint that resolves the card and fetches its tags, runs, and stats concurrently, replacing four separate requests. The bundle is scoped to the card's own project, so a card shared across projects returns its real run history instead of an empty list.
+
+Tabs elect a leader and share one card-event stream between them. A handful of open tabs used to exhaust the browser's six-connection-per-host limit and hang every request in the workspace.
+
+Opening a note traced at eight seconds, and seven of those were six requests waiting in line behind each other rather than any one of them being slow. Two of the six were dropped: the card's own record was already loaded, and the share link and version history are read now by the menu and the panel that show them, not on open. The rest run in parallel, and resolving which project a request belongs to is cached instead of costing an authentication round trip and three database reads every time. Six requests in line became one.
+
+### 🔗 Link to one line in a card
+
+A long card used to have one address. You could send someone the card, then tell them which part you meant. Hovering a block now shows a link button in the left gutter that copies the card's URL with an anchor for that line, and opening it scrolls to the line and flashes it.
+
+The anchor is built from the block's own text when the card renders, so nothing is written into your document and the link keeps working after you reorder the card or edit elsewhere in it. A line you have since edited resolves by its opening words, a repeated line gets a numbered suffix, and an image or diagram falls back to its position in the card. Every list item is addressable on its own, at any nesting depth, rather than the list as a whole.
+
+Read-only cards do not show the button yet, because it rides the drag handle, which a viewer never gets.
+
+### 🖼️ An editor that holds still
+
+The slash-command menu is back. Pressing Enter to split a paragraph no longer reloads the images around it, cards open in one clean state rather than flickering through a delayed re-render that stole your selection, and a teammate's remote cursor no longer redraws the page under you. Inserting a card chip in the composer no longer fights the render pass.
+
+Opening a note from the list no longer flashes its loading skeleton: the page was rewriting its own URL on every first open, which counted as a navigation and streamed the whole detail view a second time.
+
+Quick Edit keeps its focus when you move the mouse across a card. Hovering a different block used to tear down and rebuild the editor's plugins, which dropped your cursor out of the prompt. The chat composer stays open while a draft is unsent, and a draft in the floating composer survives closing and reopening the panel rather than being wiped when the popover unmounts.
+
+**Callouts are a block you can write.** `<Tip>`, `<Note>`, `<Warning>`, `<Info>`, `<Check>`, and `<Danger>` are editor blocks that survive the round trip to Mintlify, so documentation drafted in DeepVista arrives with its callouts intact. Switching one callout to another kind keeps its contents.
+
+**A shortcode on the line after a list item renders.** A card block written directly under a numbered list item came out as raw tag text, because the list parser reads its item's opening lines inline and never hands them to the block parser where those tags are recognised. This affected every block shortcode, not just card references.
+
+A blockquote you create with `> ` renders with a border and muted text instead of looking like a paragraph, and the table column-resize handle is visible, so you can find the drag target by sight rather than by feel.
+
+### 🗂️ The right panel, and what opens in it
+
+Databases and context cards you open from a chat message slide into the right panel instead of a popup that covers the conversation, so you can read a table and keep talking about it. Clicking a workbench chip opens that workbench in the panel, and you can start a chat scoped to it from there.
+
+Your workbench pins are visible again in every view. Pins are personal and project-keyed, but they were only rendering when the home **Created by** filter happened to be set to **You**, which stopped being the default, so the feature quietly disappeared. The home feed shows uncategorized cards, and you can drag a feed card onto a chip to file it into that workbench.
+
+Editing a long value in a database cell no longer means resizing the column first. Clicking a text cell opens a box that expands past the column edge and grows downward as the text wraps, so a full description is readable while you edit it. Enter commits, Escape cancels, and the box paints opaque over the columns beneath it.
+
+A new Quick Note opened from a workbench starts in that workbench, and bare domain values in a cell, such as `stablebrowse.com`, render as clickable links the same as full URLs.
+
+**Drop a file onto a workbench panel and it gets read.** Files dropped on the right panel upload with a progress toast, then open a fresh floating chat with the file as the prompt, already sent. The chat turn is the processing step, so you watch it happen.
+
+On a phone, opening a chat from the related-chats or run-history list closes the sheets it opened from. Both used to stay parked over the conversation that had just loaded.
+
+Leaving a workbench no longer leaves its chip behind. With a workbench open in the right panel, navigating to `/home` pre-filled the home composer with that workbench's chip, so a fresh chat behaved as though it were scoped to it. The chip is cleared when the panel closes.
+
+### ⌨️ A composer that sends when you tell it to
+
+Enter sends your message and Shift+Enter starts a new line. That is the default most people already expect, and you can still swap the two in your settings.
+
+The send button is disabled while a file is still uploading. An image, clip, or document you drop into the composer sits there as a placeholder until the upload finishes, and sending before then left the attachment behind. The button now names what it is waiting for, and pressing Enter shakes the composer instead of sending a half-empty message.
+
+The **Take note** button is gone from the chat input. Ask the agent to take a note, or use the quick-note button.
+
+### 💬 Chat that finishes its sentence
+
+A run could answer every tool call and then end with no visible reply, leaving you looking at a silent turn. DeepVista now detects that and asks the model for its closing message. Streaming answers no longer freeze with tool steps vanishing mid-run, concurrent chats stay separate, quick actions apply only to the box you clicked, and steps that call a connected app name which app they are using.
+
+Expanded thinking, tool-call, and **Run Task** bodies follow their newest content the way the transcript does, so live progress stays in view as a run grows. Scroll up and they hold still; return to the bottom and they resume following.
+
+**A tool call that hangs can no longer stall your turn forever.** An in-process tool with no timeout of its own could hang on a database call or a lock, and the keepalive machinery, which deliberately waits on slow steps rather than cancelling legitimately long ones, masked it indefinitely. The chat just went silent mid-tool-call with no error and no way back. Every in-process tool call now carries a generous backstop, above the longest legitimate wait, so a genuine hang surfaces as a terminal error you can retry.
+
+**A stream that drops now says so, and a healthy one stops claiming it broke.** When the connection to the model service failed mid-answer, the response body simply stopped: no error, nothing the interface could explain, and 96 recorded failures over 90 days with no sign of them on your screen. Those now arrive as a proper terminal error, which keeps the partial answer and offers you a retry. Separately, the keepalive comments that hold a long stream open were being fed to the parser that reads answer content, so five of them were enough to raise **Stream parsing failed repeatedly** on a stream that was working perfectly.
+
+**A turn where you pasted a secret keeps its answer.** Sending a password or an API key marks the turn sensitive so the secret never reaches the database. That used to store an empty placeholder, so after a reload you saw neither your prompt nor the reply and the turn was worth nothing. Only what you typed is redacted now: the agent's answer is stored and survives a reload. The reply is still left out of notification emails, where it could quote the secret back to you.
+
+**A chat error toast can be copied.** Stream and start-up failures carry a **Copy** action that puts the message and the underlying error payload on your clipboard.
+
+**Chat timestamps mean what they say.** A chat list row showed a time that read as when the conversation started but actually tracked the last write to it, so a three-day-old chat could report `1d ago` because a summary had been regenerated. Both the displayed time and the ordering of your session history now use when the chat was created.
+
+**Reflect on a card instead of loading it.** The Load and Understand chips on an attached card are replaced by a single **Reflect** prompt, available for every card type, which asks the agent what the card means for what you are doing rather than just reading it into context.
+
+### 🛑 A run that dies tells you it died
+
+If a run was killed mid-flight by an out-of-memory kill or a server-side cancel, the stream closed with no error and the agent simply appeared to stop talking. A truncated run now says **The response was interrupted before it finished. Send again to continue where it left off.** instead of looking like a finished one. The service that hosts those runs also moved to 4 GB with declared autoscaling, which is what was killing long research turns carrying image attachments in the first place.
+
+The transcript also stops rebuilding itself a beat after each turn finishes. Reading one flag no longer triggers a full refetch that re-rendered every message, and nothing re-downloads the transcript on a timer.
+
+### 🩺 A page that fails without taking down the rest
+
+Opening a note used to be able to blank the whole page. Any error thrown while the note loaded reached the root error boundary, so the list went down with the detail view and a hard reload was the only way back. The notes detail view now has its own boundary: the list stays up, and the error is tagged with the note's id so repeated failures on one note cluster together.
+
+The right panel used to go blank for a different reason. A failed context-card fetch was reported as a success carrying no card, so nothing retried and the empty result was re-served from cache on every later visit. Those failures are raised properly now, retried on mount and on focus, and shown as an error you can act on.
+
+Both error screens carry a **Copy details** button with the message, the error digest, the Sentry event id, and the URL. Two crashes behind those blank screens are fixed as well: an editor torn down mid-sync could be read after it was destroyed, and editing a workflow step's body from its popover silently saved nothing when the visual editor had replaced the body field.
+
+### 📎 Spreadsheets, GIFs, and video in your uploads
+
+Upload an `.xlsx`, `.xls`, or `.csv` and DeepVista reads it. Every sheet is parsed and handed to the model as text, with caps that keep a huge export from swallowing the conversation and an in-line note wherever something was truncated. A workbook whose declared dimensions understate its real size is read to its last row instead of stopping early. A turn carrying an audio attachment routes to the model that handles audio, rather than failing on whichever model you had selected.
+
+In the notes editor, GIFs and `.mov` clips pasted from your clipboard upload correctly: a file arriving with no MIME type is identified from its extension instead of being rejected, and GIFs auto-play. Dropping a file onto the editor no longer inserts the placeholder twice, and images attached to a chat message open in a full-size preview.
+
+The drop overlay also lets go. Cancelling a drag with Esc, or releasing it outside the window, used to leave the overlay up for good, and the animation behind it re-blurred the whole viewport every frame, which read as a frozen page. Clicking a link to an uploaded file now opens it, where before the link rendered with no destination.
+
+### 🧰 Workflow inputs, run history, and a step you can pin
+
+- **Pin a step popover open.** A workflow step's popover has a **Pin** button that turns it into a floating panel on the canvas. It stays visible while you click other nodes, drags by its grip strip, and keeps a dashed connector to its node through pans, zooms, and drags. Pin state and position are saved per workflow, so a layout you set up survives a refresh.
+- **Run** opens the workflow's run history. The button lists every past run with its status, carries a count of how many there have been, and offers **Start a new run** as the first entry, so the direct-run path is still one click. The badges that used to sit on the workflow header and the `/skills` tiles are gone: they counted your own chat sessions while the **Run** button counts the workflow's lifetime runs, so the two numbers never agreed.
+- **Start a new run** opens a new conversation. It used to queue the run prompt into whichever chat you already had open, which put a run inside an unrelated conversation.
+- The run-history list pages. It read every run in one call against a server limit of 100, so a workflow past that showed its newest 100 with no way to reach the rest. Runs are ordered in the database rather than after being fetched, so a paged read returns a stable window.
+- **Run** collects a workflow's declared inputs before the run starts. It asks for them one page at a time, prefills any default you have set, and loads the result into the composer for you to review rather than sending it for you. You cannot send while a question is unanswered.
+- Every declared workflow input can carry a **default value**, which prefills the published form, fills omitted fields on API and webhook submissions, and is what the agent falls back to before a run.
+- The workflow format gained an optional **Instructions** section, placed before **Workflow**, for prerequisites and external configuration. On a first run, or whenever you ask to set the workflow up, the agent walks you through it.
+- Links you drop in a trigger message are always fetched and passed to the run instead of being quietly dropped.
+- Rename a workflow straight from the ⋯ menu on `/skills`, on both the grid and the tree view. **New workbench** on that page is called **New workflow**, which is what it creates.
+- The run log popover links to the run's own chat session with the workflow open beside it, and duplicating a card into another project gives you a **View** link to the copy.
+- The workflow **Input** node opens on **Input Form** by default; the VistaBase tab is gone and **Webhook** moved last.
+
+### 📝 Note enrichment that waits for you to finish
+
+Automatic note enrichment waits 20 minutes after your last edit instead of 2, so it fires once you have actually stopped writing rather than mid-thought. It classifies the note first and branches on what it finds: a meeting note yields to-dos, an article yields a summary, an idea pulls related context from your workspace. It lists the related cards it drew on. Asking for enrichment by hand still runs immediately.
+
+### 🤖 A more persistent agent
+
+The agent works a problem harder before it comes back to you. It exhausts alternate tools and query formulations and reports partial progress rather than stopping at the first dead end, and it treats asking you a question as the expensive last resort. When something goes wrong or you push back, it reflects on what it did, checks that against one specific assumption, and proposes a concrete fix.
+
+It also writes better prose without being asked. The house style rules (no throat-clearing openers, no trailing `-ing` clauses, no puffery) used to load only when you explicitly asked for a de-slop pass on something already written. They now load before the agent composes anything you will send or publish: emails, messages, documents, notes, posts, summaries, reports.
+
+Em dashes are banned outright in that style, rather than merely discouraged. A rule the agent can weigh against tone is a rule it will break, and an em dash is one of the most reliable signals that a paragraph was not written by a person. Commas, colons, and full stops carry the same joins.
+
+Behind that, the agent's instructions were restructured rather than extended. The fixed prompt had grown to about 44,000 characters of domain procedure that already existed as skills, so it was rewritten as a small core of durable concepts, hard rules, and cross-domain policy, with per-domain detail loaded on demand: email handling, LinkedIn routing, attachment flows, output syntax, and failure recovery each moved to their own skill. The static body is now about 14,500 characters, 67% smaller, with tests that keep it that way and verify every skill it points at exists.
+
+### 🚦 A first run that answers itself
+
+A new project used to open on an empty chat and a single **Set up a CRM** button, which is a reasonable thing to want and a strange first thing to be asked. The empty chat now offers two starter prompts, and picking one does not cost you a model call. DeepVista recognises the prompt and streams back a pre-written set of questions in one frame, so the questions are on screen immediately rather than after several seconds of watching an empty chat think about a schema that was never going to change.
+
+Answering turns what you typed into an organization card, opens it in the right panel, and starts the research turn with that card attached, so your first run has something concrete to work on and you can watch it fill in. The panel then asks where to file the card. That question lives in the panel rather than in a dialog over the page, because a dialog would cover both the card being filed and the run that produced it.
+
+You can also say yes to filing everything that follows. Choosing **Add future outputs** sets an output folder on the conversation, and cards the chat creates from then on land there without you moving them one at a time.
+
+### 🏠 A home page you can take in at a glance
+
+Your workbenches were a row that scrolled sideways, so on most screens the majority of them were off the edge. They are a grid now, two rows deep and two to four columns wide depending on the screen, with a final **All workbenches** tile that says how many the fold cut and leads to the gallery.
+
+The home feed opens on everything. It used to open filtered to Notes and Workflows, a pair nobody had chosen, and the chip row gave you no way to turn the last one off, so a project full of people, files, and databases looked like a project of notes. An empty chip row now means everything, the last chip can be switched back off, and the menu that holds the rest is labelled **Filter** rather than **More**.
+
+Your default project moved to **Settings → User**, next to your timezone, since it is your setting and not the project's. The checkbox in the project switcher now marks and sets the active project.
+
+### 🧾 Tiles and menus you can reach on a touchscreen
+
+A note's actions lived in a toolbar that appeared on hover, which on a touchscreen is nowhere. Every note tile carries a visible **⋯** that opens a popover on a desktop and a drawer on a phone, matching the workflow tiles. A tile's tags stay on one line, with the overflow folded into a **+N** chip.
+
+`/notes` and `/workflows` drew the same card two different ways, down to different shells, padding, and clamp heights. Both are built on one tile now, so the two grids match and a workflow's pin and delete actions live in the same **⋯** menu as everything else, drafts included.
+
+**Pin** and **Unpin** are also on the card itself, in the **⋯** menu beside **Move to workbench**, on any saved card you can edit.
+
+### 🕰️ When a chat happened
+
+A chat turn reported which model answered, how long it took, and what it cost, but never when it happened, so scrolling back through a long conversation there was no telling a reply from ten minutes ago from one from last Tuesday. The turn's info popover now opens with a **Sent** row: the local date and time, a relative hint beside it, and the exact instant on hover.
+
+**A chat's summary opens as a list.** The summary button used to open the session card in the right panel, which is the long answer to "what came out of this conversation". It now opens a list first, split into **Output**, what the chat wrote, and **Context**, what it read, each an accordion with a count, with the session card as the first row.
+
+### ✨ Naming and navigation
+
+- Note cards in `/notes` show a relative last-updated time, with the exact datetime in a tooltip.
+- **Open Workflow** and **Open Note** in the preview dialog navigate in the same tab, as do context card links in workflow step popovers.
+- **Chat history** is now **Session history**, and its **Job** filter is now **Scheduled job**.
+- The home **Created by** filter defaults to **Anyone** and remembers your choice.
+- A project with notes but no workflow shows the real dashboard, and a genuinely empty activity feed offers a get-started button that prefills your first prompt with concrete example values.
+- The lead-generation starter prompt fills the composer instead of sending straight away, so you can swap in your own website before it runs.
+- The notes list toggle tooltip names its keyboard shortcut, the save confirmation has a **View** button, and the project switcher shows creation dates.
+- **Download** left the desktop nav with **CLI** moved to the end. On mobile, **Discover** and **Download app** are gone, and the notification bell shares a row with the website link.
+- Queued prompts render as markdown, so a card reference shows as a chip instead of a raw tag.
+- The landing page plays the tutorial video behind each of its **Acquire** and **Engage** stages, and both stages read as a numbered four-step list rather than a single sentence.
+- Clicking a card in a chat opened over `/notes` or `/vistabase` opens its preview. It did nothing outside `/chat`, because the click set a parameter only the chat page reads.
+- A card the chat just created shows up in `/vistabase` without you having to navigate away and back.
+- The dismiss button on a notification toast is a 32px target with a larger icon, so it can be hit on the first try.
+
+### 🔧 Under the hood
+
+- Token usage is reported in credits, backed by a nightly rollup and an admin usage page. A chat turn is metered by the tokens it actually used, at one credit per 10,000 tokens of input and output, rounded up and charged after the turn. Metering never blocks or fails a turn, and when a project sets a billing owner the charge lands there.
+- **Agent telemetry was silently losing spans, three ways.** Attribute values over the 64 KiB cap were dropped rather than truncated, and the API returned success while discarding the span, so exactly the longest and most useful sessions were the ones vanishing. Values are clamped now and stamped with how many bytes went. Every model round-trip was also being traced three times, two of the three carrying a full copy of the prompt, which was duplicating a 44 KB system prompt into both trace backends; the redundant instrumentation is gone. And W3C trace headers were not honoured at all, so scheduled jobs, the CLI, and every non-browser caller silently started a fresh trace and left the two halves unstitchable.
+- **A background context could break its own cleanup.** Two fixes in the tool-context layer: a scope reset keyed to the exact execution context it was created in, which the streaming keepalive path copies on every iteration, so the reset raised instead of restoring. This surfaced as an error on the image-generation endpoint. Both call sites now restore the previous value directly rather than by token.
+- Inline attachment bytes are no longer persisted with the message that carried them.
+- The pinned list in the left nav shows every pinned card type, not just the handful it knew about.
+- Card and workbench counts can be scoped to one workbench and one author, and the counts share their filter logic with the list they label so the two cannot drift.
+- Delegated tasks wait up to 30 minutes before timing out. Scheduled job kinds are scoped per project.
+- The frontend moved to Next.js 16.3, dropping a dead webpack config and clearing two npm audit findings. Tests are back inside the build typecheck.
+- The agent sync log is now one row per agent instead of one per heartbeat. It had been growing by roughly 24,000 rows a day, 99.9% of them recording no change.
+- Run-end notifications fan out concurrently and read project membership directly, so a large project costs one batched round trip instead of one request per recipient.
+- The daily preview-environment cleanup sweep had been a silent no-op since July 30, leaving orphaned preview services running in staging. Its permissions, its double-encoded output, and its hang are fixed.
+- X webhooks answer the challenge correctly and parse direct-message payloads.
+- A read-only member triggering a background run raised a permission error that was logged as a server fault and retried by the task queue until it exhausted its attempts. It is recorded as an expected denial now and not retried.
+- The chat agent's system prompt is cached. Prompt caching matches on a prefix, and two values that change every session, the date and the project registry, sat near the top, so the fixed policy behind them could never be reused. Everything session-derived renders in one block at the end, ordered least to most volatile. Uncached system-prompt tokens per turn drop from about 15,555 to about 253, and the static body is identical across every project, user, and day, so a new chat starts against a warm cache.
+- A card's contents are mirrored to a plaintext column alongside the encrypted blob. It is the column search reads from, and the first step toward removing application-layer encryption as a delete rather than another full-table rewrite.
+- Twenty-three open dependency updates were consolidated into a single change so every lockfile regenerates once and the trees stay consistent. It carries four security updates and major bumps to `cryptography`, `pandas`, `starlette`, `stripe`, and `vitest`, with CI moving from Node 20 to Node 24. Dependency majors are grouped from now on, so a breaking one can no longer block the safe updates behind it.
+- Two migrations were authored with the same version prefix on the same day, which blocks every deploy because the version column is a primary key. Both were re-versioned before release, and the collision check now runs on the batch.
+- A continuous-integration job verifies staging code against the production database schema before release.
+- The card type behind Databases was renamed from `table` to `database` across the frontend, the backend, the agent prompt, the MCP tool descriptions, and the skill that maintains one. The migration renames the stored values in place without touching each card's updated time, and the backend still accepts `table` from a client that has not caught up.
+- The relationship vocabulary had two words for one idea. `belong_to` was split in two by an earlier change, and what it kept meaning afterwards, "generally related to this card", is what the existing `related` type already meant, so which of the two got written depended only on which code path ran. Production was showing both between the same pair of cards, seconds apart, in the same session. `related` is the surviving spelling, stored edges are renamed to match, and an agent still sending `belong_to` is mapped forward rather than rejected.
+- The edge audit log added to reconstruct a database's past row membership is dropped, along with the two extra row writes it cost on every edge insert and delete. Snapshots replaced the feature it existed for, and nothing else ever read it.
+- A failed database read in the card-document layer no longer looks like an empty result. One shared helper logged the failure and returned no rows, which is indistinguishable from a card that genuinely has none, and six places in this layer act on that answer rather than just rendering it, so each acted on an absence nobody had observed. Those six now call a variant that raises. The 139 places where a blank surface for one request is the right degradation are unchanged.
+- Retiring one part of the card-open work re-exported a cache-clearing function from a module whose every export is a public, client-callable endpoint, which would have let any caller evict another user's cached entries. It moved to a plain module before release, with a test asserting it stays out.
+
+---
+
+## Ready to try it?
+
+<CardGroup cols={2}>
+  <Card title="Run a social media campaign" icon="megaphone" href="/tutorials/social-media-campaign">
+    Schedule a campaign, capture leads from each post, and get notified the moment inbound activity arrives.
+  </Card>
+
+  <Card title="Automate your X presence" icon="x-twitter" href="/tutorials/x-post-workflow">
+    Trigger a workflow from an X mention or direct message, now that inbound payloads parse reliably.
+  </Card>
+
+  <Card title="Manage your social presence end to end" icon="share-nodes" href="/social-media-management">
+    Plan, publish, and follow up across channels, with inbound leads landing as cards you can work.
+  </Card>
+
+  <Card title="Drive DeepVista from your terminal" icon="terminal" href="/cli">
+    Take notes, search your knowledge base, and run workflows from the CLI, with **CLI** now at the end of the nav.
+  </Card>
+</CardGroup>
