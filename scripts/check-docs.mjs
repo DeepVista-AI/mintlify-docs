@@ -95,6 +95,12 @@ function checkInternalLinks() {
     for (const m of src.matchAll(/\]\(\s*([^)\s]+)(?:\s+"[^"]*")?\s*\)/g)) links.add(m[1])
 
     for (const raw of links) {
+      // An absolute URL back to our own site is an internal link written the wrong way:
+      // it escapes Mintlify preview deployments and breaks local dev.
+      if (/^https?:\/\/(www\.)?docs\.deepvista\.ai(\/|$)/.test(raw)) {
+        add('absolute-internal-url', `${rel(f)} -> ${raw}`, 'internal link written as an absolute URL; use a site-root relative path')
+        continue
+      }
       if (/^(https?:|mailto:|#|tel:)/.test(raw)) continue
       const [target] = raw.split('#')
       if (!target) continue
