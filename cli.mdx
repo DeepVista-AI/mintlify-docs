@@ -61,7 +61,7 @@ Once installed, log in to connect the CLI to your DeepVista account.
 With the CLI installed and authenticated, save an insight to your knowledge base in one line.
 
 ```bash
-deepvista notes + "Your insight here"
+deepvista notes +quick "Your insight here"
 ```
 
 **Example:**
@@ -205,24 +205,24 @@ Build these workflows in the DeepVista web app, then invoke them through your ag
     | Command | Description |
     | --- | --- |
     | `deepvista notes +quick "<text>"` | Capture a quick one-line note |
-    | `deepvista notes +` | Open structured note entry |
+    | `deepvista notes create` | Create a note with a title and body |
     | `deepvista notes list` | List recent notes |
-    | `deepvista notes search "<query>"` | Search notes by keyword or semantic query |
+    | `deepvista card +search "<query>" --type note` | Search notes by keyword or semantic query |
   </Tab>
-  <Tab title="Memory">
+  <Tab title="Cards">
     | Command | Description |
     | --- | --- |
-    | `deepvista memory search "<query>"` | Search context cards semantically |
-    | `deepvista memory get <id>` | Retrieve a specific card by ID |
-    | `deepvista memory create` | Create a new context card |
-    | `deepvista memory update <id>` | Update an existing card |
+    | `deepvista card +search "<query>"` | Search context cards semantically |
+    | `deepvista card get <card-id>` | Retrieve a specific card by ID |
+    | `deepvista card create` | Create a new context card |
+    | `deepvista card update <card-id>` | Update an existing card |
   </Tab>
-  <Tab title="Recipes">
+  <Tab title="Skills">
     | Command | Description |
     | --- | --- |
-    | `deepvista recipe list` | List available Recipes in your project |
-    | `deepvista recipe run <name>` | Run a Recipe by name |
-    | `deepvista recipe status <id>` | Check status of a running Recipe |
+    | `deepvista skill list` | List available Skills in your project |
+    | `deepvista skill run <skill-id>` | Run a Skill by ID |
+    | `deepvista skill get <skill-id>` | Inspect a Skill and its run status |
   </Tab>
 </Tabs>
 
