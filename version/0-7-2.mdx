@@ -1,0 +1,90 @@
+---
+title: "Version 0.7.2"
+description: "Workbenches browse like files, you can rate any answer and have the agent read it back, and scheduled runs stop emailing you when nothing happened."
+---
+
+#### **1. Workbenches browse like files**.
+
+A workbench now opens as a file browser instead of a flat grid.
+
+Switch to the compact list view when you have a lot of cards, read the per-type counts on each tile to see what a workbench actually holds, and find **Snapshot** in a card's `⋯` menu where the rest of the card actions live.
+
+The feed lists only the things you filed by hand: notes, databases and workflows. A "Sales" workbench used to bury its 4 notes and 8 databases under 221 person cards.
+
+Everything those databases pulled in is still one click away under **Sourcing & Relations**, next to the workbench name.
+
+#### **2. Rate any answer, and have the agent read the ratings back**.
+
+Every agent reply has a feedback button in its action row. Give it a score from 1 to 5 and, if you want, say why.
+
+Comments take markdown and you can paste a screenshot straight in.
+
+Then ask the agent to summarize the feedback on a project and it reads the actual comments, not a rolled-up average.
+
+#### **3. Scheduled runs stop emailing you when nothing happened**.
+
+A scheduled job used to decide for itself whether to email you, and most of them chose to, every single run.
+
+Now silence is the default. A job emails you when it hits an error or a decision only you can make, and you opt a job back in when you genuinely want the routine digest.
+
+A job that failed partway through used to stay due, so the next five-minute tick dispatched it again, and the tick after that did the same. A run now claims its slot before it starts, so a failure costs you one missed run instead of a stream of repeat sends.
+
+Unattended runs that died during setup used to sit at **Input** with no history and a skill card still locked. Those now finish, record the error, and release the lock. A run started by a schedule also shows the job that started it under the conversation's **Context**.
+
+Your home page follows the same rule: it defaults to **Attention required** and shows only the current project. Successful runs are still there under the **Successful** tab.
+
+#### **4. Gmail replies stay in the thread**.
+
+When DeepVista answers an email, the reply lands inside the existing conversation.
+
+Your recipient sees one thread instead of a new message every time.
+
+#### **5. Draft a quote straight from a database row**.
+
+Hover any row in a CRM or database table and click **Open Quote**.
+
+The floating chat opens with that record already attached as context and a quote prompt queued up, so you go from a lead to a draft without leaving the table.
+
+Learn more about building and working a database [here](/tutorials/customer-research-and-tracking).
+
+#### **6. Encryption is a per-project setting you control**.
+
+Encryption is now opt-in per project rather than applied everywhere.
+
+Turn it on for the projects that need it from the admin console, and look for the lock badge to confirm a card is stored encrypted.
+
+#### **7. An interrupted chat says it was interrupted**.
+
+If a turn stops early, the chat tells you.
+
+It no longer ends quietly and leaves you guessing whether the answer is still coming.
+
+#### **8. Form links carry your campaign tags into the run**.
+
+Query parameters on a public form link now ride along to the workflow run.
+
+Tag a link with `utm_source`, `utm_campaign`, or anything else you track, and every submission arrives knowing which campaign produced it.
+
+#### **9. The agent opens the card it just wrote**.
+
+When the agent creates or updates a context card during a turn, the right panel opens on that card.
+
+You no longer have to find the **Write** chip in the transcript to see what changed.
+
+#### **10. Smaller fixes across tables, chat, and cards**.
+
+Opening a database card lands on its own detail view rather than a parent. Table cards scroll once instead of fighting two scrollbars, the filter row scrolls sideways, and the composer stays above the keyboard on mobile.
+
+A draft in the floating chat survives a page reload, and a task title that quotes a card no longer breaks apart mid-chip.
+
+The **Add a tag** box is gone from card and note views. Tags still show as chips, and you can still remove them from a table row.
+
+Raw-JSON debug icons now sit behind a preference in **Settings**, card types read in the singular, and database cards carry the database icon.
+
+The last column of a table fills the space to its right instead of truncating with an ellipsis while the room next to it sits empty. A workbench name in the breadcrumb is a link again.
+
+A new fact you tell the agent about yourself is saved even when you already have a note on some other subject, and the Save Facts line reports what was actually saved rather than what the model set out to save.
+
+Deleting several people in one turn labels each row with the person's name instead of a bare **Delete**.
+
+Three prompts stepped out of the way: an older skill card no longer raises an **Improve Workflow** offer to reformat it, the blocked-run popover drops **Fix & update** because **Debug** already opens that run, and a workflow card in Visual mode hides the comments panel until you switch back to Markdown.
