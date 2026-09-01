@@ -1,0 +1,82 @@
+---
+title: "Version 0.7.3"
+description: "Workbenches browse like files, scheduled runs go quiet unless something needs you, the agent reads back the feedback you left, email replies stay in one thread, and encryption becomes a per-project switch."
+---
+
+September 2, 2026
+
+#### **1. Scheduled runs stop emailing you when nothing happened**
+
+A scheduled job used to decide for itself whether to email you, and most of them chose to on every single run.
+
+Silence is now the default. A job writes to you when it hits an error or a decision only you can make, and you opt a job back in when you want the routine digest.
+
+A job that failed partway through used to stay due, so the next tick dispatched it again, and so did the tick after that. A run now claims its slot before it starts, so a failure costs you one missed run instead of a stream of repeat sends.
+
+Your home page follows the same rule. It opens on **Attention required** and hides notifications you have already read. Successful runs are still under the **Successful** tab.
+
+#### **2. Workbenches browse like files**
+
+A workbench opens as a file browser instead of a flat grid, with a compact list view for when you have a lot of cards and per-type counts on each tile.
+
+The feed lists only what you filed by hand: notes, databases and workflows. A "Sales" workbench used to bury its 4 notes and 8 databases under 221 person cards. Everything those databases pulled in is one click away under **Sourcing & Relations**, next to the workbench name.
+
+**Databases** also get their own section in the grid, and a card's relation counts list only the types that actually hold something.
+
+**Snapshot** now lives in a card's `...` menu with the rest of the card actions.
+
+#### **3. Ask the agent what your feedback said**
+
+Rating a reply is only half of it. Ask the agent to summarize the feedback on a project and it reads the actual comments back to you rather than a rolled-up average, and a comment can carry markdown and pasted screenshots.
+
+Each rating is now filed as an agent artifact instead of a note, so a hundred agent-written rows no longer bury the notes you wrote yourself.
+
+A rating also records the conversation it came from, so a row in a project-wide feedback database links straight back to the exact exchange being rated instead of naming a turn number you cannot place.
+
+#### **4. Email replies stay in the thread**
+
+When DeepVista answers an email, the reply lands inside the existing conversation.
+
+Your recipient sees one thread instead of a new message every time.
+
+#### **5. Draft a quote straight from a database row**
+
+Hover any row in a CRM or database table and click **Open Quote**.
+
+The floating chat opens with that record already attached as context and a quote prompt queued up, so you go from a lead to a draft without leaving the table.
+
+Learn more about building and working a database [here](/tutorials/customer-research-and-tracking).
+
+#### **6. Encryption is a per-project setting you control**
+
+Encryption is now opt-in per project rather than applied everywhere.
+
+Turn it on for the projects that need it from the admin console, and look for the lock badge to confirm a card is stored encrypted.
+
+#### **7. Form links carry your campaign tags into the run**
+
+Query parameters on a public form link now ride along to the workflow run.
+
+Tag a link with `utm_source`, `utm_campaign`, or anything else you track, and every submission arrives knowing which campaign produced it.
+
+#### **8. More of the app is reachable from the keyboard**
+
+Press `/` anywhere to jump into search, and `Escape` to leave it. The floating chat picks up its own shortcuts for starting a new chat, going back, and stepping through history.
+
+Press `?` for the full list. Arrow-key navigation and the search shortcut are on it now, so the keys you can press are documented in one place instead of hiding in tooltips.
+
+Two keys changed to get there. A shortcut now matches its modifiers exactly, so `N` starts a new chat and `/` focuses the composer, while `Cmd N` and `Ctrl /`, which used to work by accident, no longer do.
+
+#### **9. A lighter row of actions under each message**
+
+The **More** menu under a chat message is gone. What was worth keeping came out of it.
+
+Message info sits beside the feedback star and opens on hover, so the model, timing, and token counts appear under the pointer. Asking for project-wide feedback moved into the feedback popover where it belongs, and the message-to-email draft flow has been retired.
+
+#### **10. Smaller fixes across chat, tables, and cards**
+
+A turn that stops early now says it was interrupted instead of ending quietly, and signing in on `deepvista.ai` keeps you signed in on `app.deepvista.ai`.
+
+Chat sessions skip archived cards, filters gain a **not equal to** operator, and a quick edit no longer rewrites plain text into LaTeX. On mobile the chat drawer opens taller.
+
+Opening a database card lands on its own detail view, table cards scroll once instead of fighting two scrollbars, and the last column fills the space to its right instead of truncating while the room beside it sits empty.
