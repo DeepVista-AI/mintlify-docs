@@ -1,12 +1,46 @@
 ---
 title: "Version 0.7.4"
-description: "See whether a workflow is on, and when it runs next."
+description: "Set up a new project in two steps, rename a saved version by clicking its name, keep every workbench database combined automatically, press ⌘S to name your version, and count on your edits, your workflow schedule, and your chat tab all staying accurate."
 ---
 
-September 8, 2026
+September 9, 2026
 
-#### **1. See whether a workflow is on, and when it runs next**
+#### **1. Set up a new project in two simple steps**
+
+Creating a project now takes two simple steps instead of one long form. First, name your workbench using ready-made presets instead of a blank field. Then DeepVista opens that workbench and fills in a starting prompt for you automatically. Adding a workbench from the right-hand menu also shows its default database right away.
+
+![Choosing a preset and starting prompt while setting up a new project](/images/release-0-7-4-two-step-project-setup.gif)
+
+#### **2. Rename a version by clicking its name**
+
+Click a saved version's name to rename it in place, just like a file in Google Docs. No separate dialog needed.
+
+![Renaming a saved version by clicking its name](/images/release-0-7-4-rename-version-inline.gif)
+
+#### **3. Add a database to a workbench and it's included automatically**
+
+Every workbench keeps one combined database of everything inside it, including nested workbenches. Add or move a database in and it's included right away, no setup needed. You can customize that combined database's own columns, sort order, and views just like any other database.
+
+![Adding a database to a workbench and seeing it join the combined view](/images/release-0-7-4-workbench-combined-database.gif)
+
+#### **4. Press ⌘S to name your current version**
+
+⌘S (Ctrl+S) in a card editor now always names your current version. It no longer falls through to the browser's save dialog.
+
+![Pressing Cmd+S in a card editor to name the current version](/images/release-0-7-4-cmd-s-name-version.gif)
+
+#### **5. Keep your edits safe when an agent writes to the same card**
+
+If you edit a card while an agent is writing to it too, your edit no longer gets overwritten. The agent's write is rejected the moment it detects your change, so it re-reads your latest version and tries again. A card nobody else is touching still saves in a single step.
+
+![Editing a card while an agent writes to it without losing either change](/images/release-0-7-4-concurrent-edit-protection.gif)
+
+#### **6. Check a workflow's schedule and next run at a glance**
 
 Every workflow's list and detail view now shows whether its schedule is enabled and the time of its next run, so you don't have to open it to check.
 
 ![Hovering a workflow card to see its schedule status and next run time](/images/release-0-7-4-workflow-schedule-status.gif)
+
+#### **7. Trust what a backgrounded chat tab tells you**
+
+If you background a chat tab while the agent is still working, the turn no longer looks finished before it is. It stays marked as generating, tool-call steps keep appearing without a reload, and the reply's action buttons show up only once the run actually completes.
