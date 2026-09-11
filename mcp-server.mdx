@@ -5,7 +5,7 @@ description: "Connect your AI tools (Cursor, Claude Desktop, and more) directly 
 
 The DeepVista MCP server lets any compatible AI client read, search, create, edit, and delete your context cards — without leaving your coding environment or chat interface.
 
-All actions are automatically scoped to your **currently active DeepVista project**. No extra configuration needed.
+Every action is scoped to one project. Unless your client says otherwise, that project is your **default project** — the one under **Settings → User → Default project** — not whichever project you happen to have open in the app. See [Choosing a project](#choosing-a-project).
 
 <Info>
   MCP (Model Context Protocol) is an open standard for connecting AI clients to external data sources. [Read the spec →](https://modelcontextprotocol.io/specification/2025-03-26)
@@ -18,6 +18,24 @@ The MCP server uses **Streamable HTTP transport** with OAuth 2.1 authentication.
 ```text
 https://api.deepvista.ai/mcp
 ```
+
+---
+
+## Choosing a project
+
+Your cards live in projects, and an MCP connection reads and writes in exactly one of them.
+
+- **No header sent** — the server uses your **default project**. Change it under **Settings → User → Default project**. Switching the project you are *viewing* in the app does not move the MCP connection.
+- **`X-Project-Id` header sent** — the server uses that project, after checking you have access to it. The value can be the project's ID or its slug.
+
+Clients that let you set request headers can target a project directly. For Claude Code:
+
+```bash
+claude mcp add --transport http deepvista-server https://api.deepvista.ai/mcp \
+  --header "X-Project-Id: <your-project-id>"
+```
+
+For any client that cannot send headers, set the project you want as your default instead.
 
 ---
 
@@ -183,10 +201,16 @@ Once connected, talk to your AI naturally. Here are some example prompts to get 
 | **Create** | `Create a new context card for Acme Corp — Q3 partnership notes` |
 | **Update** | `Update my card on Sarah Chen with: joined the advisory board in May` |
 | **List** | `Show me all context cards I've updated this week` |
-| **Delete** | `Delete the context card titled Old vendor contract` |
+| **Delete** (permanent) | `Delete the context card titled Old vendor contract` |
+
+<Warning>
+  **Deleting over MCP is permanent.** It removes the card, its comments, and its links to other cards from the database. This is not the **Trash** you see in the app — there is nothing to restore afterwards, and unlike an edit, a delete has no version history to roll back to.
+
+  Whether you get a confirmation prompt is up to your AI client, not DeepVista. Keep tool approval enabled for `delete_context_card` rather than allowing it automatically.
+</Warning>
 
 <Note>
-  The AI will always confirm before deleting a card. To switch projects, change your active project in DeepVista — the MCP connection reflects it immediately.
+  To point the connection at a different project, see [Choosing a project](#choosing-a-project).
 </Note>
 
 ---
@@ -215,7 +239,7 @@ Once connected, talk to your AI naturally. Here are some example prompts to get 
   </Accordion>
 
   <Accordion title="The AI connects but can't see any of my cards" icon="eye-slash">
-    The MCP server returns cards from your **currently active project**. Open DeepVista and confirm the correct project is selected in the project switcher. An empty list is expected if the active project has no cards yet.
+    The server reads from one project, and by default that is your **default project** — not the project you currently have open in the app. Check **Settings → User → Default project**, or send an `X-Project-Id` header from your client to target a different one. See [Choosing a project](#choosing-a-project). An empty list is expected if that project has no cards yet.
   </Accordion>
 
   <Accordion title="I'm on Windows using WSL and seeing errors" icon="windows">
