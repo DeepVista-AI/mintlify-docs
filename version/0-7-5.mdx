@@ -1,6 +1,6 @@
 ---
 title: "Version 0.7.5"
-description: "Turn any database into an automated workflow, set up new projects in guided steps, jump from workflow outputs straight to your database, and browse an updated Playbook library."
+description: "Turn any database into an automated workflow, set up new projects in guided steps, jump from a workflow's Output node to the database it fills, open a workbench straight into its rollup, and see a background run's real status."
 ---
 
 September 10, 2026
@@ -15,38 +15,32 @@ Get started by opening any database and clicking `Add a workflow` in the toolbar
 
 #### **2. Set up new projects in a few guided steps**
 
-Starting a project no longer requires filling out a long form. A quick step-by-step setup guides you through naming your project, choosing an inbound or outbound focus, and opening your first workbench with starter tables and prompts ready to go.
+The two-step project setup from 0.7.4 is now a short guided flow, and new accounts go through the same one. It walks you through naming your project, choosing an inbound or outbound focus, and opening your first workbench with starter tables and prompts ready to go.
 
 Get started by clicking `+ New Project` on your dashboard.
 
 ![Setting up a new project through the guided step-by-step flow](/images/release-0-7-5-guided-project-setup.gif)
 
-#### **3. Jump straight from workflow outputs to your database**
+#### **3. Jump from a workflow's Output node to the database it fills**
 
-Want to see the records your workflow just produced? In the workflow diagram, click the `Output` node to open the target database directly. No more switching views or searching through your workbench to find your new data.
+Want to see the records your workflow just produced? In the workflow diagram, click the `Output` node and a popover names the database its runs land in, under **Lands in**. Click that card to open the database in a new tab, so the diagram you were reading stays where it is.
 
-Try it by opening any workflow and clicking its `Output` node.
+DeepVista finds the database from the workflow's own run history, so this appears once the workflow has run at least once and its runs write to a whole database. A workflow that has never run, or one scoped to individual rows, shows `View all outputs` instead. If a workflow feeds several databases, the most recently updated one is named.
 
 ![Clicking a workflow's Output node to open its target database](/images/release-0-7-5-workflow-output-to-database.gif)
 
 #### **4. Open your rollup database automatically**
 
-Workbenches now open directly to your aggregated database view. When you open a workbench to check leads, contacts, or research, your rollup table appears right away so you can get to work without an extra click.
+Workbenches now open directly to your aggregated database view. When you open a workbench to check leads, contacts, or research, your rollup table appears right away so you can get to work without an extra click. Close the panel and it stays closed for the rest of that visit.
 
 Try it by navigating to any workbench from your sidebar.
 
 ![Opening a workbench directly into its rollup database view](/images/release-0-7-5-rollup-database-auto-open.gif)
 
-#### **5. Browse and copy prompts in the updated Playbook library**
+#### **5. Your background runs report their real status**
 
-Looking for prompt templates? The `/playbook` directory has a clean new layout with prompt cards you can copy in one click, plus quick controls to save prompts and database settings directly to your workbenches.
+A dispatched run used to keep whatever status it was created with, so a run that had already errored could still sit under a green *Running* label. Each run now records its status as it goes: an error or a partly-failed run shows the red dot, a run that is queued and not yet picked up reads as *Queued* rather than running, and a cancelled run no longer claims a success it did not have. Dispatched runs are also linked to their chat session now, so you can open the run's chat to see what happened.
 
-Get started by visiting `app.deepvista.ai/playbook`.
-
-![Browsing and copying prompt templates in the updated Playbook library](/images/release-0-7-5-playbook-library.gif)
-
-#### **6. Real-time status for your background workflow runs**
-
-Keep tabs on background runs without second-guessing. Dispatched workflow runs now update their status live: if a run hits an issue, you will see it marked in red right away. You can also click directly into the run's chat session to review results or see what happened.
+The `Runs` list refreshes when you come back to the tab rather than streaming, and runs dispatched before this release keep their old frozen status.
 
 Try it in any workflow from the `Runs` tab.
