@@ -1,0 +1,152 @@
+---
+title: "Version 0.7.6"
+description: "Set a workflow column to refill on a cadence, stop scheduled runs emailing you when nothing happened, browse a workbench like a folder of files, save an email into Gmail Drafts instead of sending it, and ask the agent to read your feedback back."
+---
+
+September 11, 2026
+
+#### **1. Decide when and how a workflow column refills**
+
+A database column bound to a workflow does more than fill once. You choose when it refills: when the row is saved, on demand, or on a cadence, so a column can keep asking a question whose answer changes.
+
+You also choose the scope. One run per row is right when every row needs its own lookup. One run over the whole table is right when a single lookup already names every row, such as checking one mailbox for replies from forty prospects, which costs one run per tick instead of forty.
+
+The bound workflow is named on the column panel as a link you can follow, with its description in plain prose rather than the card's raw frontmatter.
+
+A binding also survives a later write to the table's schema. Rewriting a database's columns used to drop the workflow off every column that had one, so a table you had wired up came back plain. The workflow is now carried forward on every path that writes columns, including the ones the agent uses.
+
+Workflow columns are no longer an experimental opt-in. Every project has them, and the cadence scheduler now follows the column itself rather than a per-project switch.
+
+Learn more about building and working a database [here](/tutorials/customer-research-and-tracking).
+
+#### **2. Scheduled runs stop emailing you when nothing happened**
+
+A scheduled job used to decide for itself whether to email you, and most of them chose to on every single run.
+
+Silence is now the default. A job writes to you when it hits an error or a decision only you can make, and you opt a job back in when you want the routine digest.
+
+A job that failed partway through used to stay due, so the next tick dispatched it again, and so did the tick after that. A run now claims its slot before it starts, so a failure costs you one missed run instead of a stream of repeat sends.
+
+Your home page follows the same rule. It opens on **Attention required** and hides notifications you have already read. Successful runs are still under the **Successful** tab.
+
+The notification inbox itself is steadier. Stray toasts you could not dismiss are gone, **Load more** waits for a click instead of firing as you scroll, and the notifications page moved its tabs into the header with a real empty state behind each one.
+
+#### **3. Workbenches browse like files**
+
+A workbench opens as a file browser instead of a flat grid, with a compact list view for when you have a lot of cards and per-type counts on each tile.
+
+The feed lists only what you filed by hand: notes, databases and workflows. A "Sales" workbench used to bury its 4 notes and 8 databases under 221 person cards. Everything those databases pulled in is one click away under **Sourcing & Relations**, which now sits in a card's `...` menu next to **Move to workbench** and opens in the card preview instead of replacing the page under you.
+
+**Databases** also get their own section in the grid, and a card's relation counts list only the types that actually hold something.
+
+Rows in the list view now show a relative time such as "3 days ago", with the exact timestamp on hover. The ungrouped browser feed used to print a clock time with no date at all.
+
+**Snapshot** now lives in a card's `...` menu with the rest of the card actions, and the card header no longer repeats the title and tag rows that the page above it already shows.
+
+#### **4. A workbench counts its databases correctly, and remembers what you left open**
+
+A workbench with one child database of 20 leads used to read `1 row` on its parent tile, show the parent as a blank extra row inside that child so the child read 21, and then open the parent onto "No rows yet". A database filed into a workbench on the create call never had its rollup edge written, and the edge that did exist was read in both directions at once. Both are fixed, and existing workbenches are backfilled.
+
+Stepping into a child database used to send the child-databases section back to collapsed, which meant the one interaction the section exists for was closing it. Open or collapsed is now remembered across workbenches and across reloads.
+
+The whole header row toggles the section, not just its title, and the loading state now stands in for the table it replaces rather than resizing the section when the rows land.
+
+A brand new workbench also tells you what to do first. The empty feed offers **Create first note** and **Create first workflow**, and an empty databases section opens the quick start dialog rather than showing a heading with nothing under it.
+
+#### **5. Ask the agent what your feedback said**
+
+Rating a reply is only half of it. Ask the agent to summarize the feedback on a project and it reads the actual comments back to you rather than a rolled-up average, and a comment can carry markdown and pasted screenshots.
+
+Each rating is now filed as an agent artifact instead of a note, so a hundred agent-written rows no longer bury the notes you wrote yourself.
+
+A rating also records the conversation it came from, so a row in a project-wide feedback database links straight back to the exact exchange being rated instead of naming a turn number you cannot place.
+
+Half-written feedback survives too. Move the mouse away before you click **Submit** and your score and comment are still waiting when the popover reopens, even after a refresh.
+
+#### **6. Save an email into Gmail Drafts instead of sending it**
+
+The send confirmation now offers a third choice next to send and cancel: **Save as draft in Gmail**. The email lands in your own Drafts folder with a link straight to it, so you can read it over, change it, and press send yourself.
+
+If you edit that draft in Gmail before sending, DeepVista reads the message that actually went out and syncs your edits back onto the card, so the record matches what your recipient received rather than what the agent wrote.
+
+When DeepVista answers an email itself, the reply lands inside the existing conversation, so your recipient sees one thread instead of a new message every time.
+
+#### **7. Draft a quote straight from a database row**
+
+Hover any row in a CRM or database table and click **Open Quote**.
+
+The floating chat opens with that record already attached as context and a quote prompt queued up, so you go from a lead to a draft without leaving the table.
+
+#### **8. Encryption is a per-project setting you control**
+
+Encryption is now opt-in per project rather than applied everywhere.
+
+Turn it on for the projects that need it from the admin console, and look for the lock badge to confirm a card is stored encrypted.
+
+#### **9. Form links carry your campaign tags into the run**
+
+Query parameters on a public form link now ride along to the workflow run.
+
+Tag a link with `utm_source`, `utm_campaign`, or anything else you track, and every submission arrives knowing which campaign produced it.
+
+#### **10. An event trigger starts the workflow you attached it to**
+
+Editing a trigger's app, event, or filter used to leave the old subscription running beside the new one. One binding ended up with three live subscriptions on two different mailboxes, so a workflow fired on mail it was never meant to watch. It read like a broken filter; the filter was exact all along.
+
+Editing a trigger now retires what it replaces, and a workflow only accepts events from a subscription it is actually bound to.
+
+Each row on the Input node's **Events** tab now names the connected account it watches, so you can tell two Gmail triggers apart at a glance. The row also carries a note that changing an app, event, or filter means removing the trigger and adding it back, because there is no in-place edit.
+
+#### **11. Retry re-runs the run you clicked**
+
+The retry button in a run's popover used to queue a brand new run, so retrying run 65 left you with runs 66 and 67 on the diagram and a conversation on whichever thread you happened to be looking at.
+
+Retry now reopens that run's own chat session and re-runs it in place. One dot on the diagram, one conversation, and the original prompt still in front of you.
+
+#### **12. The rest of the keyboard shortcuts**
+
+Press `/` anywhere to jump into search, and `Escape` to leave it. The floating chat picks up its own shortcuts for starting a new chat, going back, and stepping through history.
+
+Press `?` for the full list, which now documents every shortcut in one place instead of leaving them to be discovered in tooltips.
+
+Two keys changed to get there. A shortcut now matches its modifiers exactly, so `N` starts a new chat and `/` focuses the composer, while `Cmd N` and `Ctrl /`, which used to work by accident, no longer do.
+
+#### **13. Your first project is built the way every later one is**
+
+Signing up used to ask for your name, drop you on an empty home page, and quietly mint a project called "Default" the first time you touched anything. New accounts now run the project setup flow straight after the name step, so a first-time user lands in a project they named, with a workbench and the template's opening prompt already running in it.
+
+A deep link survives the trip. Click a link to a card while signed out, sign up rather than sign in, and you arrive at that card once onboarding is done instead of at the site root.
+
+The **New workbench** tile follows the same pattern. Instead of a name-and-icon dialog it runs the template flow: **Pick a starting point** such as Lead Tracker or Content Marketing Library, answer its questions one screen at a time, then give it a name, a description, an icon and a colour, and declare the columns its database starts with. Your answers are filed as a standing brief note inside the new workbench, and the template's first prompt goes out to the floating chat with that brief attached.
+
+**Skip for now** is there when you only want an empty workbench, and it now leaves the name blank rather than filling in your project's name as though you had typed it.
+
+#### **14. Smaller fixes across chat, tables, and cards**
+
+New notes get a title field again. A draft opened from the quick-note button now has an inline title input above the editor, focused and ready, instead of hiding the title until after the first save.
+
+The floating chat's draft is kept per project. Switching projects used to bring the previous project's half-typed message with you, chips and all, naming cards the new project cannot resolve.
+
+Duplicating a database is no longer offered. A copy took the card and left the rows behind, so the destination project opened an empty grid with the right columns.
+
+The **More** menu under a chat message is gone and what was worth keeping came out of it. Message info sits beside the feedback star and opens on hover, so the model, timing, and token counts appear under the pointer, and asking for project-wide feedback moved into the feedback popover where it belongs.
+
+**Auto** now runs on Gemini 3.8 Flash as its everyday model, and 3.8 Flash replaces 3.7 in the model switcher. Chat also holds a warm worker and more memory, so the first message after a quiet spell is far less likely to time out.
+
+A turn that stops early now says it was interrupted instead of ending quietly, and signing in on `deepvista.ai` keeps you signed in on `app.deepvista.ai`.
+
+Your browser tab now reads the project you are in, and the workbench too when you are inside one, so several DeepVista tabs stop looking identical. Pinned groups stay collapsed or expanded the way you left them, and a project's first ever chat page now shows the same "No conversations yet" placeholder as the history list instead of a bare composer under a blank column.
+
+A note no longer comes back with its own content doubled after a draft restore, a shared note with a YouTube link no longer renders that video twice, currency amounts such as "$109.9 billion" and "$113.8 billion" on one line stay as text instead of being read as one garbled formula, and the Google sign-in button's tap animation lands where you actually tapped on mobile.
+
+Chat sessions skip archived cards, filters gain a **not equal to** operator, and a quick edit no longer rewrites plain text into LaTeX. On mobile the chat drawer opens taller.
+
+Opening a database card lands on its own detail view, table cards scroll once instead of fighting two scrollbars, and the last column fills the space to its right instead of truncating while the room beside it sits empty. A column your view declares also stays visible after you clear every value in it, rather than vanishing from the grid.
+
+**Settings** now names which LinkedIn account is connected instead of just saying "Connected", which matters as soon as you have connected two.
+
+Credits for a chat turn are now priced on what the turn actually costs rather than on raw token volume. The old meter charged the whole prompt again on every step of the agent loop and ignored caching, so a long turn could bill many times over: one measured hour of nine turns was charged 614 credits against $5.14 of real spend, almost all of which was cache reads at a tenth the price of fresh input.
+
+The VistaBase overview drops the two tiles that could only ever read zero, Issue and Rollup database. Both are still reachable from the type filter and from the board in the main nav. The workbench tile also drops its database badge, and the "All workbenches" tile only appears once the grid actually overflows.
+
+A card whose frontmatter carried a trailing comment, or a value with an apostrophe in it, is now read the way YAML reads it. A `description` such as `Don't run on weekends  # author note` used to be stored with the note glued on, which is how a scheduled job ended up with a cron nothing could dispatch.
