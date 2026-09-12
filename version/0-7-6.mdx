@@ -45,7 +45,7 @@ Rows in the list view now show a relative time such as "3 days ago", with the ex
 
 #### **4. A workbench counts its databases correctly, and remembers what you left open**
 
-A workbench with one child database of 20 leads used to read `1 row` on its parent tile, show the parent as a blank extra row inside that child so the child read 21, and then open the parent onto "No rows yet". A database filed into a workbench on the create call never had its rollup edge written, and the edge that did exist was read in both directions at once. Both are fixed, and existing workbenches are backfilled.
+A database filed into a workbench on the create call never had its rollup edge written, so a workbench with one child database of 20 leads read `1 row` on its parent tile and then opened that parent onto "No rows yet". The edge is now written on every path that files a database into a workbench, and existing workbenches are backfilled.
 
 Stepping into a child database used to send the child-databases section back to collapsed, which meant the one interaction the section exists for was closing it. Open or collapsed is now remembered across workbenches and across reloads.
 
