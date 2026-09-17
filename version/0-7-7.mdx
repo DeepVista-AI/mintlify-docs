@@ -89,7 +89,7 @@ The floating chat opens with that record already attached as context and a quote
 
 Encryption is now opt-in per project rather than applied everywhere.
 
-Turn it on for the projects that need it from the admin console, and look for the lock badge to confirm a card is stored encrypted.
+Turn it on for the projects that need it from the admin console, and look for the lock on the project's avatar in the project switcher to confirm a project is stored encrypted.
 
 #### **10. Form links carry your campaign tags into the run**
 
@@ -107,13 +107,13 @@ Each row on the Input node's **Events** tab now names the connected account it w
 
 #### **12. A run lives on its own card**
 
-Retrying a run used to queue a brand new one, so retrying run 65 left you with runs 66 and 67 on the diagram and a conversation on whichever thread you happened to be looking at. Retry now reopens that run's own chat session and re-runs it in place. One dot on the diagram, one conversation, and the original prompt still in front of you.
+Retrying a run used to queue a brand new one, so retrying run 65 left you with runs 66 and 67 on the diagram and a conversation on whichever thread you happened to be looking at. Retry now reopens that run's own chat session and re-runs it in place. One numbered run label on the diagram, one conversation, and the original prompt still in front of you.
 
 A workflow's runs are now read from the run cards themselves. The `## Log` section that used to be appended to the workflow card is gone, along with the duplicate history it kept, so the number on a run, its state, and the conversation behind it all come from one place.
 
 #### **13. The rest of the keyboard shortcuts**
 
-Press `/` anywhere to jump into search, and `Escape` to leave it. The floating chat picks up its own shortcuts for starting a new chat, going back, and stepping through history.
+Press `/` to jump into the input on the page you are on — the search box in VistaBase, the composer in chat — and `Escape` to leave it. Search itself still opens with `Cmd K`. The floating chat picks up its own shortcuts for starting a new chat, going back, and stepping through history.
 
 Press `?` for the full list, which now documents every shortcut in one place instead of leaving them to be discovered in tooltips.
 
@@ -153,7 +153,7 @@ Your browser tab now reads the project you are in, and the workbench too when yo
 
 A parent database no longer shows up as a row inside itself, a note no longer comes back with its own content doubled after a draft restore, a shared note with a YouTube link no longer renders that video twice, currency amounts such as "$109.9 billion" and "$113.8 billion" on one line stay as text instead of being read as one garbled formula, and the Google sign-in button's tap animation lands where you actually tapped on mobile.
 
-Chat sessions skip archived cards, filters gain a **not equal to** operator, date filters stop refetching a table forever, and a quick edit no longer rewrites plain text into LaTeX.
+Chat sessions skip archived cards, date filters stop refetching a table forever, and a quick edit no longer rewrites plain text into LaTeX.
 
 On mobile, the chat drawer opens taller and sizes itself to the visible window rather than to the one hidden behind the browser chrome, a database header scrolls instead of clipping, and the quick-edit header no longer wraps over its own body.
 
@@ -163,6 +163,6 @@ Opening a database card lands on its own detail view, table cards scroll once in
 
 Credits for a chat turn are now priced on what the turn actually costs rather than on raw token volume. The old meter charged the whole prompt again on every step of the agent loop and ignored caching, so a long turn could bill many times over: one measured hour of nine turns was charged 614 credits against $5.14 of real spend, almost all of which was cache reads at a tenth the price of fresh input.
 
-The VistaBase overview drops the two tiles that could only ever read zero, Issue and Rollup database. Both are still reachable from the type filter and from the board in the main nav. The workbench tile also drops its database badge, and the "All workbenches" tile only appears once the grid actually overflows.
+The VistaBase overview drops the Issue tile, which could only ever read zero — issues are still reachable from the type filter and from the board in the main nav. The Rollup database tile is gone too, because the `rollup_database` card type itself is gone: a workbench root is now an ordinary database. The workbench tile also drops its database badge, and the "All workbenches" tile only appears once the grid actually overflows.
 
 A card whose frontmatter carried a trailing comment, or a value with an apostrophe in it, is now read the way YAML reads it. A `description` such as `Don't run on weekends  # author note` used to be stored with the note glued on, which is how a scheduled job ended up with a cron nothing could dispatch.
