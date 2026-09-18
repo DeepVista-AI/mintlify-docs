@@ -1,9 +1,9 @@
 ---
 title: "Version 0.7.7"
-description: "Set a workflow column to refill on a cadence, sort and hide columns from the grid header, open a workbench on its summary brief, stop scheduled runs emailing you when nothing happened, and save an email into Gmail Drafts instead of sending it."
+description: "Pause a workflow between touches and let a reply wake it early, set a workflow column to refill on a cadence, sort and hide columns from the grid header, open a workbench on its summary brief, and save an email into Gmail Drafts instead of sending it."
 ---
 
-September 16, 2026
+September 18, 2026
 
 #### **1. Decide when and how a workflow column refills**
 
@@ -39,7 +39,7 @@ The feed lists only what you filed by hand: notes, databases and workflows. A "S
 
 Your rollup opens with the workbench, every time. Leaving for the home page used to be read as closing the panel by hand, so the workbench you came back to opened shut.
 
-Clicking a workbench chip in a chat message now takes you to the full browser page rather than the narrower side panel, and your conversation follows you into the floating chat instead of being left behind.
+The agent writes a workbench chip whenever it names one, so the half of the conversation you did not type is clickable too. Only the composer used to produce a chip, which left a workbench the agent named as bare prose. Clicking a chip takes you to the full browser page rather than the narrower side panel, and your conversation follows you into the floating chat instead of being left behind.
 
 Rows in the list view show a relative time such as "3 days ago", with the exact timestamp on hover. **Snapshot** now lives in a card's `...` menu with the rest of the card actions, and the card header no longer repeats the title and tag rows that the page above it already shows.
 
@@ -111,27 +111,41 @@ Retrying a run used to queue a brand new one, so retrying run 65 left you with r
 
 A workflow's runs are now read from the run cards themselves. The `## Log` section that used to be appended to the workflow card is gone, along with the duplicate history it kept, so the number on a run, its state, and the conversation behind it all come from one place.
 
-#### **13. The rest of the keyboard shortcuts**
+#### **13. A workflow can wait three days, then pick itself up**
 
-Press `/` to jump into the input on the page you are on — the search box in VistaBase, the composer in chat — and `Escape` to leave it. Search itself still opens with `Cmd K`. The floating chat picks up its own shortcuts for starting a new chat, going back, and stepping through history.
+A sequence that has to pause now says so in the workflow itself. Give a node a `wait:` block with a duration and a reason, such as `3d` and `timer`, and the run stops there rather than holding a turn open or spawning a scheduled job per step.
+
+The run parks on its own card: the node it stopped on, and when to come back. A background scan wakes it in the same chat when the wait is up, and it runs one leg at a time, from where it stopped to the next wait or to the end. The wake tells the run the wait is over, so a resumed run moves past the node instead of parking on it again.
+
+Set the reason to `reply` and an answer wakes the run early. One mailbox search per tick answers every parked run at once: messages that arrived since the oldest touch still waiting are indexed by thread, then matched against the runs parked on those threads. A hundred leads waiting on a hundred replies costs one search, not one run per lead per hour, and a run whose thread stayed quiet is not touched at all. What the reply means is left to the workflow that wakes up, where you can see the decision.
+
+A paused run also stays paused. Every wait, including runs waiting on your approval or on a delegated agent, used to be stamped done moments after it parked.
+
+#### **14. The rest of the keyboard shortcuts**
+
+Press `/` to jump into the input on the page you are on, the search box in VistaBase or the composer in chat, and `Escape` to leave it. Search itself still opens with `Cmd K`. The floating chat picks up its own shortcuts for starting a new chat, going back, and stepping through history.
 
 Press `?` for the full list, which now documents every shortcut in one place instead of leaving them to be discovered in tooltips.
 
 Two keys changed to get there. A shortcut now matches its modifiers exactly, so `N` starts a new chat and `/` focuses the composer, while `Cmd N` and `Ctrl /`, which used to work by accident, no longer do.
 
-#### **14. Your first project is built the way every later one is**
+#### **15. Your first project is built the way every later one is**
 
-Signing up used to ask for your name, drop you on an empty home page, and quietly mint a project called "Default" the first time you touched anything. New accounts now run the project setup flow straight after the name step, so a first-time user lands in a project they named, with a workbench and the template's opening prompt already in the composer.
+Signing up used to ask for your name, drop you on an empty home page, and quietly mint a project called "Default" the first time you touched anything. New accounts now run the project setup flow straight after the name step, so a first-time user lands in a project they named, with a workbench and the template's opening prompt already in the composer. That step now reads **Create your first project** and says what a project is before asking you to name one.
 
 A deep link survives the trip. Click a link to a card while signed out, sign up rather than sign in, and you arrive at that card once onboarding is done instead of at the site root.
 
 The **New workbench** tile follows the same pattern. Instead of a name-and-icon dialog it runs the template flow: **Pick a starting point**, answer its questions one screen at a time, then give it a name, a description, an icon and a colour, and declare the columns its database starts with. Your answers are filed as a standing brief note inside the new workbench, and the opening prompt names the columns you just declared.
 
-The starting points on offer are published rather than hard-coded, so the grid changes as the catalog does, and the two built-in ones stand in only when the catalog is empty or unreachable.
+The starting points on offer are published rather than hard-coded, so the grid changes as the catalog does, and the two built-in ones stand in only when the catalog is empty or unreachable. The catalog can also pin one to the front rather than leaving the order to whichever was published last.
 
 **Skip for now** is there when you only want an empty workbench, and it now leaves the name blank rather than filling in your project's name as though you had typed it.
 
-#### **15. Smaller fixes across chat, tables, and cards**
+#### **16. Smaller fixes across chat, tables, and cards**
+
+The chat composer suggests what to ask. Its placeholder rotates through prompts worth trying instead of sitting empty, and the captions beside the workbenches crumb, in the VistaBase header, and above your chat history rotate the same way.
+
+A run's popover opens the run's own card. The log gets an expand control at its top right, which was previously reachable only through a chip in the log body or a guess at the URL.
 
 New notes get a title field again. A draft opened from the quick-note button now has an inline title input above the editor, focused and ready, instead of hiding the title until after the first save.
 
@@ -153,7 +167,7 @@ Your browser tab now reads the project you are in, and the workbench too when yo
 
 A parent database no longer shows up as a row inside itself, a note no longer comes back with its own content doubled after a draft restore, a shared note with a YouTube link no longer renders that video twice, currency amounts such as "$109.9 billion" and "$113.8 billion" on one line stay as text instead of being read as one garbled formula, and the Google sign-in button's tap animation lands where you actually tapped on mobile.
 
-Chat sessions skip archived cards, date filters stop refetching a table forever, and a quick edit no longer rewrites plain text into LaTeX.
+Chat sessions skip archived cards, date filters stop refetching a table forever, a quick edit no longer rewrites plain text into LaTeX, and your chat history no longer flashes an error on a cold load while your session is still being restored.
 
 On mobile, the chat drawer opens taller and sizes itself to the visible window rather than to the one hidden behind the browser chrome, a database header scrolls instead of clipping, and the quick-edit header no longer wraps over its own body.
 
@@ -163,6 +177,6 @@ Opening a database card lands on its own detail view, table cards scroll once in
 
 Credits for a chat turn are now priced on what the turn actually costs rather than on raw token volume. The old meter charged the whole prompt again on every step of the agent loop and ignored caching, so a long turn could bill many times over: one measured hour of nine turns was charged 614 credits against $5.14 of real spend, almost all of which was cache reads at a tenth the price of fresh input.
 
-The VistaBase overview drops the Issue tile, which could only ever read zero — issues are still reachable from the type filter and from the board in the main nav. The Rollup database tile is gone too, because the `rollup_database` card type itself is gone: a workbench root is now an ordinary database. The workbench tile also drops its database badge, and the "All workbenches" tile only appears once the grid actually overflows.
+The VistaBase overview drops the Issue tile, which could only ever read zero. Issues are still reachable from the type filter and from the board in the main nav. The Rollup database tile is gone too, because the `rollup_database` card type itself is gone: a workbench root is now an ordinary database. The workbench tile also drops its database badge, and the "All workbenches" tile only appears once the grid actually overflows.
 
 A card whose frontmatter carried a trailing comment, or a value with an apostrophe in it, is now read the way YAML reads it. A `description` such as `Don't run on weekends  # author note` used to be stored with the note glued on, which is how a scheduled job ended up with a cron nothing could dispatch.
