@@ -82,18 +82,30 @@ Your note is immediately indexed for both semantic and full-text search — read
 
 ## Skills
 
-The CLI ships with **8 built-in skills** that install globally to `~/.claude/skills/` and are available in every agent session automatically.
+Installing the CLI writes one consolidated **`deepvista`** skill into your agent's skills
+directory — `~/.claude/skills/` by default, and also `~/.cursor/skills/`,
+`~/.opencode/skills/`, or `~/.agents/skills/` when those directories exist. Your agent
+loads the index first, then pulls only the reference file it needs for the job at hand.
 
-| Skill | What it does |
+| Reference | What it covers |
 | --- | --- |
-| `deepvista-shared` | Auth, profiles, global flags, and security rules used across all skills |
-| `deepvista-memory` | Search, read, create, and update cards in your knowledge base |
-| `deepvista-notes` | Quick note capture — one-liners or full structured notes, instantly indexed |
-| `deepvista-recipe` | Run structured AI workflows and stream results live in your terminal |
-| `deepvista-chat` | Conversational AI agent with full access to your knowledge base context |
-| `deepvista-persona-knowledge-worker` | Daily knowledge workflow patterns for people who think for a living |
-| `deepvista-recipe-research-to-recipe` | Full pipeline: search your KB → synthesize → run a Recipe workflow |
-| `deepvista-recipe-export-knowledge-as-skills` | Turn your own knowledge base into installable, shareable agent skills |
+| `shared.md` | Auth, profiles, global flags, exit codes |
+| `project.md` | Listing and switching the working project |
+| `notes.md` | Quick capture, create, list, update, delete notes |
+| `vistabase-card.md` | Search, create, pin, archive, upload cards; version history |
+| `chat.md` | Chatting with the agent and managing sessions |
+| `skill.md` | Listing, running, creating, and catalog-syncing Skills |
+| `session.md` | Recording an agent conversation as a rolling session card |
+| `tasks.md` | Running work dispatched to this machine |
+| `pull.md` / `push.md` | Installing a Skill's bundled files, and uploading your own |
+
+Your own project Skills install on top of that. `deepvista skill sync` writes each one
+into the same directory as a thin `dv-<slug>` stub, so your agent can invoke a Skill you
+built in the web app by name:
+
+```bash
+deepvista skill sync
+```
 
 ---
 
@@ -106,7 +118,7 @@ Copy any prompt below, paste it into your AI agent (Claude Code, Cursor, etc.), 
     Build a searchable knowledge base from founder interviews.
 
     ```text
-    Load skills: deepvista-shared deepvista-notes
+    Load skill: deepvista
     
     I just listened to the Lenny's Podcast episode with Brian Chesky about founder mode.
     
@@ -116,14 +128,14 @@ Copy any prompt below, paste it into your AI agent (Claude Code, Cursor, etc.), 
     ```
   </Accordion>
 
-  <Accordion title="Research and synthesize with a Recipe" icon="flask">
+  <Accordion title="Research and synthesize with a Skill" icon="flask">
     Once you've captured 10–20 notes, ask your agent to find patterns across them.
 
     ```text
-    Load skills: deepvista-shared deepvista-memory deepvista-recipe deepvista-recipe-research-to-recipe
+    Load skill: deepvista
     
     Search for cards about growth and early-stage execution, then find my Research Synthesis
-    recipe and run it focused on: what separates high-growth founders, common 0→1 mistakes.
+    Skill and run it focused on: what separates high-growth founders, common 0→1 mistakes.
     
     Show me what you find before running.
     ```
@@ -133,27 +145,27 @@ Copy any prompt below, paste it into your AI agent (Claude Code, Cursor, etc.), 
     Test new ideas against founder frameworks you've already captured.
 
     ```text
-    Load skills: deepvista-shared deepvista-memory deepvista-recipe
+    Load skill: deepvista
     
     I have a new startup idea to evaluate. Idea: [your idea].
     
     1. Search my knowledge base for any idea validation frameworks
-    2. Find my idea evaluation Recipe
-    3. Run it with the above context — show me the Recipe first
+    2. Find my idea evaluation Skill
+    3. Run it with the above context — show me the Skill first
     ```
   </Accordion>
 </AccordionGroup>
 
 ---
 
-## Recipe patterns
+## Skill patterns
 
 Build these workflows in the DeepVista web app, then invoke them through your agent with a single prompt.
 
 <CardGroup cols={2}>
   <Card title="Research synthesis" icon="magnifying-glass">
     ```text
-    Search my memory for [topic] and run my Research Synthesis Recipe
+    Search my memory for [topic] and run my Research Synthesis Skill
     ```
   </Card>
 
@@ -171,7 +183,7 @@ Build these workflows in the DeepVista web app, then invoke them through your ag
 
   <Card title="Interview debrief" icon="users">
     ```text
-    I just finished a user interview. Run my Interview Debrief Recipe with these notes: [notes]
+    I just finished a user interview. Run my Interview Debrief Skill with these notes: [notes]
     ```
   </Card>
 
