@@ -1,0 +1,296 @@
+---
+title: "Version 1.0.2"
+description: "Build a GTM workbench that discovers leads and starts a three-touch outreach sequence per lead, hold a run until you approve it, link one card into another database's cell, and see your search terms highlighted in the grid."
+---
+
+September 25, 2026
+
+#### **1. Decide when and how a workflow column refills**
+
+A database column bound to a workflow does more than fill once. You choose when it refills: when the row is saved, on demand, or on a cadence, so a column can keep asking a question whose answer changes.
+
+You also choose the scope. One run per row is right when every row needs its own lookup. One run over the whole table is right when a single lookup already names every row, such as checking one mailbox for replies from forty prospects, which costs one run per tick instead of forty.
+
+The bound workflow is named on the column panel as a link you can follow, with its description in plain prose rather than the card's raw frontmatter.
+
+A binding also survives a later write to the table's schema. Rewriting a database's columns used to drop the workflow off every column that had one, so a table you had wired up came back plain. The workflow is now carried forward on every path that writes columns, including the ones the agent uses.
+
+Workflow columns are no longer an experimental opt-in. Every project has them, and the cadence scheduler now follows the column itself rather than a per-project switch.
+
+Learn more about building and working a database [here](/tutorials/customer-research-and-tracking).
+
+#### **2. Sort, hide and shape columns from the grid header**
+
+Every column header now carries its own menu. Sort by that column, hide it, or double-click its edge to compact it, without opening a settings panel first.
+
+Row controls stay put while you scroll sideways, so the row you are working on is still identifiable once the first column has scrolled away. Column widths respond to a drag again.
+
+Identity columns such as Company and Name render compactly, so a table of people fits more rows on screen, and the `Description`, `Status` and `Tags` columns no longer take up space in any grid by default.
+
+Your layout is saved on the card's own autosave, which means a width or a sort you set is still there on the next visit, and an edit you undo inside a second is not written at all.
+
+#### **3. Workbenches browse like files**
+
+A workbench opens as a file browser instead of a flat grid, with a compact list view for when you have a lot of cards and per-type counts on each tile.
+
+The feed lists only what you filed by hand: notes, databases and workflows. A "Sales" workbench used to bury its 4 notes and 8 databases under 221 person cards. Everything those databases pulled in is one click away under **Sourcing & Relations**, which now sits in a card's `...` menu next to **Move to workbench** and opens in the card preview instead of replacing the page under you.
+
+**Databases** also get their own section in the grid, and a card's relation counts list only the types that actually hold something.
+
+Your rollup opens with the workbench, every time. Leaving for the home page used to be read as closing the panel by hand, so the workbench you came back to opened shut.
+
+The rollup is now an ordinary card you can open anywhere. It used to resolve its rows only from its own edges, which found the rows filed directly on it and none of the databases tagged into the workbench, so it read "No rows yet" in search results, in the preview dialog and in the chat panel while the workbench page showed it full. A bare workbench link now opens that card by id instead of a mode word standing in for one.
+
+The agent writes a workbench chip whenever it names one, so the half of the conversation you did not type is clickable too. Only the composer used to produce a chip, which left a workbench the agent named as bare prose. Clicking a chip takes you to the full browser page rather than the narrower side panel, and your conversation follows you into the floating chat instead of being left behind.
+
+Rows in the list view show a relative time such as "3 days ago", with the exact timestamp on hover. **Snapshot** now lives in a card's `...` menu with the rest of the card actions, and the card header no longer repeats the title and tag rows that the page above it already shows.
+
+#### **4. Your workbench summary sits at the top of the feed**
+
+The summary brief is the first card of the workbench's own feed rather than a panel on the right, so it no longer takes the slot the rollup grid opens into. You get both: the brief at the top, your rows underneath.
+
+The brief itself is a row of live stat tiles with **AI Suggestions** under them, and each suggested next action links to the card it came from.
+
+The card's own heading is a link now. The icon, the name and the sub-tracker line all open the rollup database, which is where most people click first; **View Tracker** on the far right of the row was the only route before. A workbench with no rollup yet renders the same heading as plain text rather than a link that goes nowhere.
+
+The rows total is gone from the tiles. It counted every row under the workbench, including rows nobody filed there by hand, so it read as a figure about your work when it was a figure about the crawl.
+
+A suggestion now reads the candidate card's own notes rather than its title and timestamp, so it can name the blocker it found instead of restating how long a row has sat untouched. A fresh batch of suggestions arrives as a card on your home page, as does a new workbench, which reports itself as still being built until it is ready to open.
+
+A workbench with nothing in it yet says the brief refreshes on demand and points at **Regenerate**, and that empty brief is no longer cached. A workbench created during onboarding used to write its "nothing here so far" headline into the card on the first visit and keep serving it after the rows landed.
+
+Which columns that rollup shows is now editable from **Edit workbench**, not only from the grid, and a database you move to another workbench is unlinked from the old one's rollup rather than counted twice.
+
+#### **5. Scheduled runs stop emailing you when nothing happened**
+
+A scheduled job used to decide for itself whether to email you, and most of them chose to on every single run.
+
+Silence is now the default. A job writes to you when it hits an error or a decision only you can make, and you opt a job back in when you want the routine digest.
+
+A job that failed partway through used to stay due, so the next tick dispatched it again, and so did the tick after that. A run now claims its slot before it starts, so a failure costs you one missed run instead of a stream of repeat sends.
+
+Your home page follows the same rule. **Things to do** lists only what still owes you something, and the notifications page keeps two shelves, **Actions** and **Failed**. A successful run and a machine coming online pop a toast as they happen and are never written down, because they were worth a glance and worthless as a row a week later.
+
+Workflow runs follow the same rule now. The in-app inbox already records every run, so the outcome email after each one is off unless your workspace turns it back on.
+
+#### **6. Ask the agent what your feedback said**
+
+Rating a reply is only half of it. Ask the agent to summarize the feedback on a project and it reads the actual comments back to you rather than a rolled-up average, and a comment can carry markdown and pasted screenshots.
+
+Each rating is now filed as an agent artifact instead of a note, so a hundred agent-written rows no longer bury the notes you wrote yourself.
+
+A rating also records the conversation it came from, so a row in a project-wide feedback database links straight back to the exact exchange being rated instead of naming a turn number you cannot place.
+
+Half-written feedback survives too. Move the mouse away before you click **Submit** and your score and comment are still waiting when the popover reopens, even after a refresh.
+
+#### **7. Save an email into Gmail Drafts instead of sending it**
+
+The send confirmation now offers a third choice next to send and cancel: **Save as draft in Gmail**. The email lands in your own Drafts folder with a link straight to it, so you can read it over, change it, and press send yourself.
+
+If you edit that draft in Gmail before sending, DeepVista reads the message that actually went out and syncs your edits back onto the card, so the record matches what your recipient received rather than what the agent wrote.
+
+When DeepVista answers an email itself, the reply lands inside the existing conversation, so your recipient sees one thread instead of a new message every time.
+
+#### **8. Draft a quote straight from a database row**
+
+Hover any row in a CRM or database table and click **Open Quote**.
+
+The floating chat opens with that record already attached as context and a quote prompt queued up, so you go from a lead to a draft without leaving the table.
+
+#### **9. Encryption is a per-project setting you control**
+
+Encryption is now opt-in per project rather than applied everywhere.
+
+Turn it on for the projects that need it from the admin console, and look for the lock on the project's avatar in the project switcher to confirm a project is stored encrypted.
+
+#### **10. Form links carry your campaign tags into the run**
+
+Query parameters on a public form link now ride along to the workflow run.
+
+Tag a link with `utm_source`, `utm_campaign`, or anything else you track, and every submission arrives knowing which campaign produced it.
+
+#### **11. An event trigger starts the workflow you attached it to**
+
+Editing a trigger's app, event, or filter used to leave the old subscription running beside the new one. One binding ended up with three live subscriptions on two different mailboxes, so a workflow fired on mail it was never meant to watch. It read like a broken filter; the filter was exact all along.
+
+Editing a trigger now retires what it replaces, and a workflow only accepts events from a subscription it is actually bound to.
+
+Each row on the Input node's **Events** tab now names the connected account it watches, so you can tell two Gmail triggers apart at a glance. The row also carries a note that changing an app, event, or filter means removing the trigger and adding it back, because there is no in-place edit.
+
+#### **12. A run lives on its own card**
+
+Retrying a run used to queue a brand new one, so retrying run 65 left you with runs 66 and 67 on the diagram and a conversation on whichever thread you happened to be looking at. Retry now reopens that run's own chat session and re-runs it in place. One numbered run label on the diagram, one conversation, and the original prompt still in front of you.
+
+A workflow's runs are now read from the run cards themselves. The `## Log` section that used to be appended to the workflow card is gone, along with the duplicate history it kept, so the number on a run, its state, and the conversation behind it all come from one place.
+
+#### **13. A workflow can wait three days, then pick itself up**
+
+A sequence that has to pause now says so in the workflow itself. Give a node a `wait:` block with a duration and a reason, such as `3d` and `timer`, and the run stops there rather than holding a turn open or spawning a scheduled job per step.
+
+The run parks on its own card: the node it stopped on, and when to come back. A background scan wakes it in the same chat when the wait is up, and it runs one leg at a time, from where it stopped to the next wait or to the end. The wake tells the run the wait is over, so a resumed run moves past the node instead of parking on it again.
+
+Set the reason to `reply` and an answer wakes the run early. One mailbox search per tick answers every parked run at once: messages that arrived since the oldest touch still waiting are indexed by thread, then matched against the runs parked on those threads. A hundred leads waiting on a hundred replies costs one search, not one run per lead per hour, and a run whose thread stayed quiet is not touched at all. What the reply means is left to the workflow that wakes up, where you can see the decision.
+
+A paused run also stays paused. Every wait, including runs waiting on your approval or on a delegated agent, used to be stamped done moments after it parked.
+
+#### **14. The rest of the keyboard shortcuts**
+
+Press `/` to jump into the input on the page you are on, the search box in VistaBase or the composer in chat, and `Escape` to leave it. Search itself still opens with `Cmd K`. The floating chat picks up its own shortcuts for starting a new chat, going back, and stepping through history.
+
+Press `?` for the full list, which now documents every shortcut in one place instead of leaving them to be discovered in tooltips.
+
+Two keys changed to get there. A shortcut now matches its modifiers exactly, so `N` starts a new chat and `/` focuses the composer, while `Cmd N` and `Ctrl /`, which used to work by accident, no longer do.
+
+#### **15. Your first project is built the way every later one is**
+
+Signing up used to ask for your name, drop you on an empty home page, and quietly mint a project called "Default" the first time you touched anything. New accounts now run the project setup flow straight after the name step, so a first-time user lands in a project they named, with a workbench and the template's opening prompt already in the composer. That step now reads **Create your first project** and says what a project is before asking you to name one.
+
+A deep link survives the trip. Click a link to a card while signed out, sign up rather than sign in, and you arrive at that card once onboarding is done instead of at the site root.
+
+The **New workbench** tile follows the same pattern. Instead of a name-and-icon dialog it runs the template flow: **Pick a starting point**, answer its questions one screen at a time, then give it a name, a description, an icon and a colour, and declare the columns its database starts with. Your answers are filed as a standing brief note inside the new workbench, and the opening prompt names the columns you just declared.
+
+The starting points on offer are published rather than hard-coded, so the grid changes as the catalog does, and the two built-in ones stand in only when the catalog is empty or unreachable. The catalog can also pin one to the front rather than leaving the order to whichever was published last.
+
+**Skip for now** is there when you only want an empty workbench, and it now leaves the name blank rather than filling in your project's name as though you had typed it.
+
+What is left to do follows you onto the home page as a card: connect Gmail, connect LinkedIn, create your first workbench. Each opens the thing it names, and an authorisation page opens in its own tab so the app you were setting up is still there when you come back.
+
+#### **16. Build a GTM workbench, and let it prospect on a cadence**
+
+**Pick a starting point** now offers **GTM Workbench**. It asks the three things that cannot be guessed: who your ideal customer is, which mailbox sends and to whom, and how many leads a day you want.
+
+Answer those and the workbench arrives built rather than described. Two workflow cards are written directly, **Lead Discovery** and **Outreach Sequence**, alongside a standing instruction note holding your answers and the columns your table actually has, and you land on Lead Discovery with its first run queued in front of you. Both workflows arrive paused, so that queued run is the only one that fires until you read the instruction note and switch the cadence on. Every starting point takes this path now, reading whichever questions it asks rather than the GTM template's three.
+
+**Lead Discovery** is a daily cadence, not one large call. Twenty leads a day, five at a time, with a wait between batches, so the first batch lands in the database within minutes and a misread brief can be stopped on five rows instead of twenty. Each run files its rows into a fresh database titled with that run's date, tagged into the workbench like any other sub-tracker, so your rollup and its "N sub-trackers included" count pick it up with no extra wiring. Screening reads across every leads database in the workbench, so a later run does not re-add a lead you already have under a different sub-tracker, and a lead whose email address sits on a domain you already have is kept rather than thrown away with it.
+
+**Outreach Sequence** is three touches on one lead, on day 0, 3 and 7, with a wait between each and a branch after every wait that ends the sequence the moment the lead answers. All three are drafted before the first one goes out, so the mail that wakes on day 7 sounds like the two before it rather than re-reading the lead cold.
+
+Each touch is its own email card carrying the recipient, the subject and a status that moves from drafted to sent to replied, listed in the run log as chips. A touch opens, edits and sends through the same send dialog as any other email, and "did the second touch go out?" is answerable months later without reading prose.
+
+A reply is matched on the conversation, not on the address. The follow-up quotes the first mail's own message id and keeps one subject, so your recipient sees one thread, and a thread that splits stops the sequence rather than talking over whoever answered.
+
+Discovery now hands its leads to the sequence itself. A finished Lead Discovery run offers each lead it filed to **Outreach Sequence**, one run per lead, and the daily cap, the paused switch and the per-lead claim each decide whether that run may start. The sequence used to declare that it ran per lead and have nothing anywhere that enumerated them, so it was reachable only by hand and most leads were never mailed.
+
+The first touch waits for you. A node that declares an approval gate now parks the run and says **Paused, needs a person** on the diagram instead of letting the agent talk itself past the gate and report an unsent email as sent. No amount of elapsed time releases it, because elapsed time is not somebody agreeing. A run that stopped short of its last node no longer reports itself done either.
+
+The sequence's **Leads** popover lists the workbench's leads rather than only the ones already dispatched, so it answers "who could be in this sequence" and not just "who is". Each row pairs with its run and offers exactly one action: open the run where there is one, or **Run now** where there is not.
+
+Twenty leads a day against a three-touch sequence is sixty live sequences by the end of the week. The workbench says that number before you schedule it.
+
+#### **17. Hold one workflow without stopping the workbench**
+
+A workbench carries a **Workflows** group of its own, beside the one listing its sub-trackers, open on arrival when there is anything in it.
+
+Its header is the whole status in one line: "3 workflows running", "3 workflows paused", or "2 running · 1 paused" when it is neither, which is the state a single label cannot describe honestly.
+
+Each row is one workflow: its name, whether it is **Idle** or **Paused**, when it last changed, its cadence and next run, and a switch to hold it or let it go. Rows are ordered by where they sit in the pipeline rather than by whichever you touched last, and a workflow with its schedule switched off says so rather than showing a blank. **Idle** means the workflow is allowed to run, not that a run is in flight. The old summary counted two workflows nobody had ever triggered as "2 running", which claimed work was under way that was not. Four rows show before the rest collapse behind **Show more**.
+
+There is no bulk control. Stopping a workbench looks like one decision, but the reason each workflow was stopped is rarely the same reason, so starting them again is one switch at a time.
+
+#### **18. Seven connectors, and you can connect one from the chat**
+
+Settings used to offer the whole upstream catalog behind a **Browse all apps** dialog, which made DeepVista read as a generic agent platform. The list is now seven: Gmail, LinkedIn, Google Calendar, Google Sheets, Slack, Discord and Apollo.
+
+Every tile is shown whether or not it is connected, so the set never changes shape as you work through it, and a connected one says **Already connected** in place.
+
+The chat composer carries the same list, so you can connect an app from the conversation that needs it. An account that has stopped working offers **Reconnect** on its own row and runs the repair there, rather than sending you to settings to find it.
+
+Adding Gmail no longer asks you to choose how. The "Sync + workflow triggers" option is gone, so the row's **Add account**, the **Available to connect** tile and the composer's connectors menu all run the same native Gmail connect.
+
+#### **19. Point a cell at another card, and see what you searched for**
+
+A database column can now hold another card. Declare a column as a context card, put a card's id in the cell, and the grid draws that card's title and type icon as a link you can follow; an email draft gets a two-line cell with the subject over the recipient. The id stays a plain scalar in the row, so sorting, filtering, inline editing and CSV export all still read that cell the way they always did.
+
+Card chips are clickable wherever they appear. A chip in your chat history or in a comment used to be inert once the message was written, which left the agent's own references unfollowable, and a right-click on one no longer opens the card out from under the menu you were reaching for.
+
+Searching inside a database highlights what matched. Type in the search box and every matching run of text is marked in the cell it was found in, across titles, attribute values, URLs and internal links, so you can see why a row came back rather than reading each one to find out.
+
+The global search panel is easier to steer. The type filter is a row of badges instead of a dropdown, the input is taller and carries a clear button, and arrow-key navigation is visible again: the selected row used to be painted over by the panel's own background, so the highlight moved and nothing on screen showed it. Clicking a filter also returns focus to the input, so `Enter` opens the result you selected instead of toggling the badge you just clicked.
+
+#### **20. A workbench table's rows have names**
+
+A workbench database holds entities rather than documents, so its row identifier now reads **Name** instead of **Title**. The rename is seeded into that workbench's own column set rather than into the grid's defaults, so every other kind of table still says Title.
+
+A view's schema can rename the columns you never declared. An entry marked canonical names one of the grid's built-in columns rather than a row attribute, so Title, Type, Created and Updated can each carry the word your table actually uses.
+
+#### **21. Smaller fixes across chat, tables, and cards**
+
+The chat composer suggests what to ask. Its placeholder rotates through prompts worth trying instead of sitting empty, and the captions beside the workbenches crumb, in the VistaBase header, and above your chat history rotate the same way.
+
+A run's popover opens the run's own card. The log gets an expand control at its top right, which was previously reachable only through a chip in the log body or a guess at the URL. **Open run chat** from a node's run popover now opens the floating panel where one is available, so you keep the diagram you were reading.
+
+The diagram itself is quieter. The **Visual** and **Markdown** tabs are one small toggle button that flips between editing the raw markdown and viewing the diagram, the **Prepare Inputs** node opens the same detail popover every other node does instead of firing a canned prompt at the chat, and the **Output** node's link to its sink database opens that database inside its own workbench.
+
+New notes get a title field again. A draft opened from the quick-note button now has an inline title input above the editor, focused and ready, instead of hiding the title until after the first save.
+
+Leaving a chat mid-answer now asks first. Closing the tab or navigating away while a reply is still streaming raises a confirmation instead of dropping the turn silently, and switching projects, which was never the case that needed guarding, goes through without one.
+
+The floating chat opens in the bottom-left corner by default, out of the way of the right panel.
+
+Cards you attach are added for you only on a brand new chat. Continuing an existing conversation no longer re-adds chips you had already removed from it, and a chat may now carry at most one workflow, so an agent that pulls in a second one is stopped rather than left running two.
+
+The floating chat's draft is kept per project. Switching projects used to bring the previous project's half-typed message with you, chips and all, naming cards the new project cannot resolve.
+
+The chat bubble spins while an answer is still streaming, and says so on hover. Closing the panel drops what is on screen while the answer keeps arriving, so a long reply used to run with nothing anywhere to say it was still going. A chat started from the panel is also its own conversation now rather than being filed under a placeholder, which is why one could vanish the moment its run finished.
+
+The quick-note panel is no longer write-only. Its header grows a back button onto a list of the project's notes, drafts first and pinned before the rest, with pin and **Move to workbench** on each row, and **+** returns you to a fresh composer. A card's **Chat** and **Database** popovers stay put the same way: a conversation opens in the floating panel and a database opens in the workbench browser, rather than replacing the card you were reading.
+
+Duplicating a database is no longer offered. A copy took the card and left the rows behind, so the destination project opened an empty grid with the right columns.
+
+The **More** menu under a chat message is gone and what was worth keeping came out of it. Message info sits beside the feedback star and opens on hover, so the model, timing, and token counts appear under the pointer, and asking for project-wide feedback moved into the feedback popover where it belongs.
+
+**Auto** now runs on Gemini 3.8 Flash as its everyday model, and 3.8 Flash replaces 3.7 in the model switcher. Chat also holds a warm worker and more memory, so the first message after a quiet spell is far less likely to time out.
+
+A turn that stops early now says it was interrupted instead of ending quietly, and signing in on `deepvista.ai` keeps you signed in on `app.deepvista.ai`.
+
+A long agent turn no longer loses the tool steps it already finished. Its progress is checkpointed mid-run, so an interrupted turn resumes from where it stopped rather than from the top.
+
+An editor that drops its connection for a moment keeps the document you were typing into, and a card that reconnects no longer looks freshly edited when nothing about it changed.
+
+Your browser tab now reads the project you are in, and the workbench too when you are inside one, so several DeepVista tabs stop looking identical. Pinned groups stay collapsed or expanded the way you left them, and a project's first ever chat page now shows the same "No conversations yet" placeholder as the history list instead of a bare composer under a blank column.
+
+A parent database no longer shows up as a row inside itself, a note no longer comes back with its own content doubled after a draft restore, a shared note with a YouTube link no longer renders that video twice, currency amounts such as "$109.9 billion" and "$113.8 billion" on one line stay as text instead of being read as one garbled formula, and the Google sign-in button's tap animation lands where you actually tapped on mobile.
+
+Chat sessions skip archived cards, date filters stop refetching a table forever, a quick edit no longer rewrites plain text into LaTeX, and your chat history no longer flashes an error on a cold load while your session is still being restored.
+
+On mobile, the chat drawer opens taller and sizes itself to the visible window rather than to the one hidden behind the browser chrome, a database header scrolls instead of clipping, and the quick-edit header no longer wraps over its own body. A row's actions sit in their own column rather than behind a hover you cannot perform, and tapping a workbench opens the workbench rather than the rollup card inside it.
+
+Opening a database card lands on its own detail view, table cards scroll once instead of fighting two scrollbars, and the last column fills the space to its right instead of truncating while the room beside it sits empty. A column your view declares also stays visible after you clear every value in it, rather than vanishing from the grid.
+
+The workbench browser keeps its scroll position. Opening a card and coming back used to return you to the top of the list, which meant finding your place again every time.
+
+Workflow diagram nodes drop the spinning robot badge that marked an agent as running. The node's own state already said it.
+
+On mobile, the login page offers a sign-up link rather than dead-ending people without an account, and its top row is no longer clipped by the phone's own chrome.
+
+**Settings** now names which LinkedIn account is connected instead of just saying "Connected", which matters as soon as you have connected two.
+
+Credits for a chat turn are now priced on what the turn actually costs rather than on raw token volume. The old meter charged the whole prompt again on every step of the agent loop and ignored caching, so a long turn could bill many times over: one measured hour of nine turns was charged 614 credits against $5.14 of real spend, almost all of which was cache reads at a tenth the price of fresh input.
+
+The VistaBase overview drops the Issue tile, which could only ever read zero. Issues are still reachable from the type filter and from the board in the main nav. The Rollup database tile is gone too, because the `rollup_database` card type itself is gone: a workbench root is now an ordinary database. The workbench tile also drops its database badge, and the "All workbenches" tile only appears once the grid actually overflows.
+
+A card whose frontmatter carried a trailing comment, or a value with an apostrophe in it, is now read the way YAML reads it. A `description` such as `Don't run on weekends  # author note` used to be stored with the note glued on, which is how a scheduled job ended up with a cron nothing could dispatch.
+
+A database description written with line breaks in it no longer comes back doubled when you expand it, sorting or filtering on a column whose key has a space in it works, and a snapshot that fails no longer leaves its own button stuck mid-run.
+
+Pricing is four plans: **Free**, **Starter**, **Pro** and **Business**. Business is sales-assisted rather than self-serve, so it reads **Custom Pricing** and books a conversation instead of sending you to checkout, and the upgrade prompt in settings stops offering a tier nobody can buy. New accounts start with 800 credits, which is what the Free plan says it gives you.
+
+Your chat history opens on the **Chat** filter, shown as a pill you can clear. **All** is still the unfiltered baseline; what changed is which filter is applied when the list opens, in the sidebar, on `/chat` and in the floating panel.
+
+A conversation's header names the workbench it belongs to, reusing the pill the history rows already carry, so the title is no longer the only thing telling you where you are.
+
+Creating a project or a workbench no longer flashes the floating chat open and shut. The kickoff message is sent with the panel closed.
+
+Switching projects lands you on that project's home page rather than on whichever page you were reading in the one you left.
+
+Trashing a card offers an undo in the toast that reports it, and the card's **Comments** thread now starts collapsed, with the count on its header, instead of filling the bottom of every card.
+
+**Regenerate** reads **Suggest again**, which is what the button does.
+
+Text too long for its box scrolls rather than truncating, and fades at both edges instead of ending in a hard cut.
+
+The workbench browser now lives at `/workbenches`. The path is the vocabulary the rest of the product already uses.
+
+The **Resource Library** at `/resources` is a card grid with category pills in place of tabs over a list, and a post carries a cover image taken from its own first image.
+
+A workflow run no longer writes back to the workflow card. Run counts are tallied from the run cards themselves, the run lock is gone, and `require_human_interaction` has left the workflow frontmatter, because a run records its approvals on the run rather than on the workflow it came from.
