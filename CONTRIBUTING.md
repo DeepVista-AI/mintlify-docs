@@ -22,7 +22,25 @@ Thank you for your interest in contributing to our documentation! This guide wil
 6. Preview your changes at `http://localhost:3000`
 7. Commit your changes and submit a pull request
 
-For more details on local development, see our [development guide](development.mdx).
+## Automated checks
+
+Every push and pull request runs `npm run check:docs`, which verifies that each
+`.mdx` file compiles, that internal links and deep-link anchors resolve, that no
+page is published without appearing in `docs.json`, and that images carry real
+alt text. Run it locally before pushing:
+
+```bash
+npm install
+npm run check:docs
+```
+
+Pre-existing issues are recorded in `scripts/docs-check-baseline.json`, so the
+check only fails on newly introduced ones. After fixing something on that list,
+lock the improvement in with:
+
+```bash
+npm run check:docs -- --update-baseline
+```
 
 ## Writing guidelines
 
