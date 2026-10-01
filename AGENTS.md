@@ -31,3 +31,11 @@
 
 {/* Define what should and shouldn't be documented */}
 {/* Example: Don't document internal admin features */}
+
+## Cursor Cloud specific instructions
+
+- This is a static Mintlify docs site (MDX + `docs.json`); there is no `package.json`, backend, or build step. The only tool is the global `mint` CLI.
+- The startup update script installs/updates `mint` into a user-writable npm prefix (`~/.npm-global`), which is on `PATH` via `~/.bashrc`. If `mint` is ever not found, run `export PATH="$HOME/.npm-global/bin:$PATH"`.
+- Run the dev preview with `mint dev` from the repo root (serves `http://localhost:3000`). Edits to `.mdx` files and `docs.json` hot-reload automatically — no restart needed.
+- Lint/validate links with `mint broken-links`. There is no test suite.
+- If the dev server behaves oddly after a CLI update, run `mint update` then restart `mint dev`.
