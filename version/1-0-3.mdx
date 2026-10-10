@@ -1,6 +1,6 @@
 ---
 title: "Version 1.0.3"
-description: "Post, react and send a connection request or an InMail on LinkedIn from the chat, filter a table by one of its own columns, hand part of a workflow run to a subagent and watch it work, research the web and follow a deep research run while it goes, and build a GTM workbench that discovers leads and starts a three-touch outreach sequence per lead."
+description: "Score real people to calibrate a new workbench's ideal customer before anything prospects on it, post, react and send a connection request or an InMail on LinkedIn from the chat, filter a table by one of its own columns, hand part of a workflow run to a subagent and watch it work, research the web and follow a deep research run while it goes, and build a GTM workbench that discovers leads and starts a three-touch outreach sequence per lead."
 ---
 
 October 7, 2026
@@ -41,6 +41,8 @@ The feed lists only what you filed by hand: notes, databases and workflows. A "S
 
 A card's relation counts list only the types that actually hold something.
 
+A loose note can be filed by dragging it. Drag a note's tile or its row onto a workbench tile and the note is moved there, the target outlining while you hover it. Moving a note used to mean finding **Move to workbench** in the card's `...` menu; the drop target on those tiles had existed for a while with nothing wired to it.
+
 Opening a workbench lands on its feed rather than on its rollup tracker. Every route in, the dashboard, the grid, a chat pill, a chat chip, the create wizard and the panel header, now goes to the workbench itself, and the tracker is one click away from there. The redirect onto the rollup is gone, and so is the marker the app used to write to remember that you had closed the panel by hand, which existed only to stop that redirect firing again.
 
 The feed is four groups you can collapse: **Next Actions**, your workflows, your notes and your chats. Each carries its own **Expand** and **Collapse** control, and the choice sticks per workbench, so a workbench you use for one thing opens showing that thing. Chats filed in a workbench are a group in the feed rather than something behind a popover, and the one search box now reaches them and your notes too, not just the grid. The notes group carries its own **New note** button, which opens the quick-note dialog in the middle of the screen. The sub-trackers underneath a workbench moved out of a group of their own and onto the brief's own run button, where picking one is part of choosing what to run.
@@ -58,6 +60,8 @@ The summary brief is the first card of the workbench's own feed rather than a pa
 The brief sits inside the tracker card itself, under the workbench's name and description. It is headed **Briefing** and wears a badge when it found something that needs you. The counts that used to stack above it are chips on the same row as **View Tracker**, one per record type, each carrying how many arrived in the last seven days and each narrowing the rollup to its own type when you click it. On a phone the name takes the whole row and the chips wrap underneath, instead of sitting beside it and squeezing the title down to a few characters.
 
 **Things to do** moved out from under the brief and became a group of its own, **Next Actions**, with a count beside its name and a **Refresh** button that reports how many seconds it has been going. Each row leads with how urgent the brief judged it, **High**, **Med** or **Low**, then the suggestion and its one sentence of why now, then chips naming the record it is about. The row itself opens that record. The verb the brief picked, **Review**, **Approve** or **Draft**, is not a button beside the row; it heads the comment the suggestion leaves on the card, which is where the row takes you.
+
+A row can also be marked done. A ✓ sits beside the ✗, and both now drop the suggestion from the brief's own cached list on the server rather than hiding it in your browser, so a row you have dealt with is gone on your other devices and for whoever else works in the workbench.
 
 Every row carries a dismiss control, and dismissing writes rather than hides. It posts a comment on the record saying the previous comment is not relevant, with the dismissed suggestion quoted underneath, so the thread keeps the record of the decision and the row goes from this list and from the card's thread in one move.
 
@@ -237,6 +241,8 @@ Card chips are clickable wherever they appear. A chip in your chat history or in
 
 Searching inside a database highlights what matched. Type in the search box and every matching run of text is marked in the cell it was found in, across titles, attribute values, URLs and internal links, so you can see why a row came back rather than reading each one to find out.
 
+Search can also be narrowed by date. A stale card and the card that replaced it matched the same query equally well, and there was no way to exclude the old one: the search tools took no date, the hits came back carrying none, and the browse table's own created and updated filter was dropped the moment a query was typed. Hits carry their dates now, that filter survives a query, and the agent can ask for a created or updated range of its own.
+
 The global search panel is easier to steer. The type filter is a row of badges instead of a dropdown, the input is taller and carries a clear button, and arrow-key navigation is visible again: the selected row used to be painted over by the panel's own background, so the highlight moved and nothing on screen showed it. Clicking a filter also returns focus to the input, so `Enter` opens the result you selected instead of toggling the badge you just clicked.
 
 #### **20. A table's rows have names**
@@ -371,11 +377,49 @@ Two settings pages were renamed to match the words already on their own tabs: `/
 
 The **Docs** link moved out of the header nav and into the footer, which keeps the top of the site about the product.
 
-#### **35. Smaller fixes across chat, tables, and cards**
+#### **35. Score a few real people, and your ideal customer writes itself**
+
+A new workbench used to take your written answers and start prospecting on them. It shows you real people first.
+
+**Finding people like your customer** runs that search while you watch, reported as a trace in the chat rather than as a spinner, and comes back with **Which of these look like your customer?** Every card is somebody who exists. Rate one under *How close is this to your ideal customer?* on a scale of 1 to 10, where 7 and up counts as a fit, say *What makes them a fit?* or *What feels off?* in a sentence, and add anything else on the way past. Five bands could not tell a near miss from a strong one, which is why the scale goes to ten. The step is skippable, and skipping it leaves the setup working from your goal and your answers alone, as it did before.
+
+What you scored becomes a note titled **Ideal customer**, filed in the workbench, and that note is what Lead Discovery actually reads.
+
+Nothing is built until you have read it. Creating the workbench writes the **Ideal customer** note and the Lead Discovery instruction note and stops there. A **Review your ideal customer** row sits in **Next Actions** and cannot be dismissed: **Confirm** builds the two workflows and queues the first Lead Discovery run, and **Still need update** opens the note with the caret already in its body and leaves the row standing, so **Confirm** is still there once you have finished editing. The workflows used to be built at creation time and run on an ideal customer nobody had seen. That row is worked out from the workbench's own state rather than from the cached brief, so it appears without waiting on a model call and clears the moment you confirm.
+
+Your own competitors are kept out of the results. A competitor matches your ideal customer better than a real customer does, and nothing in the pipeline knew you had any. The prep step now works out your category and your competitors itself, without asking you for a list, records them under `## Competitors` in that same note, and skips them while searching. Lead Discovery checks again before filing a row and names what it dropped.
+
+Leaving the wizard halfway asks before discarding what you have answered, and project setup carries **Skip workbench creation** for when you only want the project.
+
+#### **36. Card metadata reads as a property list**
+
+A card's metadata was a bordered key/value table, which read as a form waiting to be filled in. It is a property list now: one row per property, a type icon at the head of each key, and no grid lines.
+
+Keys are drawn as readable labels rather than as the key they are stored under. Keys became `snake_case` when rich-cell keys were renamed, and a column of raw keys reads poorly in a block you pass every time you open a card. It is display only, so the stored key, YAML mode and every write still use the raw one, and the label's tooltip shows it.
+
+Keys are read-only in the list, so a rename goes through **Edit as YAML**, and clicking a key opens its type and delete menu rather than putting a cursor in it. **Add a property** asks for the name first, under **Property name**, instead of adding an empty row for you to find. Whether the **Metadata** block is expanded or collapsed is remembered.
+
+#### **37. Import a CSV as a table, and export a rollup back out**
+
+Attach a CSV and ask for it as a database. The import is one server-side call now, rather than the agent reading the file and writing the rows a few at a time.
+
+Export goes the other way. A workbench rollup has no `...` menu, and **Export CSV** went with it when that menu was hidden. The rollup carries its own **Export CSV** button on its toolbar now, and the export seeds its rows by workbench, which is the seed the grid itself draws from, so the file holds every sub-tracker's rows rather than only the ones filed on the rollup card.
+
+#### **38. Find what somebody shared with you**
+
+The created-by filter offered **Anyone** and each member of your project. **Shared with me** now sits underneath them, and it is not an author: it asks for the cards shared into your view from somewhere else. The same entry is on the `Cmd K` type row, which is the one place it was already reachable.
+
+A share email is drawn in the app's own palette now, rather than in whatever the mail template happened to carry.
+
+#### **39. Smaller fixes across chat, tables, and cards**
 
 The chat composer suggests what to ask. Its placeholder rotates through prompts worth trying instead of sitting empty, and the captions beside the workbenches crumb, in the VistaBase header, and above your chat history rotate the same way.
 
 A run's popover opens the run's own card. The log gets an expand control at its top right, which was previously reachable only through a chip in the log body or a guess at the URL. **Open run chat** from a node's run popover now opens the floating panel where one is available, so you keep the diagram you were reading.
+
+**Stop** has its own slot beside **Send**. The two shared one, and typing while a reply was streaming swapped **Stop** for **Send** so the message you were composing could be queued, which left no way to cancel the reply you were waiting on. **Stop** now holds its place for the whole stream, outlined in the danger colour, and **Send** queues or sends as it always did.
+
+A person card's header carries more of the person. A fit badge sits beside the name and opens the score and the reason behind it, a pin toggle sits next to it, and the links the card holds are icons inline after the name with their addresses on hover, the company's under a building icon of its own.
 
 A turn stopped by the credit wall says so. Running out of credits mid-turn used to leave the last step spinning with nothing to explain it. The chat now closes the turn with a line saying the account is out of credits and an **Upgrade** button beside it, and any step still reporting progress when the turn ended is marked interrupted rather than left reading as running.
 
@@ -403,7 +447,7 @@ A card's **Chat** and **Database** popovers stay put: a conversation opens in th
 
 Duplicating a database is no longer offered. A copy took the card and left the rows behind, so the destination project opened an empty grid with the right columns.
 
-The **More** menu under a chat message is gone and what was worth keeping came out of it. Message info sits beside the feedback star and opens on hover, so the model, timing, and token counts appear under the pointer, and asking for project-wide feedback moved into the feedback popover where it belongs.
+The **More** menu under a chat message is gone and what was worth keeping came out of it. Asking for project-wide feedback moved into the feedback popover, where it belongs. Message info, which reports the model, the timing and the token counts, sits beside the feedback star and opens on hover; it is shown to admins only, as is the info button on a tool step, which opens that call's arguments and result beside a breakdown of what the turn's context window is being spent on and an estimate of the latency. Both are there to debug a turn rather than to act on one.
 
 **Auto** now runs on Gemini 3.8 Flash as its everyday model, and 3.8 Flash replaces 3.7 in the model switcher. Chat also holds a warm worker and more memory, so the first message after a quiet spell is far less likely to time out.
 
