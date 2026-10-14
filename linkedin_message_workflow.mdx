@@ -2,10 +2,9 @@
 title: "LinkedIn Message Unipile Auto-Response Workflow"
 ---
 
-````text
+The workflow card this page documents:
 
-# LinkedIn Message Unipile Auto-Response Workflow
-
+```yaml
 ---
 name: workflow-unipile-linkedin-message-response
 description: "Process Unipile LinkedIn message webhooks, deduplicate replies, analyze follower count, draft non-commitment response, auto-reply via Unipile API, and send email notification."
@@ -49,6 +48,7 @@ inputs:
     placeholder: "user@example.com"
     help: "Email address where the confirmation, auto-sent reply, follower count, and thread link will be sent"
 ---
+```
 
 ## Setup & Prerequisites (via DeepVista MCP)
 
@@ -121,7 +121,7 @@ flowchart TD
   e4@{ animation: slow }
   e5@{ animation: slow }
   e6@{ animation: slow }
-````
+```
 
 ## Node Description
 
@@ -205,6 +205,3 @@ flowchart TD
   2. Deliver email to `recipient_email` via `send_email` or `send_notification_email`.
   3. Persist a `message` card in VistaBase tagged with `message_id` and `chat_id` to block duplicate future triggers.
 </accordion-plain>
-
-```text
-```
