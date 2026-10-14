@@ -37,7 +37,16 @@ With your machine connected and `deepvista tasks run` polling, configure Linear 
 export LINEAR_TOKEN="your_linear_api_token"
 ```
 
-_Note: The agent retrieves this variable securely within your local environment and never uploads the credential in plaintext or leaks it to logs._
+<Warning>
+  The token stays on your machine — DeepVista never asks you to paste it into chat and never
+  stores it. The run log is a different matter: `deepvista tasks run` streams a one-line summary
+  of every tool call back to the task card, and for a shell command that summary is the first 80
+  characters of the command itself. Nothing strips credentials out of it.
+
+  So keep the token out of the command line. Reference it as `$LINEAR_TOKEN` and let the shell
+  expand it at run time rather than pasting the resolved value into a command, and treat anyone
+  who can read the task card as able to read whatever lands in those summaries.
+</Warning>
 
 ## Step-by-step guide
 
