@@ -1,0 +1,36 @@
+---
+title: "Version 1.1.2"
+description: "DeepVista 1.1.2: wizard candidates found by a live search agent, Terms and Privacy hosted in the app, and the Social World Model across the product."
+---
+
+October 17, 2026
+
+Know who you're looking at before you commit: candidates that arrive as real profiles, the legal terms in the app instead of off it, and one idea running from the homepage to your sign-in screen.
+
+#### **1. Review candidates as real profiles, not names on a list**
+
+- The wizard's **Which of these look like your customer?** step now runs a single search agent instead of a hand-built query pipeline, and each candidate comes back as a profile with their photo, role, company, and LinkedIn link.
+- Profile links always come from the search results, never from the model, so every candidate opens a page that actually exists.
+- Every person you score becomes a row in the new workbench's tracker — photo, role, company, and LinkedIn, alongside the score and the reasons you gave — so the people table isn't empty on day one.
+
+Try it by starting a new workbench and reviewing the faces on **Which of these look like your customer?**
+
+#### **2. Read the Terms and Privacy Policy without leaving DeepVista**
+
+![Terms of Service hosted in the app, with an On this page index](/images/release-1-1-2-terms-of-service.png)
+
+- **Terms of Service** and **Privacy Policy** are now pages in the app at `/terms-of-service` and `/privacy-policy`, instead of links that sent you off to another domain.
+- Each one opens with an **On this page** index that tracks the section you're reading as you scroll.
+- The links under the sign-in form, in **Settings**, and in the site footer all point here now — and both pages open without signing in.
+
+Try it by clicking **Terms of Service** under the sign-in form.
+
+#### **3. One idea, from the homepage to your sign-in screen**
+
+![The Social World Model on the sign-in screen](/images/release-1-1-2-social-world-model.png)
+
+- The sign-in screen and the site footer now carry the same sentence: DeepVista builds the **Social World Model**, turning fragmented calls, emails, and networks into a living relationship graph.
+- The homepage leads with the **THE SOCIAL WORLD MODEL · RELATIONAL INTELLIGENCE** marker, closes with *Powered by the Social World Model*, and its browser tab now reads **DeepVista | The Social World Model**.
+- The sign-in screen carries that same marker and the same headline you land on from the homepage, so the handoff no longer changes the subject.
+
+Try it by opening the sign-in screen and reading the line above the form.
