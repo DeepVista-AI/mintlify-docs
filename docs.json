@@ -34,33 +34,9 @@
                   "tutorials/customer-research-and-tracking",
                   "tutorials/apollo-integration"
                 ]
-              },
-              "tutorials/social-media-campaign",
-              "social-media-management"
+              }
             ],
             "expanded": true
-          },
-          {
-            "group": "Deep Walkthrough",
-            "pages": [
-              {
-                "group": "Required Set Up",
-                "expanded": true,
-                "pages": [
-                  "tutorials/mac-setup",
-                  "tutorials/server/claude-connector-delegation",
-                  "tutorials/server/local"
-                ]
-              },
-              {
-                "group": "Optional Set Up",
-                "pages": [
-                  "tutorials/rebrandly-cli-delegation"
-                ]
-              },
-              "tutorials/task-delegation-linear",
-              "tutorials/x-post-workflow"
-            ]
           },
           {
             "group": "Customization",
