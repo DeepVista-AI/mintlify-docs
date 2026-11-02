@@ -26,43 +26,6 @@
             ]
           },
           {
-            "group": "Playbooks",
-            "pages": [
-              {
-                "group": "Customer Research & Tracking",
-                "pages": [
-                  "tutorials/customer-research-and-tracking",
-                  "tutorials/apollo-integration"
-                ]
-              },
-              "tutorials/social-media-campaign",
-              "social-media-management"
-            ],
-            "expanded": true
-          },
-          {
-            "group": "Deep Walkthrough",
-            "pages": [
-              {
-                "group": "Required Set Up",
-                "expanded": true,
-                "pages": [
-                  "tutorials/mac-setup",
-                  "tutorials/server/claude-connector-delegation",
-                  "tutorials/server/local"
-                ]
-              },
-              {
-                "group": "Optional Set Up",
-                "pages": [
-                  "tutorials/rebrandly-cli-delegation"
-                ]
-              },
-              "tutorials/task-delegation-linear",
-              "tutorials/x-post-workflow"
-            ]
-          },
-          {
             "group": "Customization",
             "hidden": true,
             "pages": [
@@ -117,17 +80,8 @@
               "version/1-0-2",
               "version/1-1-0",
               "version/1-1-1",
-              "version/1-1-2",
               "version/1-2-0",
               "version/1-2-1"
-            ]
-          },
-          {
-            "group": "For Developers",
-            "pages": [
-              "cli",
-              "mcp-server",
-              "tutorials/server/private"
             ]
           }
         ]
