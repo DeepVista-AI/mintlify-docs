@@ -75,13 +75,13 @@
               "version/0-7-4",
               "version/0-7-5",
               "version/0-7-6",
-              "version/1-0-0",
-              "version/1-0-1",
-              "version/1-0-2",
-              "version/1-1-0",
-              "version/1-1-1",
-              "version/1-2-0",
-              "version/1-2-1"
+              "version/0-8-0",
+              "version/0-8-1",
+              "version/0-8-2",
+              "version/0-9-0",
+              "version/0-9-1",
+              "version/0-10-0",
+              "version/0-10-1"
             ]
           }
         ]
@@ -157,5 +157,35 @@
       "linkedin": "https://linkedin.com/company/mintlify"
     }
   },
-  "description": "Stop repeating yourself. DeepVista turns your feedback into consistent execution across your team and agents."
+  "description": "Stop repeating yourself. DeepVista turns your feedback into consistent execution across your team and agents.",
+  "redirects": [
+    {
+      "source": "/version/1-0-0",
+      "destination": "/version/0-8-0"
+    },
+    {
+      "source": "/version/1-0-1",
+      "destination": "/version/0-8-1"
+    },
+    {
+      "source": "/version/1-0-2",
+      "destination": "/version/0-8-2"
+    },
+    {
+      "source": "/version/1-1-0",
+      "destination": "/version/0-9-0"
+    },
+    {
+      "source": "/version/1-1-1",
+      "destination": "/version/0-9-1"
+    },
+    {
+      "source": "/version/1-2-0",
+      "destination": "/version/0-10-0"
+    },
+    {
+      "source": "/version/1-2-1",
+      "destination": "/version/0-10-1"
+    }
+  ]
 }
