@@ -1,0 +1,52 @@
+---
+title: "MCP Server"
+description: "Connect Claude.ai or Claude Code directly to DeepVista."
+---
+
+The DeepVista MCP server lets any compatible AI client read, search, create, edit, and delete your context cards, without leaving your coding environment or chat interface.
+
+All actions are automatically scoped to your **default project**, the one set under **Settings → User → Default project**. No extra configuration needed.
+
+<Info>
+  MCP (Model Context Protocol) is an open standard for connecting AI clients to external data sources. [Read the spec →](https://modelcontextprotocol.io/specification/2025-03-26)
+</Info>
+
+## Setup
+
+### Endpoint
+
+The MCP server uses Streamable HTTP transport with OAuth 2.1 authentication.
+
+**Endpoint:** `https://api.deepvista.ai/mcp`
+
+### Claude.ai
+
+<Steps>
+  <Step>
+    In Claude.ai, go to **Customize → Connectors** and click **Add custom connector**.
+  </Step>
+  <Step>
+    Name it "DeepVista" and enter the endpoint: `https://api.deepvista.ai/mcp`
+  </Step>
+  <Step>
+    Click **Add**, then **Connect** to sign in to DeepVista.
+  </Step>
+</Steps>
+
+The connector also works in Claude Desktop and Cowork, with no extra setup.
+
+**Team/Enterprise:** An org Owner adds the connector under **Organization settings → Connectors**. Members then click **Connect**.
+
+**Verify it's working:** Ask Claude to "search my DeepVista cards for [any topic]". A matching result confirms the connection is live.
+
+### Claude Code
+
+Run the following command to add the DeepVista MCP server:
+
+```bash
+claude mcp add --transport http deepvista-server https://api.deepvista.ai/mcp
+```
+
+Then open a Claude Code session and run `/mcp` to go through the authentication flow.
+
+**Verify it's working:** Ask Claude Code to "search my DeepVista cards for [any topic]". A matching result confirms the connection is live.
